@@ -18,9 +18,10 @@ class Home extends React.Component{
     }
     this.time = 0;
     this.font = "GT America extended bold"
-    this.size = 38;
+    this.size = 40;
     this.vel = 0;
-    this.maxVel = 38;
+    this.mouseVel = 0;
+    this.maxVel = 36;
   }
 
   componentDidMount(){
@@ -99,7 +100,7 @@ class Home extends React.Component{
           GLUtil.packFloatToVec4i( Math.random() ),
           GLUtil.packFloatToVec4i( .5 + ( Math.random() * .003 - .0015 ) ),
           GLUtil.packFloatToVec4i( .5 + ( Math.random() * .003 - .0015 ) )
-        );
+        ); 
       }
     )
     let w = GLUtil.getNearestSquare( array.length / 4 );
@@ -134,6 +135,10 @@ class Home extends React.Component{
         mouse: {
           type: "v2",
           value: new THREE.Vector2(0,0)
+        },
+        mouseVel: {
+          type: "f",
+          value: 0
         },
         screen_resolution: { type: "vec2", value: [
           window.innerWidth,
@@ -306,8 +311,38 @@ class Home extends React.Component{
 
   }
 
+  
+  
+  
+  mouseMove( e ){
+    let x = ((e.clientX / e.target.offsetWidth) - .5) * 2; 
+    let y = ((e.clientY / e.target.offsetHeight) - .5) * 2;
+    let diff = Math.sqrt( 
+      Math.pow( x - this.state.mouse.x, 2. ) + 
+      Math.pow( y - this.state.mouse.y, 2. )
+      ) * 4;
+      diff = diff > this.mouseVel ? diff : this.mouseVel;
+      this.mouseVel = diff
+      this.setState({
+        mouse: {
+          x: x,
+          y: y
+        }
+      })
+  }
   animate(){
     this.time++;
+
+    
+    if( this.mouseVel > .001 ){
+      this.mouseVel -= this.mouseVel / 300;
+      console.log( this.mouseVel )
+    }
+
+    if( this.mouseVel < -.001 ){
+      this.mouseVel += this.mouseVel / 300;
+    }
+    
 
     this.timelinePos += this.vel;
 
@@ -340,11 +375,19 @@ class Home extends React.Component{
       this.state.mouse.x,
       this.state.mouse.y
     );
+
     if(this.simMaterial){
       this.simMaterial.uniforms.mouse.value = new THREE.Vector2(
         (this.state.mouse.x + 1) / 2,
         (this.state.mouse.y + 1) / 2
       );
+      
+      console.log( this.mouseVel )
+      this.mouseVel = this.mouseVel > .8 ? .8 : this.mouseVel;
+      this.simMaterial.uniforms.mouseVel.value = this.mouseVel;
+
+
+
       let target = this.words[ 0 ].positionTexture;
       let texture = this.words[ 0 ].texture;
       if( target !== this.simMaterial.uniforms.word_target.value ){
@@ -376,30 +419,18 @@ class Home extends React.Component{
 
 
 
-
     this.points.material.uniforms.time.value = this.time
     this.points.material.uniforms.target.value = this.renderTargetA.texture;
-
-    // debugger
-    window.requestAnimationFrame( this.animate.bind( this ) );
-  }
-
-
-
-  mouseMove( e ){
-    this.setState({
-      mouse: {
-        x: ((e.clientX / e.target.offsetWidth) - .5) * 2,
-        y: ((e.clientY / e.target.offsetHeight) - .5) * 2
-      }
-    })
+    if( this.time < 800 ){
+      window.requestAnimationFrame( this.animate.bind( this ) );
+    }
   }
 
 
   render(){
     return(
       <div className = "homepage">
-        <canvas ref = "canvas" onMouseMove = { this.mouseMove.bind( this ) }/>
+        <canvas ref = "canvas" onMouseMove = { throttle(this.mouseMove.bind( this ), 100) }/>
         <div className = "texts" >
         oiop
         </div>

@@ -19,7 +19,7 @@ float DecodeFloatRGBA (vec4 rgba) {
 }
 
 void main(){
-    gl_PointSize = 5.;
+    gl_PointSize = 2.;
 
     float base = index;
 
@@ -29,7 +29,7 @@ void main(){
     v_index = index;
 
     float _x = (((DecodeFloatRGBA(texture2D( target, _x_pos )) - .5))) * (resolution.x );
-    float _y = (DecodeFloatRGBA(texture2D( target, _y_pos )) - .5) * resolution.y;
+    float _y = ((DecodeFloatRGBA(texture2D( target, _y_pos )) - .5) * resolution.y);
 
     image_pos = vec2(
        (_x / resolution.x) + .5,

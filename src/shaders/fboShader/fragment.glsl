@@ -8,7 +8,7 @@ uniform vec2 target_resolution;
 uniform vec2 canvas_resolution;
 uniform vec2 screen_resolution;
 uniform vec2 mouse;
-
+uniform float mouseVel;
 uniform sampler2D dataTex;
 uniform sampler2D word_target;
 
@@ -164,8 +164,8 @@ void main(){
   float _base = floor( index / u_step ) * u_step;
   float _mod = mod(round(index), u_step);
 
-  float targ_x = DecodeFloatRGBA(texture2D( word_target, getPointDataTexCoord( (_base / u_step) * 2., 0., target_resolution ) ));
-  float targ_y = DecodeFloatRGBA(texture2D( word_target, getPointDataTexCoord( (_base / u_step) * 2., 1., target_resolution ) ));
+  float targ_x = (DecodeFloatRGBA(texture2D( word_target, getPointDataTexCoord( (_base / u_step) * 2., 0., target_resolution ) )) / 1.5) + .125;
+  float targ_y = (DecodeFloatRGBA(texture2D( word_target, getPointDataTexCoord( (_base / u_step) * 2., 1., target_resolution ) )) / 1.5) + .125;
 
 
   float _x = DecodeFloatRGBA(texture2D( dataTex, getPointDataTexCoord( _base, 0., u_resolution ) ));
@@ -176,7 +176,7 @@ void main(){
 
   vec2 _t_pos = .5 + (vec2( targ_x, targ_y ) * (((canvas_resolution * 4.) / 2.) / screen_resolution) - ( canvas_resolution * 1. / screen_resolution ));
   vec2 _pos = vec2( _x, _y );
-  float shieldDist = 0.05 + abs(snoise( (mod(index, 20.) * 10.) + (_pos * 2. ) + (time / 1000.) ) * .1);
+  float shieldDist = .04 + (pow(mouseVel, 2.) / 2.);
   float mouseAngle =
   atan(
     _x - mouse.x,
@@ -184,7 +184,7 @@ void main(){
   );
 
   float mouse_dist = distance( _pos, mouse );
-  _t_pos -= _t_pos * when_lt( mouse_dist,  shieldDist );
+  _t_pos -= _t_pos * (when_lt( mouse_dist,  shieldDist ));
   _t_pos +=
   vec2(
     mouse.x + ( shieldDist * sin(mouseAngle)),
@@ -194,8 +194,8 @@ void main(){
 
   vec2 _vel = vec2( _velocity_x, _velocity_y );
   float max_vel = .02;
-  float acc = .01;
-  float max_dist = .08;
+  float acc = .005;
+  float max_dist = .05;
   vec4 _out = vec4(0.);
 
 
@@ -220,12 +220,13 @@ void main(){
   );
 
   _velocity_x -= _velocity_x * when_lt( abs(_t_pos.x - _x), max_dist );
-  _velocity_x = clamp( _velocity_x, -max_vel, max_vel );
   _velocity_x +=
-    abs(_velocity_inside_x) * dir.x
+    abs(_velocity_inside_x) * dir.x * unit.x * 30.
     * when_lt( abs(_t_pos.x - _x), max_dist )
     ;
-
+  _velocity_x = clamp( _velocity_x, -max_vel, max_vel );
+  _velocity_x -= _velocity_x * when_lt( abs( _x - _t_pos.x ), unit.x * .1 );
+  _x -= (_x - _t_pos.x) * when_lt( abs( _x - _t_pos.x ), unit.x * .1 );
 
   _velocity_y +=
   (dir_y * (abs(cos(angle)) * acc) * unit.y)
@@ -241,8 +242,11 @@ void main(){
     max_vel
   );
   _velocity_y -= _velocity_y * when_lt( abs(_t_pos.y - _y), max_dist );
+  _velocity_y += abs(_velocity_inside_y) * dir.y * unit.y * 30. * when_lt( abs(_t_pos.y - _y), max_dist );
   _velocity_y = clamp( _velocity_y, -max_vel, max_vel );
-  _velocity_y += abs(_velocity_inside_y) * dir.y * when_lt( abs(_t_pos.y - _y), max_dist );
+  _velocity_y -= _velocity_y * when_lt( abs( _y - _t_pos.y ), unit.y * .1 );
+  _y -= (_y - _t_pos.y) * when_lt( abs( _y - _t_pos.y ), unit.y * .1 );
+  // _x += (( -_x  ) + ( _t_pos.x )) * when_lt( abs(_velocity_x), .01 );
   // _velocity_y += _velocity_inside_x * when_lt( abs(_t_pos.y - _y), .02 );
   // _velocity_y -= (dir_y * .05) * when_lt( .2, abs(_t_pos.y - _y) );
   // _velocity_x = _velocity_x + dir_x;
