@@ -20,7 +20,7 @@ class Home extends React.Component{
     this.state = {
       canvasPos: "top"
     };
-    this.positionInterval = 800;
+    this.positionInterval = (window.innerWidth / 10) * 5;
     this.backgroundColor = "rgb( 235, 235, 230 )"
     this.mouse = new THREE.Vector2();
     this.zoomTimer = new Timer( { target: 1, rate: .07 } );
@@ -35,7 +35,8 @@ class Home extends React.Component{
     });
     this.projectTimer = new Timer({ target: 1, rate: .05 });
     this.scrollVel = 0;
-    this.time = 0;
+    this.startTime = new Date().getTime();
+    this.time = 0
     this.scrollFriction = 4;
     this.maxScrollVel = 80;
     this.selectedIndex = 0;
@@ -401,7 +402,7 @@ class Home extends React.Component{
       }
     )
 
-    this.time ++;
+    this.time = (this.startTime - (new Date().getTime()));
     this.three.composer.render()
     // this.three.renderer.render( this.three.scene, this.three.camera )
     window.requestAnimationFrame( this.animate.bind( this ) );

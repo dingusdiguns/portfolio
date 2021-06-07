@@ -48,8 +48,8 @@ return x;
 
 float movingNoise(vec2 p) {
 
-float x = fractalNoise(p + (u_time / 200.));
-float y = fractalNoise(p - (u_time / 200.));
+float x = fractalNoise(p + (u_time / 4000.));
+float y = fractalNoise(p - (u_time / 4000.));
 return fractalNoise(p + vec2(x, y));
 
 }

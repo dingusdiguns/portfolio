@@ -93,7 +93,7 @@
   font-family: "GT America expanded black";
   /* letter-spacing: .1em; */
   left: 50%;
-  font-size: 23vh;
+  font-size: 10vw;
   text-transform: uppercase;
   transform: translate( -50%, -50% );
 }
