@@ -8,6 +8,20 @@ class Header extends React.Component{
     }
   }
 
+  componentDidMount(){
+    window.changeHeaderColor = this.changeHeaderColor.bind( this )
+    window.removeHeaderColor = this.removeHeaderColor.bind( this )
+
+  }
+
+  changeHeaderColor( color ){
+    this.setState({ color: color })
+  }
+
+  removeHeaderColor(){
+    this.setState({ color: undefined })
+  }
+
   toggleMenu(){
     this.setState({
       menuActive: !this.state.menuActive
@@ -16,13 +30,21 @@ class Header extends React.Component{
 
   getMenuStyle(){
     if( this.state.menuActive ){
-      debugger
       return({
         height: "100vh",
         top: "0px"
       })
     }else{
+      return({})
+    }
+  }
 
+  getStyle(){
+    if( this.state.color ){
+      return {
+        opacity: .8,
+        color: this.state.color
+      }
     }
   }
 
@@ -31,18 +53,10 @@ class Header extends React.Component{
   render(){
     return(
       <div className = "header">
-        <div className = "hamburger"  onClick = { this.toggleMenu.bind( this ) }>
-          <div className = "bun"></div>
-          <div className = "bun"></div>
-          <div className = "bun"></div>
-        </div>
-        <div className = { this.state.menuActive ? "menu active": "menu" } style = { this.getMenuStyle() }>
-          <ul>
-            <li style = {{ transitionDelay: ".7s" }}><span>About</span></li>
-            <li style = {{ transitionDelay: ".8s" }}><span>Projects</span></li>
-            <li style = {{ transitionDelay: ".9s" }}><span style = {{ borderBottom: "0px" }}>Contact</span></li>
-          </ul>
-        </div>
+        <ul>
+          <li style = { this.getStyle() }>About</li>
+          <li style = { this.getStyle() }>Projects</li>
+        </ul>
       </div>
     )
   }

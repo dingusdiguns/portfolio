@@ -1,0 +1,12 @@
+balls.add(
+
+     new Ball(
+      mouseX,
+      mouseY,
+      color(
+        img.get(
+          mouseX+random(2), mouseY+random(2)
+        )
+      )
+    )
+     );

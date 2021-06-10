@@ -187,7 +187,7 @@ void main() {
 
 
   float noise = 2.5 *  -45. * ( 1. + (u_velocity / 600.) ) * turbulence( 0.1 * normal + (u_time / 40000.)  );
-  float b = 10.0 * pnoise( 0.01 * position + vec3( 20. * (u_time / 10000.) ), vec3( 100.0 ) );
+  float b = 10.0 * pnoise( 0.01 * position + vec3( 20. * (u_time / 20000.) ), vec3( 100.0 ) );
   float displacement = (- noise + b) * u_selection;
   v_noise = displacement;
 
