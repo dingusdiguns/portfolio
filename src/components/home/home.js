@@ -20,13 +20,14 @@ class Home extends React.Component{
     this.state = {
       canvasPos: "top"
     };
-    this.positionInterval = (window.innerWidth / 10) * 2.8;
+    this.positionInterval = (window.innerHeight / 10) * 3.4;
     this.defaultColor = new THREE.Color("rgb( 15, 15, 15 )");
     this.backgroundColor = new THREE.Color("rgb( 15, 15, 15 )");
     this.mouse = new THREE.Vector2();
     this.mouseThree = new THREE.Vector3();
     this.zoomTimer = new Timer( { target: 1, duration: 1000,rate: .07 } );
     this.snapTimer = new Timer( { name: "snap", target: 1, duration: 800,rate: .025 } );
+    this.snapTimer = new Timer( { name: "click", target: 1, duration: 800,rate: .025 } );
     this.selectionTimer = new Timer( {
       target: 1,
       duration: 1000,
@@ -48,6 +49,29 @@ class Home extends React.Component{
 
 
 
+  }
+
+  clickProject( index ){
+    let project = Object.values( Projects )[this.selectedIndex]
+    if( project ){
+
+      
+      this.resetMeshTimers(
+        () => {
+          this.clicked = project.handle;
+          this.meshs.forEach(
+            ( mesh, index ) => {
+              let delay = (3 - Math.abs(index- this.selectedIndex)) * .2;
+              mesh.clickTimer = new Timer({ target: 1, duration: 800, delay: delay });
+              mesh.initialClickPos = mesh.mesh.position.y;
+              mesh.targetClickPos = window.innerHeight;
+              mesh.clickTimer.startTimer();
+            }
+          )
+        }
+      );
+
+    }
   }
 
   mouseDown( e ){
@@ -96,7 +120,7 @@ class Home extends React.Component{
     }
   }
 
-  resetMeshTimers(){
+  resetMeshTimers( callback ){
     this.meshs.forEach(
       ( mesh, index ) => {
         mesh.initialScale = mesh.mesh.scale.clone();
@@ -107,6 +131,14 @@ class Home extends React.Component{
         mesh.targetPosition = mesh.mesh.position.clone();
         mesh.targetPosition.x = (index * this.positionInterval );
         window.removeHeaderColor();
+        if( callback ){
+          mesh.timer.changeCallback(
+            () => {
+              mesh.timer.changeCallback( undefined )
+              callback(); 
+            }
+          );
+        }
         mesh.timer.reset();
       }
     )
@@ -165,7 +197,7 @@ class Home extends React.Component{
             mesh.initialPosition = mesh.mesh.position.clone();
             mesh.initialSaturation = mesh.mesh.material.uniforms.saturation.value;
             if( index === this.selectedIndex ){
-              mesh.targetScale = new THREE.Vector3( 2, 2, 2 );
+              mesh.targetScale = new THREE.Vector3( 2.1, 2.1, 2.1 );
               mesh.targetPosition = mesh.mesh.position.clone();
               mesh.targetPosition.x = (index * this.positionInterval );
               mesh.targetSaturation = 1;
@@ -428,7 +460,7 @@ class Home extends React.Component{
     this.scales = [];
     values.forEach(
       ( _project, index ) => {
-        let sphere = new THREE.SphereGeometry( window.innerWidth / 8, 32, 32 );
+        let sphere = new THREE.SphereGeometry( window.innerHeight / 6, 32, 32 );
 
         let vert = require("../../shaders/projectMaterial/vertex.glsl").default;
         let frag = require("../../shaders/projectMaterial/fragment.glsl").default;
@@ -488,7 +520,7 @@ class Home extends React.Component{
         mesh.parent_obj = obj
         this.meshs.push(obj);
         image.src = _project.cover;
-        mesh.position.set( x, 0, -500 );
+        mesh.position.set( x, -0, -500 );
         this.timeline.add( mesh );
       }
     );
@@ -559,6 +591,11 @@ class Home extends React.Component{
           let saturation = mesh.initialSaturation + ((mesh.targetSaturation - mesh.initialSaturation) * value)
           if( diffPos.x !== 0 ){
             mesh.mesh.position.set( mesh.initialPosition.clone().add( diffPos ).x, mesh.initialPosition.y, mesh.initialPosition.z );
+          }
+          if( this.clicked ){
+            let clickValue = Easing.easeInQuint(mesh.clickTimer.getValue());
+            let y = mesh.initialClickPos + ( (mesh.targetClickPos - mesh.initialClickPos) * clickValue );
+            mesh.mesh.position.setY( y );
           }
           let scale = mesh.initialScale.clone().add( diffScale );
           mesh.mesh.scale.set( scale.x, scale.y, scale.z );
@@ -670,6 +707,7 @@ class Home extends React.Component{
         return(
           <ProjectTitle
             project = { value }
+            clickProject = { this.clickProject.bind( this ) }
             key = {`project-title-${index}`}
             index = { index }
             oldSelectedIndex = { this.state.oldSelectedIndex }

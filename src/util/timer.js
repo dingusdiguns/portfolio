@@ -90,6 +90,10 @@ class Timer{
     time = time > 1 ? 1 : time;
     let value = this.initialValue + ( ( this.target - this.initialValue ) * time );
     this.value = value;
+    if(  this.value >= 1 && this.callback && !this.callbackExecuted ){
+      this.callbackExecuted = true;
+      this.callback();
+    }
     return value;
   }
 

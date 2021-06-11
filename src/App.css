@@ -109,10 +109,17 @@
   font-family: "GT America compressed black";
   /* letter-spacing: .1em; */
   left: 50%;
-  font-size: 22vw;
+  font-size: 17vw;
   opacity: 1;
   text-transform: uppercase;
   transform: translate( -50%, -50% );
+}
+
+
+@media( min-width: 1200px ){
+  .project-title{
+    font-size: 200px;
+  }
 }
 
 @keyframes title-inactive {
@@ -256,7 +263,7 @@ body{
   font-family: "GT America Extended Regular";
   left: 0px;
   width: 100vw;
-  padding: 40px 80px;
+  padding: 20px 60px;
   color: white;
   z-index: 1000;
   font-size: 16px;
@@ -266,9 +273,14 @@ body{
   text-transform: uppercase;
 }
 
+.header ul{
+  padding: 0px;
+  margin: 0px;
+}
+
 .header ul li{
   display: inline-block;
-  margin-left: 20px;
+  margin-right: 60px;
   transition: .4s;
   color: white;
   opacity: .1;
@@ -292,8 +304,8 @@ body{
 
 
 .homepage .link-text{
-  position: absolute;
-  bottom: -40px;
+  position: fixed;
+  bottom: 20px;
   /* font-family: "GT America expanded black"; */
   font-family: "GT America compressed medium";
   font-family: "GT America Extended Regular";
@@ -304,8 +316,12 @@ body{
   width: auto;
   text-align: center;
   text-transform: uppercase;
-  text-decoration: underline;
   margin-top: -2vw;
+  transition-delay: 1.2s;
+  transition: opacity .4s;
+  pointer-events: none;
+
+  border-radius: 100%;
   /* opacity: 0; */
   /* position: relative; */
 }
@@ -318,19 +334,27 @@ body{
   left: 0px;
   height: 100%;
   transition: .4s;
+  border-radius: 100%;
 }
 
 .homepage .link-text button{
   display: block;
-  opacity: 0;
   white-space: nowrap;
-  padding: 4px 40px;
+ 
   background-color: transparent;
   color: inherit;
-  font-size: 40px;
+  font-size: 20px;
   border:none;
   box-shadow: initial;
   font-family: "GT America expanded black";
+  font-family: "GT America Extended Regular";
+  font-family: "GT America Extended Medium";
+   padding: 12px 40px;
+  border-radius: 100%;
+
+  pointer-events: painted;
+
+
   text-transform: uppercase;
 }
 
@@ -339,6 +363,9 @@ body{
   top: 0px;
   left: 0px;
   opacity: 1;
+  padding: 12px 40px;
+  border-radius: 100%;
+  
   
 }
 
@@ -359,4 +386,21 @@ body{
   overflow: hidden;
   white-space: nowrap;
   transition: .4s;
+}
+
+.header-link{
+  position: relative;
+}
+
+.header-link.active::after{
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 140%;
+  border-radius: 100%;
+  border: 3px solid white;
+  border-color: inherit;
+  transform: translate( -50%, -50% )
 }

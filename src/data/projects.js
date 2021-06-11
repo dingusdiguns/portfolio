@@ -2,38 +2,48 @@ const THREE = require( "three" )
 
 module.exports = {
 
-  "OSCAR ROBERT": {
+  "Wild One": {
     title: "WILD ONE",
     cover: "/images/wild-one.png",
     textColor: "rgb( 240, 140, 100 )",
     textColor: "rgb(240 200 170)",
+    handle: "wild-one",
     linkText: "View Project",
     backgroundColor_rgb: "rgb(180, 170, 165)",
     backgroundColor: new THREE.Color( "rgb(180, 170, 165)" )
   },
-  "Wild One": {
+
+  "Courant": {
+    title: "Courant",
+    cover: "/images/courant-6.png",
+    textColor: "rgb( 50, 50, 120 )",
+    handle: "wild-one",
+    linkText: "View Project",
+    backgroundColor_rgb: "rgb(180, 180, 180)",
+    backgroundColor: new THREE.Color( "rgb(180, 180, 185)" ),
+    backgroundColor: new THREE.Color( "rgb(150, 150, 150)" )
+    
+  },
+
+  "Scribby": {
     title: "Scribby",
     cover: "/images/scribby.png",
-    textColor: "rgb(160, 120, 0)" ,
+    textColor: "rgb( 180, 69, 60 )",
+    handle: "wild-one",
     linkText: "View Project",
-    backgroundColor_rgb: "rgb(180, 160, 120)",
-    backgroundColor: new THREE.Color( "rgb(180, 160, 120)" )
+    backgroundColor_rgb: "rgb(180, 69, 120)",
+    backgroundColor: new THREE.Color( "rgb(27, 27, 95)" ),
+    backgroundColor: new THREE.Color( "rgb(180, 180, 185)" )
   },
-  "Scribby": {
-    title: "Courant",
-    cover: "/images/wild-one.png",
-    textColor: "rgb( 200, 240, 160 )",
+  
+  "WP": {
+    title: "W&P",
+    cover: "/images/wp.jpg",
+    handle: "wild-one",
+    textColor: "rgb( 255, 210, 100 )",
     linkText: "View Project",
-    backgroundColor_rgb: "rgb(80, 60, 55)",
-    backgroundColor: new THREE.Color( "rgb(80, 60, 55)" )
-  },
-  "Spickity Poo": {
-    title: "Poo",
-    cover: "/images/wild-one.png",
-    textColor: "rgb( 200, 240, 160 )",
-    linkText: "View Project",
-    backgroundColor_rgb: "rgb(255, 0, 0)",
-    backgroundColor: new THREE.Color( "rgb(255, 0, 0)" )
+    backgroundColor_rgb: "rgb(80, 0, 0)",
+    backgroundColor: new THREE.Color( "rgb(255, 180, 80)" )
   },
   "Lamps": {
     title: "Courant",

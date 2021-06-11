@@ -38,13 +38,13 @@ class ProjectTitle extends React.Component{
           }
         }else if( this.state.index === this.state.oldSelectedIndex ){
           style = {
-            transform: "translate( 0px, 150px ) rotate3d(1, 0, 0, -90deg)",
+            transform: "translate( 0px, 10vh ) rotate3d(1, 0, 0, -90deg)",
             transitionDelay: ` ${ index / 20 }s`,
             opacity: 0
           }
         }else{
           style = {
-            transform: "translate( 0px, -150px ) rotate3d(1, 0, 0, 90deg)",
+            transform: "translate( 0px, -10vh ) rotate3d(1, 0, 0, 90deg)",
             transitionDelay: ` ${ index / 20 }s`,
             opacity: 0
           }
@@ -59,17 +59,13 @@ class ProjectTitle extends React.Component{
   link(){
     let style = {};
     if( this.state.index === this.state.selectedIndex ){
-      style = { width: "100%", color: this.state.textColor, border: `4px solid ${ this.state.textColor }`, backgroundColor: this.state.backgroundColor }
-      debugger
+      style = { pointerEvents: "painted",width: "auto", color: this.state.textColor, border: `4px solid ${ this.state.textColor }`, opacity: 1 }
     }else{
-      style = { width: "0%", color: this.state.textColor, border: `0px solid ${ this.state.textColor }`, backgroundColor: this.state.backgroundColor }
+      style = { pointerEvents: "none",width: "auto", color: this.state.textColor, border: `4px solid ${ this.state.textColor }`, opacity: 0 }
     }
     return(
-      <div className = "link-text">
-        <button> { this.state.linkText } </button>
-        <div className = "link-mask" style = { style }>
-          <button> { this.state.linkText } </button>
-        </div>
+      <div className = "link-text" style = {style}>
+        <button onClick = { () => { this.props.clickProject() } }> { this.state.linkText } </button>
       </div>
     )
   }

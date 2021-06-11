@@ -43,7 +43,8 @@ class Header extends React.Component{
     if( this.state.color ){
       return {
         opacity: .8,
-        color: this.state.color
+        color: this.state.color,
+        borderColor: this.state.color
       }
     }
   }
@@ -54,8 +55,8 @@ class Header extends React.Component{
     return(
       <div className = "header">
         <ul>
-          <li style = { this.getStyle() }>About</li>
-          <li style = { this.getStyle() }>Projects</li>
+          <li className = "header-link" style = { this.getStyle() }>About</li>
+          <li className = "header-link active" style = { this.getStyle() }>Projects</li>
         </ul>
       </div>
     )
