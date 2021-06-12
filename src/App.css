@@ -340,7 +340,7 @@ body{
 .homepage .link-text button{
   display: block;
   white-space: nowrap;
- 
+
   background-color: transparent;
   color: inherit;
   font-size: 20px;
@@ -365,8 +365,8 @@ body{
   opacity: 1;
   padding: 12px 40px;
   border-radius: 100%;
-  
-  
+
+
 }
 
 
@@ -403,4 +403,11 @@ body{
   border: 3px solid white;
   border-color: inherit;
   transform: translate( -50%, -50% )
+}
+.projects{
+  background-color: rgb( 15, 15, 15 );
+  transition: 1s;
+  transition-delay: 1s;
+  width: 100vw;
+  min-height: 100vh;
 }

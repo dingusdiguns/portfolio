@@ -3,6 +3,7 @@ import Timer from "../../util/timer"
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
+import { withRouter } from "react-router";
 
 import ProjectTitle from "./project-title.js"
 
@@ -15,7 +16,7 @@ const THREE = require("three");
 
 
 class Home extends React.Component{
-  constructor(){
+  constructor( props ){
     super();
     this.state = {
       canvasPos: "top"
@@ -47,15 +48,11 @@ class Home extends React.Component{
     this.meshs = [];
     this.words = [];
 
-
-
   }
 
   clickProject( index ){
     let project = Object.values( Projects )[this.selectedIndex]
     if( project ){
-
-      
       this.resetMeshTimers(
         () => {
           this.clicked = project.handle;
@@ -66,6 +63,13 @@ class Home extends React.Component{
               mesh.initialClickPos = mesh.mesh.position.y;
               mesh.targetClickPos = window.innerHeight;
               mesh.clickTimer.startTimer();
+              if( index === this.selectedIndex ){
+                mesh.clickTimer.changeCallback(
+                  function(){
+                    this.props.history.push( `/projects/${ project.handle }` )
+                  }.bind( this )
+                );
+              }
             }
           )
         }
@@ -135,7 +139,7 @@ class Home extends React.Component{
           mesh.timer.changeCallback(
             () => {
               mesh.timer.changeCallback( undefined )
-              callback(); 
+              callback();
             }
           );
         }
@@ -197,7 +201,7 @@ class Home extends React.Component{
             mesh.initialPosition = mesh.mesh.position.clone();
             mesh.initialSaturation = mesh.mesh.material.uniforms.saturation.value;
             if( index === this.selectedIndex ){
-              mesh.targetScale = new THREE.Vector3( 2.1, 2.1, 2.1 );
+              mesh.targetScale = new THREE.Vector3( 2.15, 2.15, 2.15 );
               mesh.targetPosition = mesh.mesh.position.clone();
               mesh.targetPosition.x = (index * this.positionInterval );
               mesh.targetSaturation = 1;
@@ -208,13 +212,13 @@ class Home extends React.Component{
 
             if( index > this.selectedIndex ){
               mesh.targetPosition = mesh.mesh.position.clone();
-              mesh.targetPosition.x = (index * this.positionInterval ) + (this.positionInterval * 2 / 3);
+              mesh.targetPosition.x = (index * this.positionInterval ) + (this.positionInterval * 3 / 6);
               mesh.targetScale = new THREE.Vector3( 1, 1, 1 );
             }
 
             if( index < this.selectedIndex ){
               mesh.targetPosition = mesh.mesh.position.clone();
-              mesh.targetPosition.x = (index * this.positionInterval ) - (this.positionInterval * 2 / 3);
+              mesh.targetPosition.x = (index * this.positionInterval ) - (this.positionInterval * 3 / 6);
               mesh.targetScale = new THREE.Vector3( 1, 1, 1 );
             }
 
@@ -283,10 +287,21 @@ class Home extends React.Component{
 
     this.setupProjects()
 
-    document.addEventListener( "mousedown", this.mouseDown.bind( this ) );
-    document.addEventListener( "mouseup", this.mouseUp.bind( this ) );
-    document.addEventListener( "mousemove", throttle(this.mouseMove.bind( this ), 40) );
+    this.downEvent = this.mouseDown.bind( this );
+    this.moveEvent = throttle(this.mouseMove.bind( this ), 40)
+    this.upEvent = this.mouseUp.bind( this );
 
+    this._down = document.addEventListener( "mousedown", this.downEvent );
+    this._move = document.addEventListener( "mousemove", this.moveEvent );
+    this._up = document.addEventListener( "mouseup", this.upEvent );
+
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener( "mousedown", this.downEvent  );
+    document.removeEventListener( "mouseup", this.upEvent  );
+    document.removeEventListener( "mousemove", this.moveEvent );
+    debugger
   }
 
   createTitles(){
@@ -520,7 +535,7 @@ class Home extends React.Component{
         mesh.parent_obj = obj
         this.meshs.push(obj);
         image.src = _project.cover;
-        mesh.position.set( x, -0, -500 );
+        mesh.position.set( x, -20, -500 );
         this.timeline.add( mesh );
       }
     );
@@ -758,4 +773,5 @@ class Home extends React.Component{
   }
 }
 
-export default Home
+const HomeWithRouter = withRouter(Home);
+export default HomeWithRouter

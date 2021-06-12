@@ -17,29 +17,29 @@ module.exports = {
     title: "Courant",
     cover: "/images/courant-6.png",
     textColor: "rgb( 50, 50, 120 )",
-    handle: "wild-one",
+    handle: "courant",
     linkText: "View Project",
     backgroundColor_rgb: "rgb(180, 180, 180)",
     backgroundColor: new THREE.Color( "rgb(180, 180, 185)" ),
     backgroundColor: new THREE.Color( "rgb(150, 150, 150)" )
-    
+
   },
 
   "Scribby": {
     title: "Scribby",
     cover: "/images/scribby.png",
     textColor: "rgb( 180, 69, 60 )",
-    handle: "wild-one",
+    handle: "scribby",
     linkText: "View Project",
     backgroundColor_rgb: "rgb(180, 69, 120)",
     backgroundColor: new THREE.Color( "rgb(27, 27, 95)" ),
     backgroundColor: new THREE.Color( "rgb(180, 180, 185)" )
   },
-  
+
   "WP": {
     title: "W&P",
     cover: "/images/wp.jpg",
-    handle: "wild-one",
+    handle: "wp",
     textColor: "rgb( 255, 210, 100 )",
     linkText: "View Project",
     backgroundColor_rgb: "rgb(80, 0, 0)",

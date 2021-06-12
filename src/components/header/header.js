@@ -1,4 +1,6 @@
 import React from "react";
+import { withRouter } from "react-router";
+
 
 class Header extends React.Component{
   constructor(){
@@ -49,18 +51,31 @@ class Header extends React.Component{
     }
   }
 
+  clickAbout(){
+    debugger
+  }
 
+  clickProjects(){
+    this.props.history.push( "/" );
+  }
 
   render(){
     return(
       <div className = "header">
         <ul>
-          <li className = "header-link" style = { this.getStyle() }>About</li>
-          <li className = "header-link active" style = { this.getStyle() }>Projects</li>
+          <li className = "header-link" style = { this.getStyle() }>
+            About
+          </li>
+          <li className = "header-link active" style = { this.getStyle() }
+            onClick = { this.clickProjects.bind( this ) }
+          >
+            Projects
+          </li>
         </ul>
       </div>
     )
   }
 }
 
-export default Header
+const HeaderWithRouter = withRouter(Header);
+export default HeaderWithRouter
