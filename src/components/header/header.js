@@ -63,13 +63,13 @@ class Header extends React.Component{
     return(
       <div className = "header">
         <ul>
-          <li className = "header-link" style = { this.getStyle() }>
-            About
-          </li>
           <li className = "header-link active" style = { this.getStyle() }
             onClick = { this.clickProjects.bind( this ) }
           >
             Projects
+          </li>
+          <li className = "header-link" style = { this.getStyle() }>
+            About
           </li>
         </ul>
       </div>

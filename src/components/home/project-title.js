@@ -6,6 +6,7 @@ class ProjectTitle extends React.Component{
     this.state = {
       title: props.project.title,
       index: props.index,
+      projectPage: props.projectPage,
       textColor: props.project.textColor,
       selectedIndex: props.selectedIndex,
       oldSelectedIndex: props.oldSelectedIndex,
@@ -49,6 +50,9 @@ class ProjectTitle extends React.Component{
             opacity: 0
           }
         }
+        if( this.state.projectPage ){
+          style.color = "white"
+        }
         return(<span style = { style }>
           {char}
         </span>)
@@ -57,21 +61,29 @@ class ProjectTitle extends React.Component{
   }
 
   link(){
-    let style = {};
-    if( this.state.index === this.state.selectedIndex ){
-      style = { pointerEvents: "painted",width: "auto", color: this.state.textColor, border: `4px solid ${ this.state.textColor }`, opacity: 1 }
-    }else{
-      style = { pointerEvents: "none",width: "auto", color: this.state.textColor, border: `4px solid ${ this.state.textColor }`, opacity: 0 }
+    if( !this.state.projectPage ){
+      let style = {};
+      if( this.state.index === this.state.selectedIndex ){
+        style = { pointerEvents: "painted",width: "auto", color: this.state.textColor, border: `4px solid ${ this.state.textColor }`, opacity: 1 }
+      }else{
+        style = { pointerEvents: "none",width: "auto", color: this.state.textColor, border: `4px solid ${ this.state.textColor }`, opacity: 0 }
+      }
+     
+      return(
+        <div className = "link-text" style = {style}>
+          <button onClick = { () => { this.props.clickProject() } }> { this.state.linkText } </button>
+        </div>
+      )
     }
-    return(
-      <div className = "link-text" style = {style}>
-        <button onClick = { () => { this.props.clickProject() } }> { this.state.linkText } </button>
-      </div>
-    )
   }
 
   getClassName(){
-    let className = "project-title "
+    let className;
+    if( this.state.projectPage ){
+      className = "project-title project-title--home"
+    }else{
+      className = "project-title "
+    }
     return className;
   }
 

@@ -8,6 +8,7 @@ uniform vec2 u_resolution;
 uniform float u_velocity;
 uniform float u_selection;
 uniform float opacity;
+uniform float hover_sat;
 uniform float saturation;
 
 float random(float x) {
@@ -104,8 +105,8 @@ void main() {
   vec4 image_color = texture2D( image, (gl_FragCoord.xy + vec2( vUv.x, 0. ) + (n * noise_mag)) / u_resolution);
   vec3 image_hsv = rgb2hsv( image_color.xyz );
   vec3 desaturated = hsv2rgb( vec3( image_hsv[0], image_hsv[1] * 0., image_hsv[2] * .2 ) );
-  float _sat = clamp( (opacity * .6) + saturation, 0., 1. );
+  float _sat = clamp( ((hover_sat) * .6) + saturation, 0., 1. );
   desaturated = mix( desaturated, image_color.rgb, _sat );
 
-  gl_FragColor = vec4( desaturated.xyz, image_color[3] );
+  gl_FragColor = vec4( desaturated.xyz, image_color[3] * opacity );
 }

@@ -18,6 +18,10 @@ class Timer{
     this.callback = callback;
   }
 
+  changeDuration( duration ){
+    this.duration = duration;
+  }
+
   changeRate( rate ){
     this.rate = rate;
   }

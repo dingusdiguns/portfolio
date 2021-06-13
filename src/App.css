@@ -41,6 +41,10 @@
 
 }
 
+@font-face{
+  font-family: "GT America Thin";
+  src: url("./fonts/GT-America-Thin.otf")
+}
 
 @font-face {
   font-family: "GT America compressed black";
@@ -283,7 +287,7 @@ body{
   margin-right: 60px;
   transition: .4s;
   color: white;
-  opacity: .1;
+  opacity: .4;
 }
 
 .hamburger{
@@ -410,4 +414,112 @@ body{
   transition-delay: 1s;
   width: 100vw;
   min-height: 100vh;
+}
+
+.project__hero{
+  width: 100vw;
+  height: 85vh;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+.project-title--home{
+  font-family: "GT America expanded black";
+  font-size: 12vw;
+  transform: translate( 0px, 0px );
+  position: initial;
+}
+
+.project__body{
+  padding: 0px 60px;
+}
+
+@keyframes fadeInUp {
+  0%{
+    opacity: 0;
+    transform: translate( 0px, 15vh );
+  }
+
+  100%{
+    opacity: 1;
+    transform: translate( 0px, 0vh );
+  }
+}
+
+@keyframes fadeIn {
+  0%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
+}
+
+.project__image{
+  width: 100%;
+  height: auto;
+  float: left;
+  margin-bottom: 60px;
+}
+
+.project__main-image{
+  opacity: 0;
+  animation-delay: .5s;
+  animation-name: fadeInUp;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  background-color: white;
+}
+
+.project__hero h3{
+  text-align: center;
+  color: rgb( 150, 150, 150 );
+  opacity: 0;
+  font-family: "GT America Thin";
+  font-size: 20px;
+  font-weight: initial;
+  animation-delay: 0s;
+  animation-name: fadeIn;
+  animation-fill-mode: forwards;
+  animation-duration: 2s;
+  margin-top: -10px;
+}
+
+.project__hero h3 strike{
+  color: rgb( 80, 80, 80 );
+}
+
+.project__description{
+  color: white;
+  padding: 138px 20px;
+  float: left;
+  width: 100%;
+  font-size: 3.5vw;
+  font-family: "GT America Thin";
+}
+
+.technologies label, .roles label{
+  color: rgb( 150, 150, 150 );
+}
+
+.technologies, .roles{
+  margin-top: 100px;
+  float: left;
+  width: 33%;
+  font-size: 24px;
+}
+
+.technologies ul, .roles ul{
+  text-decoration: none;
+  list-style: none;
+  padding: 0px;
+  margin-top: 0px;
+
+}
+
+.technologies li{
 }

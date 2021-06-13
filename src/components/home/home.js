@@ -58,10 +58,10 @@ class Home extends React.Component{
           this.clicked = project.handle;
           this.meshs.forEach(
             ( mesh, index ) => {
-              let delay = (3 - Math.abs(index- this.selectedIndex)) * .2;
-              mesh.clickTimer = new Timer({ target: 1, duration: 800, delay: delay });
+              let delay = (3 - Math.abs(index- this.selectedIndex)) * .1;
+              mesh.clickTimer = new Timer({ target: 1, duration: 600, delay: delay });
               mesh.initialClickPos = mesh.mesh.position.y;
-              mesh.targetClickPos = window.innerHeight;
+              mesh.targetClickPos = 800;
               mesh.clickTimer.startTimer();
               if( index === this.selectedIndex ){
                 mesh.clickTimer.changeCallback(
@@ -72,7 +72,7 @@ class Home extends React.Component{
               }
             }
           )
-        }
+        }, 600
       );
 
     }
@@ -124,11 +124,13 @@ class Home extends React.Component{
     }
   }
 
-  resetMeshTimers( callback ){
+  resetMeshTimers( callback, duration ){
+    duration = duration ? duration : 800;
     this.meshs.forEach(
       ( mesh, index ) => {
         mesh.initialScale = mesh.mesh.scale.clone();
         mesh.initialPosition = mesh.mesh.position.clone();
+        mesh.timer.changeDuration( duration );
         mesh.initialSaturation = mesh.mesh.material.uniforms.saturation.value;
         mesh.targetScale = new THREE.Vector3( 1, 1, 1 )
         mesh.targetSaturation = 0;
@@ -201,7 +203,7 @@ class Home extends React.Component{
             mesh.initialPosition = mesh.mesh.position.clone();
             mesh.initialSaturation = mesh.mesh.material.uniforms.saturation.value;
             if( index === this.selectedIndex ){
-              mesh.targetScale = new THREE.Vector3( 2.15, 2.15, 2.15 );
+              mesh.targetScale = new THREE.Vector3( 2.05, 2.05, 2.05 );
               mesh.targetPosition = mesh.mesh.position.clone();
               mesh.targetPosition.x = (index * this.positionInterval );
               mesh.targetSaturation = 1;
@@ -282,26 +284,26 @@ class Home extends React.Component{
     this.three.scene.add( this.timeline );
 
     // this.createTitles();
-
-    window.addEventListener( "scroll", throttle( this.scrollStart.bind( this ), 80 ) );
-
-    this.setupProjects()
-
+    this.scrollEvent = throttle( this.scrollStart.bind( this ), 80 );
+    
+    
     this.downEvent = this.mouseDown.bind( this );
     this.moveEvent = throttle(this.mouseMove.bind( this ), 40)
     this.upEvent = this.mouseUp.bind( this );
-
+    
+    window.addEventListener( "scroll", this.scrollEvent );
     this._down = document.addEventListener( "mousedown", this.downEvent );
     this._move = document.addEventListener( "mousemove", this.moveEvent );
     this._up = document.addEventListener( "mouseup", this.upEvent );
-
+    
+    this.setupProjects()
   }
 
   componentWillUnmount(){
     document.removeEventListener( "mousedown", this.downEvent  );
     document.removeEventListener( "mouseup", this.upEvent  );
     document.removeEventListener( "mousemove", this.moveEvent );
-    debugger
+    window.removeEventListener( "scroll", this.scrollEvent );
   }
 
   createTitles(){
@@ -482,12 +484,14 @@ class Home extends React.Component{
 
 
         let timer = new Timer({ target: 1, duration: 1200, rate: .075 })
-
+        let fadeTimer = new Timer({ target: 1, duration: 1200, rate: 0.75, delay: index * .1 });
+        
         let uniforms = {
           u_time: { value: 0., type: "f" },
           u_velocity: { value: Math.abs(this.scrollVel), type: "f" },
           u_selection: { value: 1 },
-          opacity: { value: .2 },
+          opacity: { value: 1 },
+          hover_sat: { value: .2 },
           saturation: { value: 0 },
           u_resolution: { value: [
             this.refs.canvas.width,
@@ -527,6 +531,7 @@ class Home extends React.Component{
           targetScale: mesh.scale.clone(),
           initialScale: mesh.scale.clone(),
           initialSaturation: 0,
+          fadeTimer: fadeTimer,
           backgroundColor: _project.backgroundColor,
           targetSaturation: 0,
           project: _project,
@@ -550,18 +555,18 @@ class Home extends React.Component{
       if( this.mouseOver && this.mouseOver != intersects[0].object ){
         this.mouseOver.material.color = new THREE.Color(.47,.47,.47);
         this.mouseOver.material.opacity = .2
-        this.mouseOver.material.uniforms.opacity.value = 0;
+        this.mouseOver.material.uniforms.hover_sat.value = 0;
         // debugger;
       }
       this.mouseOver = intersects[0].object;
       intersects[0].object.material.color = new THREE.Color(1,1,1);
       this.mouseOver.material.opacity = 1
-      this.mouseOver.material.uniforms.opacity.value = 1;
+      this.mouseOver.material.uniforms.hover_sat.value = 1;
     }else{
       if( this.mouseOver ){
         this.mouseOver.material.color = new THREE.Color(.47,.47,.47);
         this.mouseOver.material.opacity = .2
-        this.mouseOver.material.uniforms.opacity.value = 0;
+        this.mouseOver.material.uniforms.hover_sat.value = 0;
         // debugger;
       }
       this.mouseOver = undefined
@@ -611,6 +616,13 @@ class Home extends React.Component{
             let clickValue = Easing.easeInQuint(mesh.clickTimer.getValue());
             let y = mesh.initialClickPos + ( (mesh.targetClickPos - mesh.initialClickPos) * clickValue );
             mesh.mesh.position.setY( y );
+            mesh.mesh.material.uniforms.opacity.value = 1 - clickValue;
+          }else{
+            mesh.fadeTimer.countUp();
+            let clickValue = Easing.easeOutQuint(mesh.fadeTimer.getValue());
+            let y = 400 + ( -400 * clickValue );
+            mesh.mesh.position.setY( y );
+            mesh.mesh.material.uniforms.opacity.value = clickValue;
           }
           let scale = mesh.initialScale.clone().add( diffScale );
           mesh.mesh.scale.set( scale.x, scale.y, scale.z );
