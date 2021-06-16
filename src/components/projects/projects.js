@@ -69,27 +69,8 @@ class Project extends React.Component{
   description(){
     return(
       <div className = "project__description">
-        <p>
-          {
-            this.state.project.description
-          }
-        </p>
-        <div className = "roles">
-          <label>Roles</label>
-          <ul>
-            {
-              this.state.project.roles.map(
-                ( role ) => {
-                  return(
-                    <li>
-                      {role}
-                    </li>
-                  )
-                }
-              )
-            }
-          </ul>
-        </div>
+        <p dangerouslySetInnerHTML = {{ __html: this.state.project.description }}/>
+         
         <div className = "technologies">
           <label>Technologies</label>
           <ul>
@@ -99,6 +80,22 @@ class Project extends React.Component{
                   return(
                     <li>
                       {tech}
+                    </li>
+                  )
+                }
+              )
+            }
+          </ul>
+        </div>
+        <div className = "roles">
+          <label>Roles</label>
+          <ul>
+            {
+              this.state.project.roles.map(
+                ( role ) => {
+                  return(
+                    <li>
+                      {role}
                     </li>
                   )
                 }
@@ -133,7 +130,7 @@ class Project extends React.Component{
         </div>
         <div className = "project__body">
           <div className = "grid">
-            <img className = "project__main-image project__image" src = {this.state.project.cover}/>
+            <img className = "project__main-image project__image" src = { this.state.project.firstImage ? this.state.project.firstImage : this.state.project.cover }/>
             {
               this.description()
             }

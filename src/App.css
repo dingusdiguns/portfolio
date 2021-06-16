@@ -418,7 +418,7 @@ body{
 
 .project__hero{
   width: 100vw;
-  height: 85vh;
+  height: 90vh;
   display: flex;
   position: relative;
   justify-content: center;
@@ -495,11 +495,22 @@ body{
 
 .project__description{
   color: white;
-  padding: 138px 20px;
+  padding: 60px 20px;
+  padding-top: 0px;
   float: left;
   width: 100%;
   font-size: 3.5vw;
   font-family: "GT America Thin";
+}
+
+.project__description a{
+  text-decoration: none;
+  color: rgb( 120, 120, 120 );
+}
+
+
+.project__description p{
+  margin: 0 auto;
 }
 
 .technologies label, .roles label{
@@ -507,7 +518,7 @@ body{
 }
 
 .technologies, .roles{
-  margin-top: 100px;
+  margin-top: 60px;
   float: left;
   width: 33%;
   font-size: 24px;
