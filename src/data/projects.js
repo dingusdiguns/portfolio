@@ -32,30 +32,7 @@ module.exports = {
   },
 
 
-  "Scribby": {
-    title: "Scribby",
-    cover: "/images/scribby.png",
-    shortDescription: "generative painting for all",
-    textColor: "rgb( 180, 69, 60 )",
-    description: "An ecommerce site that allows users to paint like a painter. Using WebGL and HTML Canvas, we create a series of simulations that mirror analogue painting techniques including Watercolor and Acrylic. In order to achieve a convincing paint effect, I had to write a custom WebGL engine as well as about a dozen shaders in GLSL.",
-    handle: "scribby",
-    linkText: "View Project",
-    backgroundColor_rgb: "rgb(180, 69, 120)",
-    backgroundColor: new THREE.Color( "rgb(27, 27, 95)" ),
-    backgroundColor: new THREE.Color( "rgb(180, 180, 185)" ),
-    images: [],
-    roles: [
-      "Fullstack Dev",
-      "UI Designer"
-    ],
-    technologies: [
-      "React",
-      "WebGL",
-      "AWS",
-      "Shopify",
-      "NodeJS"
-    ]
-  },
+
   "Courant": {
     title: "Courant",
     cover: "/images/courant-6.png",
@@ -86,6 +63,31 @@ module.exports = {
       "Shopify Storefront API"
     ]
 
+  },
+
+  "Scribby": {
+    title: "Scribby",
+    cover: "/images/scribby.png",
+    shortDescription: "generative painting for all",
+    textColor: "rgb( 180, 69, 60 )",
+    description: "An ecommerce site that allows users to paint like a painter. Using WebGL and HTML Canvas, we create a series of simulations that mirror analogue painting techniques including Watercolor and Acrylic. In order to achieve a convincing paint effect, I had to write a custom WebGL engine as well as about a dozen shaders in GLSL.",
+    handle: "scribby",
+    linkText: "View Project",
+    backgroundColor_rgb: "rgb(180, 69, 120)",
+    backgroundColor: new THREE.Color( "rgb(27, 27, 95)" ),
+    backgroundColor: new THREE.Color( "rgb(180, 180, 185)" ),
+    images: [],
+    roles: [
+      "Fullstack Dev",
+      "UI Designer"
+    ],
+    technologies: [
+      "React",
+      "WebGL",
+      "AWS",
+      "Shopify",
+      "NodeJS"
+    ]
   },
 
   "WP": {

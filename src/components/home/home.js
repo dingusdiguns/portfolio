@@ -44,10 +44,48 @@ class Home extends React.Component{
     this.time = 0
     this.scrollFriction = 2;
     this.maxScrollVel = 80;
-    this.selectedIndex = 0;
     this.meshs = [];
     this.words = [];
+  }
 
+  clickPage( callback ){
+    let project = Object.values( Projects )[this.selectedIndex]
+    if( project ){
+      this.resetMeshTimers(
+        () => {
+          this.clicked = project.handle;
+          this.meshs.forEach(
+            ( mesh, index ) => {
+              let delay = (3 - Math.abs(index- this.selectedIndex)) * .1;
+              mesh.clickTimer = new Timer({ target: 1, duration: 500, delay: delay });
+              mesh.initialClickPos = mesh.mesh.position.y;
+              mesh.targetClickPos = 800;
+              mesh.clickTimer.startTimer();
+              if( index === this.selectedIndex ){
+                mesh.clickTimer.changeCallback(
+                  callback
+                );
+              }
+            }
+          )
+        }, 600
+      );
+    }else{
+      let selectedIndex = 0;
+      this.clicked = 1;
+      this.meshs.forEach(
+        ( mesh, index ) => {
+          let delay = (3 - Math.abs(index - selectedIndex)) * .1;
+          mesh.clickTimer = new Timer({ target: 1, duration: 500, delay: delay });
+          mesh.initialClickPos = mesh.mesh.position.y;
+          mesh.targetClickPos = 800;
+          mesh.clickTimer.startTimer();
+        }
+      )
+      window.setTimeout(
+        callback, 900
+      );
+    }
   }
 
   clickProject( index ){
@@ -203,7 +241,7 @@ class Home extends React.Component{
             mesh.initialPosition = mesh.mesh.position.clone();
             mesh.initialSaturation = mesh.mesh.material.uniforms.saturation.value;
             if( index === this.selectedIndex ){
-              mesh.targetScale = new THREE.Vector3( 2.05, 2.05, 2.05 );
+              mesh.targetScale = new THREE.Vector3( 2.2, 2.2, 2.2 );
               mesh.targetPosition = mesh.mesh.position.clone();
               mesh.targetPosition.x = (index * this.positionInterval );
               mesh.targetSaturation = 1;
@@ -285,17 +323,19 @@ class Home extends React.Component{
 
     // this.createTitles();
     this.scrollEvent = throttle( this.scrollStart.bind( this ), 80 );
-    
-    
+
+
     this.downEvent = this.mouseDown.bind( this );
     this.moveEvent = throttle(this.mouseMove.bind( this ), 40)
     this.upEvent = this.mouseUp.bind( this );
-    
+
     window.addEventListener( "scroll", this.scrollEvent );
     this._down = document.addEventListener( "mousedown", this.downEvent );
     this._move = document.addEventListener( "mousemove", this.moveEvent );
     this._up = document.addEventListener( "mouseup", this.upEvent );
-    
+
+    window.clickPage = this.clickPage.bind( this )
+
     this.setupProjects()
   }
 
@@ -485,7 +525,7 @@ class Home extends React.Component{
 
         let timer = new Timer({ target: 1, duration: 1200, rate: .075 })
         let fadeTimer = new Timer({ target: 1, duration: 1200, rate: 0.75, delay: index * .1 });
-        
+
         let uniforms = {
           u_time: { value: 0., type: "f" },
           u_velocity: { value: Math.abs(this.scrollVel), type: "f" },

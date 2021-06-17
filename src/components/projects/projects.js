@@ -61,7 +61,7 @@ class Project extends React.Component{
     if( this.state.project ){
       return(
         <h3 dangerouslySetInnerHTML = {{ __html: this.state.project.shortDescription }}/>
-        
+
       )
     }
   }
@@ -69,39 +69,40 @@ class Project extends React.Component{
   description(){
     return(
       <div className = "project__description">
-        <p dangerouslySetInnerHTML = {{ __html: this.state.project.description }}/>
-         
-        <div className = "technologies">
+        <div className = "project__description-inner">
+          <p dangerouslySetInnerHTML = {{ __html: this.state.project.description }}/>
+          <div className = "technologies">
           <label>Technologies</label>
           <ul>
-            {
-              this.state.project.technologies.map(
-                ( tech ) => {
-                  return(
-                    <li>
-                      {tech}
-                    </li>
-                  )
-                }
-              )
-            }
+          {
+            this.state.project.technologies.map(
+              ( tech ) => {
+                return(
+                  <li>
+                  {tech}
+                  </li>
+                )
+              }
+            )
+          }
           </ul>
-        </div>
-        <div className = "roles">
+          </div>
+          <div className = "roles">
           <label>Roles</label>
           <ul>
-            {
-              this.state.project.roles.map(
-                ( role ) => {
-                  return(
-                    <li>
-                      {role}
-                    </li>
-                  )
-                }
-              )
-            }
+          {
+            this.state.project.roles.map(
+              ( role ) => {
+                return(
+                  <li>
+                  {role}
+                  </li>
+                )
+              }
+            )
+          }
           </ul>
+          </div>
         </div>
       </div>
     )

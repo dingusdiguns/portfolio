@@ -4,6 +4,7 @@ import React from "react";
 import Home from "./components/home/home.js"
 import Header from "./components/header/header.js"
 import Project from "./components/projects/projects.js"
+import About from "./components/about/about.js"
 
 import {
   BrowserRouter as Router,
@@ -25,6 +26,9 @@ export default function App() {
       </Route>
       <Route path = "/projects/:project">
         <Project/>
+      </Route>
+      <Route>
+        <About/>
       </Route>
     </Router>
   )

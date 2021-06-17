@@ -236,27 +236,10 @@
 
 
 body{
-  height: 600vh;
+  /* height: 600vh; */
 }
 
-.about{
-  font-size: 3.2vw;
-  background-color: #ebebe6;
-  letter-spacing: .01em;
-  text-align: left;
-  padding: 80px;
-  padding-top: 120px;
-  margin-bottom: -80px;
-  font-family: "GT America Extended Regular";
-  line-height: 1.3em;
-  /* text-transform: uppercase; */
-}
 
-.about-inner{
-  max-width: 900px;
-  margin: 50px auto;
-  position: relative;
-}
 
 .header{
   width: 100vw;
@@ -487,6 +470,7 @@ body{
   animation-fill-mode: forwards;
   animation-duration: 2s;
   margin-top: -10px;
+  font-family: "GT America Extended Medium";
 }
 
 .project__hero h3 strike{
@@ -499,8 +483,8 @@ body{
   padding-top: 0px;
   float: left;
   width: 100%;
-  font-size: 3.5vw;
-  font-family: "GT America Thin";
+  font-size: 38px;
+  font-family: "GT America Extended Medium";
 }
 
 .project__description a{
@@ -511,16 +495,24 @@ body{
 
 .project__description p{
   margin: 0 auto;
+  line-height: 1.3em;
+}
+
+.project__description-inner{
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .technologies label, .roles label{
   color: rgb( 150, 150, 150 );
+
 }
 
 .technologies, .roles{
   margin-top: 60px;
   float: left;
   width: 33%;
+  font-family: "GT America Thin";
   font-size: 24px;
 }
 
@@ -533,4 +525,62 @@ body{
 }
 
 .technologies li{
+}
+
+.about{
+  background-color: rgb( 15, 15, 15 );
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.about canvas{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.about{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 50px;
+  padding-left: 60px;
+}
+
+
+.about-text{
+  text-align: center;
+  font-size: 34px;
+  max-width: 1100px;
+  width: 90%;
+  color: rgb( 200, 200, 200 );
+  margin: 0 auto;
+  display: inline-block;
+  text-align: left;
+  font-family: "GT America extended bold";
+  padding: 0px;
+  /* font-family: "GT America Thin"; */
+}
+
+h3.about-text{
+  padding-right: 60px;
+  font-family: "GT America Extended Medium";
+  box-sizing: border-box;
+  font-size: 28px;
+  margin-left: 0px;
+}
+
+@media( min-width: 800px ){
+  h3.about-text{
+    font-size: 46px;
+  }
+
+}
+
+
+.about h3{
+
 }

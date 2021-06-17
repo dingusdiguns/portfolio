@@ -51,12 +51,16 @@ class Header extends React.Component{
     }
   }
 
-  clickAbout(){
-    debugger
-  }
-
   clickProjects(){
     this.props.history.push( "/" );
+  }
+
+  clickAbout(){
+    window.clickPage(
+      () => {
+        this.props.history.push( "/about" )
+      }
+    );
   }
 
   render(){
@@ -68,7 +72,7 @@ class Header extends React.Component{
           >
             Projects
           </li>
-          <li className = "header-link" style = { this.getStyle() }>
+          <li className = "header-link" style = { this.getStyle() } onClick = { this.clickAbout.bind( this ) }>
             About
           </li>
         </ul>
