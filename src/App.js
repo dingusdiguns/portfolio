@@ -27,7 +27,7 @@ export default function App() {
       <Route path = "/projects/:project">
         <Project/>
       </Route>
-      <Route>
+      <Route path = "/about">
         <About/>
       </Route>
     </Router>

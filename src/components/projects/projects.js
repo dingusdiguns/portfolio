@@ -111,9 +111,27 @@ class Project extends React.Component{
   images(){
     return this.state.project.images.map(
       ( img, index ) => {
-        return(
-          <img src = {img} className = "project__image"></img>
-        )
+        if( img.video){
+          return(
+            <div className = "project__video">
+              <video
+              loop = {true} 
+              muted
+              playsInline
+              autoPlay = {true}
+              >
+                <source src = {img.src} 
+                  ></source>
+              </video>
+            </div>
+          )
+        }else{
+          return(
+            <div className = "project__image">
+              <img src = {img} ></img>
+            </div>
+          )
+        }
       }
     );
   }
@@ -130,14 +148,16 @@ class Project extends React.Component{
           }
         </div>
         <div className = "project__body">
-          <div className = "grid">
-            <img className = "project__main-image project__image" src = { this.state.project.firstImage ? this.state.project.firstImage : this.state.project.cover }/>
-            {
-              this.description()
-            }
-            {
-              this.images()
-            }
+          <div className = "wrap">
+            <div className = "grid">
+              <img className = "project__main-image project__image" src = { this.state.project.firstImage ? this.state.project.firstImage : this.state.project.cover }/>
+              {
+                this.description()
+              }
+              {
+                this.images()
+              }
+            </div>
           </div>
         </div>
       </div>

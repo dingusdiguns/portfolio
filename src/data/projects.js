@@ -31,6 +31,40 @@ module.exports = {
     ]
   },
 
+  "Scribby": {
+    title: "Scribby",
+    cover: "/images/scribby.png",
+    shortDescription: "generative painting for all",
+    textColor: "rgb( 180, 69, 60 )",
+    description: "An ecommerce site that allows users to paint like a painter. Using WebGL and HTML Canvas, it creates a series of simulations that mirror analogue painting techniques including watercolor and acrylic. In order to achieve a convincing paint effect, I had to write a custom WebGL engine as well as about a dozen shaders in GLSL.",
+    handle: "scribby",
+    linkText: "View Project",
+    backgroundColor_rgb: "rgb(180, 69, 120)",
+    backgroundColor: new THREE.Color( "rgb(27, 27, 95)" ),
+    backgroundColor: new THREE.Color( "rgb(180, 180, 185)" ),
+    images: [
+      {
+        video: true,
+        src: "/images/scribby/scribby-1.m4v"
+      },
+      {
+        video: true,
+        src: "/images/scribby/scribby-portrait-2.m4v"
+      }
+    ],
+    roles: [
+      "Founder",
+      "UI Designer",
+      "Fullstack Dev"
+    ],
+    technologies: [
+      "React",
+      "WebGL",
+      "AWS",
+      "Shopify",
+      "NodeJS"
+    ]
+  },
 
 
   "Courant": {
@@ -47,8 +81,8 @@ module.exports = {
     backgroundColor: new THREE.Color( "rgb(150, 150, 150)" ),
     images: [
       "/images/courant/home-hero-render-desktop.png",
+      "/images/courant/courant,-mobile-home.png",
       "/images/courant/home-pdp-render-desktop.png",
-      "/images/courant/courant-mobile-home.png",
       "/images/courant/courant-pdp-mobile.png",
     ],
     roles: [
@@ -65,31 +99,7 @@ module.exports = {
 
   },
 
-  "Scribby": {
-    title: "Scribby",
-    cover: "/images/scribby.png",
-    shortDescription: "generative painting for all",
-    textColor: "rgb( 180, 69, 60 )",
-    description: "An ecommerce site that allows users to paint like a painter. Using WebGL and HTML Canvas, we create a series of simulations that mirror analogue painting techniques including Watercolor and Acrylic. In order to achieve a convincing paint effect, I had to write a custom WebGL engine as well as about a dozen shaders in GLSL.",
-    handle: "scribby",
-    linkText: "View Project",
-    backgroundColor_rgb: "rgb(180, 69, 120)",
-    backgroundColor: new THREE.Color( "rgb(27, 27, 95)" ),
-    backgroundColor: new THREE.Color( "rgb(180, 180, 185)" ),
-    images: [],
-    roles: [
-      "Fullstack Dev",
-      "UI Designer"
-    ],
-    technologies: [
-      "React",
-      "WebGL",
-      "AWS",
-      "Shopify",
-      "NodeJS"
-    ]
-  },
-
+  
   "WP": {
     title: "W&P",
     cover: "/images/wp.jpg",

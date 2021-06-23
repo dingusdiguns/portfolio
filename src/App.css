@@ -24,6 +24,10 @@
   color: white;
 }
 
+.grid{
+  box-sizing: border-box;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -177,7 +181,7 @@
 }
 
 .projects{
-  height: 1000vh;
+  height: auto;
   position: relative;
   width: 100vw;
 }
@@ -399,25 +403,25 @@ body{
   min-height: 100vh;
 }
 
-.project__hero{
-  width: 100vw;
-  height: 90vh;
-  display: flex;
-  position: relative;
-  justify-content: center;
-  flex-direction: column;
-}
+
 
 
 .project-title--home{
   font-family: "GT America expanded black";
-  font-size: 12vw;
+  font-size: 9vw;
   transform: translate( 0px, 0px );
   position: initial;
 }
 
+@media( min-width: 1400px ){
+  .project-title--home{
+    font-size: 120px;
+  }
+}
+
 .project__body{
-  padding: 0px 60px;
+  padding: 0px 0px;
+  display: flex;
 }
 
 @keyframes fadeInUp {
@@ -442,20 +446,27 @@ body{
   }
 }
 
-.project__image{
+
+
+.project__video video{
   width: 100%;
-  height: auto;
-  float: left;
-  margin-bottom: 60px;
+  max-width: 1500px;
+  margin: 0 auto;
+  display: block;
 }
 
-.project__main-image{
-  opacity: 0;
-  animation-delay: .5s;
-  animation-name: fadeInUp;
-  animation-fill-mode: forwards;
-  animation-duration: 1s;
-  background-color: white;
+.project__image img{
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  display: block;
+}
+
+
+
+.project__main-image.project__image{
+  /* padding: 0px; */
+  background-color: transparent;
 }
 
 .project__hero h3{
@@ -469,7 +480,6 @@ body{
   animation-name: fadeIn;
   animation-fill-mode: forwards;
   animation-duration: 2s;
-  margin-top: -10px;
   font-family: "GT America Extended Medium";
 }
 
@@ -478,13 +488,7 @@ body{
 }
 
 .project__description{
-  color: white;
-  padding: 60px 20px;
-  padding-top: 0px;
-  float: left;
-  width: 100%;
-  font-size: 38px;
-  font-family: "GT America Extended Medium";
+  
 }
 
 .project__description a{
@@ -525,62 +529,4 @@ body{
 }
 
 .technologies li{
-}
-
-.about{
-  background-color: rgb( 15, 15, 15 );
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-}
-
-.about canvas{
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-}
-
-.about{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: 50px;
-  padding-left: 60px;
-}
-
-
-.about-text{
-  text-align: center;
-  font-size: 34px;
-  max-width: 1100px;
-  width: 90%;
-  color: rgb( 200, 200, 200 );
-  margin: 0 auto;
-  display: inline-block;
-  text-align: left;
-  font-family: "GT America extended bold";
-  padding: 0px;
-  /* font-family: "GT America Thin"; */
-}
-
-h3.about-text{
-  padding-right: 60px;
-  font-family: "GT America Extended Medium";
-  box-sizing: border-box;
-  font-size: 28px;
-  margin-left: 0px;
-}
-
-@media( min-width: 800px ){
-  h3.about-text{
-    font-size: 46px;
-  }
-
-}
-
-
-.about h3{
-
 }
