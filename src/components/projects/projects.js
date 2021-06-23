@@ -20,7 +20,8 @@ class Project extends React.Component{
 
     this.state = {
       handle: props.match.params.project,
-      project: project
+      project: project,
+      loaded: false
     }
   }
 
@@ -33,6 +34,13 @@ class Project extends React.Component{
         })
       }, 10
     );
+
+    window.setTimeout(
+      () => {
+        this.setState({ loaded: true })
+      },
+      500
+    )
   }
 
   getStyle(){
@@ -58,7 +66,7 @@ class Project extends React.Component{
   }
 
   shortDescription(){
-    if( this.state.project ){
+    if( this.state.project && this.state.loaded ){
       return(
         <h3 dangerouslySetInnerHTML = {{ __html: this.state.project.shortDescription }}/>
 
@@ -136,17 +144,9 @@ class Project extends React.Component{
     );
   }
 
-  render(){
-    return(
-      <div className = "projects" style = { this.getStyle() }>
-        <div className = "project__hero">
-          {
-            this.title()
-          }
-          {
-            this.shortDescription()
-          }
-        </div>
+  body(){
+    if( this.state.loaded ){
+      return(
         <div className = "project__body">
           <div className = "wrap">
             <div className = "grid">
@@ -160,6 +160,25 @@ class Project extends React.Component{
             </div>
           </div>
         </div>
+      )
+    }
+  }
+
+  render(){
+    return(
+      <div className = "projects" style = { this.getStyle() }>
+        <div className = "project__hero">
+          {
+            this.title()
+          }
+          {
+            this.shortDescription()
+          }
+        </div>
+        {
+          this.body()
+        }
+        
       </div>
     )
   }
