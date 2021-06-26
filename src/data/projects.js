@@ -1,6 +1,6 @@
 const THREE = require( "three" )
 
-module.exports = {
+export default {
 
   "Wild One": {
     title: "WILD ONE",

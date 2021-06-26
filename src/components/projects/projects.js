@@ -2,8 +2,8 @@ import React from "react";
 import { withRouter } from "react-router";
 import ProjectTitle from "../home/project-title"
 import NextProject from "../home/next-project"
+import Projects from "../../data/projects";
 
-let Projects = require( "../../data/projects" )
 const throttle = require( "../../util/throttle" );
 
 class Project extends React.Component{
@@ -18,7 +18,7 @@ class Project extends React.Component{
         project = _project;
       }
     });
-
+    
 
     this.state = {
       handle: props.match.params.project,

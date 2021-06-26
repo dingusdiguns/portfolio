@@ -4,10 +4,9 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { withRouter } from "react-router";
-
 import ProjectTitle from "./project-title.js"
+import Projects from "../../data/projects";
 
-const Projects = require( "../../data/projects" )
 const Easing = require( "../../util/easing" );
 const throttle = require( "../../util/throttle" );
 
