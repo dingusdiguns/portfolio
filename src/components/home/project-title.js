@@ -16,10 +16,23 @@ class ProjectTitle extends React.Component{
   }
 
   componentWillReceiveProps( props ){
-    this.setState({
-      selectedIndex: props.selectedIndex,
-      oldSelectedIndex: props.oldSelectedIndex
-    })
+    if( props.project.title !== this.state.title ){
+      this.setState({
+        title: props.project.title,
+        index: props.index,
+        projectPage: props.projectPage,
+        textColor: props.project.textColor,
+        selectedIndex: props.selectedIndex,
+        oldSelectedIndex: props.oldSelectedIndex,
+        linkText: props.project.linkText,
+        backgroundColor: props.project.backgroundColor_rgb
+      })
+    }else{
+      this.setState({
+        selectedIndex: props.selectedIndex,
+        oldSelectedIndex: props.oldSelectedIndex
+      })
+    }
   }
 
   chars(){

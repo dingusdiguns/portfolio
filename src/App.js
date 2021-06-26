@@ -5,6 +5,7 @@ import Home from "./components/home/home.js"
 import Header from "./components/header/header.js"
 import Project from "./components/projects/projects.js"
 import About from "./components/about/about.js"
+import Transition from "./components/projects/transition"
 
 import {
   BrowserRouter as Router,
@@ -26,6 +27,9 @@ export default function App() {
       </Route>
       <Route path = "/projects/:project" page = "projects">
         <Project/>
+      </Route>
+      <Route path = "/transition/:project" page = "transition">
+        <Transition/>
       </Route>
       <Route path = "/about" page = "about">
         <About/>

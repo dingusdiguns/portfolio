@@ -117,21 +117,6 @@ export default {
     technologies: [
       "react",
     ],
-  },
-  "Lamps": {
-    title: "Courant",
-    cover: "/images/wild-one.png",
-    textColor: "rgb( 200, 240, 160 )",
-    linkText: "View Project",
-    backgroundColor_rgb: "rgb(255, 0, 0)",
-    backgroundColor: new THREE.Color( "rgb(255, 0, 0)" ),
-    images: [],
-    roles: [
-      "Fullstack Dev",
-      "UI Designer"
-    ],
-    technologies: [
-      "react",
-    ]
   }
+ 
 }

@@ -22,13 +22,19 @@ class NextProject extends React.Component{
         this.startTime = new Date().getTime();
         this.time = 0
         this.wordFadeTimer = new Timer( { target: 1, duration: 800,rate: .07 } );
-        this.wordFadeTimer = new Timer( { target: 1, duration: 800,rate: .07 } );
+        this.materialFadeTimer = new Timer( { target: 1, duration: 800,rate: .07, delay: .1 } );
     }
 
     componentWillReceiveProps( props ){
         this.setState({ fadeOut: props.fadeOut })
         if( props.fadeOut ){
             this.wordFadeTimer.reset();
+            this.materialFadeTimer.reset();
+            this.materialFadeTimer.changeCallback(
+                function(){
+                    this.props.history.push( `/transition/${ this.state.project.handle }` )
+                }.bind( this )
+            );
         }
     }
 
@@ -111,6 +117,7 @@ class NextProject extends React.Component{
         let material = new THREE.ShaderMaterial({
             uniforms: uniforms,
             vertexShader: vert,
+            transparent: true,
             fragmentShader: frag
         });
 
@@ -128,15 +135,20 @@ class NextProject extends React.Component{
         let canvas = document.createElement( "canvas" );
         let ctx = canvas.getContext("2d");
         let height = 600;
-        ctx.font = `${Math.ceil(height * .6)}px GT America extended bold`;
+
+        let word = `${this.state.project.title.toUpperCase()} `;
+        while( word.length < 24 ){
+            word = word + `${this.state.project.title.toUpperCase()} `;
+        }
+        ctx.font = `${Math.ceil(height * .6)}px GT America Expanded Black`;
         ctx.fillStyle = "black"
-        let measurement = ctx.measureText( (`NEXT PROJECT: ${this.state.project.title.toUpperCase()} `), 0, 0 );
+        let measurement = ctx.measureText( (`${word}`), 0, 0 );
         canvas.width = measurement.width;
         canvas.height = height * .6
         ctx.textBaseline = "top"
-        ctx.font = `${Math.ceil(height * .6)}px GT America extended bold`;
+        ctx.font = `${Math.ceil(height * .6)}px GT America Expanded Black`;
         ctx.fillStyle = "white";
-        ctx.fillText( `NEXT PROJECT: ${this.state.project.title.toUpperCase()} `, 0, 0 );
+        ctx.fillText( `${word}`, 0, 0 );
         this.texture = new THREE.Texture( canvas );
         this.texture.magFilter = THREE.NearestFilter;
         this.texture.minFilter = THREE.LinearMipMapLinearFilter;
@@ -173,12 +185,12 @@ class NextProject extends React.Component{
         this.frontSideCylinder = frontSideCylinder;
         this.backSideCylinder = backSideCylinder;
 
-        // this.mesh.add(
-        //     backSideCylinder
-        // );
-        // this.mesh.add(
-        //     frontSideCylinder
-        // );
+        this.mesh.add(
+            backSideCylinder
+        );
+        this.mesh.add(
+            frontSideCylinder
+        );
 
         this.frontSideCylinder.scale.set( 1, -1, 1 );
         this.backSideCylinder.scale.set( 1, -1, 1 );
@@ -198,17 +210,31 @@ class NextProject extends React.Component{
         window.requestAnimationFrame( this.animate.bind( this ) );
         if( this.state.fadeOut ){
             let clickValue = Easing.easeOutQuint( this.wordFadeTimer.getValue());
-            let y = 0 + ( 200 * clickValue );
+            let y = 0 + ( 250 * clickValue );
             this.frontSideCylinder.position.setY( y );
             this.backSideCylinder.position.setY( y );
+
+            let opacity = this.materialFadeTimer.getValue();
+            this.mesh.material.uniforms.opacity.value = 1 - opacity;
+            let mesh_y = 0 + ( 650 * Easing.easeOutCubic(opacity) );
+            this.mesh.position.setY( mesh_y );
+
         }
+    }
+
+    getTitleStyle(){
+        let style = {};
+        if( this.state.fadeOut ){
+            style["opacity"] = 0;
+        }
+        return style;
     }
 
     render(){
         return(
             <div className = "next-project" >
-                <div style = {{ fontFamily: "GT America extended bold" }}>
-                    Something
+                <div className = "next-project__title" style = { this.getTitleStyle() }>
+                    Next Project
                 </div>
                 <canvas ref = "canvas">
                 </canvas>
@@ -217,4 +243,6 @@ class NextProject extends React.Component{
     }
 }
 
-export default NextProject
+const nextProjectWithRouter = withRouter(NextProject);
+
+export default nextProjectWithRouter

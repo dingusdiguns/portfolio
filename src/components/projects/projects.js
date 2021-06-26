@@ -18,7 +18,7 @@ class Project extends React.Component{
         project = _project;
       }
     });
-    
+
 
     this.state = {
       handle: props.match.params.project,
@@ -27,7 +27,34 @@ class Project extends React.Component{
     }
   }
 
+  componentWillReceiveProps( props ){
+    let projects = Object.values( Projects );
+    let project;
+
+    projects.forEach(( _project, index ) => {
+      if( props.match.params.project === _project.handle ){
+        project = _project;
+      }
+    });
+
+    if( project !== this.state.project ){
+      this.setState({
+        handle: props.match.params.project,
+        project: project,
+        loaded: false
+      }, this.__mounted.bind( this ))
+    }
+    
+  }
+
+
   componentDidMount(){
+    this.__mounted()
+    // window.addEventListener( "scroll", this.scrollEvent );
+
+  }
+
+  __mounted(){
     window.scroll( 0, 0 );
     window.setTimeout(
       () => {
@@ -44,7 +71,6 @@ class Project extends React.Component{
       500
     )
     this.scrollEvent = throttle( this.scroll.bind( this ), 80 );
-    // window.addEventListener( "scroll", this.scrollEvent );
   }
 
   componentWillUnmount(){
@@ -53,10 +79,10 @@ class Project extends React.Component{
 
   scroll(){
     var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-    if( scrollTop + window.innerHeight > document.body.offsetHeight  ){
+    if( scrollTop + 200 > document.body.offsetHeight  ){
       if( !this.navTimeout ){
 
-        this.navTimeout = window.setTimeout( this.navigateNextProject.bind( this ), 2000 )
+        this.navTimeout = window.setTimeout( this.navigateNextProject.bind( this ), 400 )
       }
     }else if( this.navTimeout ){
       window.clearTimeout( this.navTimeout )
