@@ -3,17 +3,37 @@ import { withRouter } from "react-router";
 
 
 class Header extends React.Component{
-  constructor(){
+  constructor( props ){
     super();
-    this.state = {
-      menuActive: false
+
+    let page;
+    let pathname = props.location.pathname;
+    if( pathname === "/" || pathname === "/home" ){
+      page = "projects"
+    }else if( pathname ==="/about" ){
+      page = "about"
     }
+
+    this.state = {
+      menuActive: false,
+      page: page
+    }
+  }
+
+  componentWillReceiveProps( props ){
+    let page;
+    let pathname = props.location.pathname;
+    if( pathname === "/" || pathname === "/home" ){
+      page = "projects"
+    }else if( pathname ==="/about" ){
+      page = "about"
+    }
+    this.setState({ page: page })
   }
 
   componentDidMount(){
     window.changeHeaderColor = this.changeHeaderColor.bind( this )
     window.removeHeaderColor = this.removeHeaderColor.bind( this )
-
   }
 
   changeHeaderColor( color ){
@@ -63,19 +83,29 @@ class Header extends React.Component{
     );
   }
 
+  linkClass( name ){
+    if( name === this.state.page ){
+      return "header-link active"
+    }else{
+      return "header-link"
+    }
+  }
+
   render(){
     return(
       <div className = "header">
-        <ul>
-          <li className = "header-link active" style = { this.getStyle() }
-            onClick = { this.clickProjects.bind( this ) }
-          >
-            Projects
-          </li>
-          <li className = "header-link" style = { this.getStyle() } onClick = { this.clickAbout.bind( this ) }>
-            About
-          </li>
-        </ul>
+        <div className = "wrap">
+          <ul>
+            <li className = { this.linkClass( "projects" ) } style = { this.getStyle() }
+              onClick = { this.clickProjects.bind( this ) }
+            >
+              Projects
+            </li>
+            <li className = { this.linkClass( "about" ) } style = { this.getStyle() } onClick = { this.clickAbout.bind( this ) }>
+              About
+            </li>
+          </ul>
+        </div>
       </div>
     )
   }

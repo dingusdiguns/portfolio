@@ -18,16 +18,16 @@ export default function App() {
   return(
     <Router>
       <Header/>
-      <Route exact path = "/">
+      <Route exact path = "/" page = "home">
         <Home/>
       </Route>
-      <Route path = "/home">
+      <Route path = "/home" page = "home">
         <Home/>
       </Route>
-      <Route path = "/projects/:project">
+      <Route path = "/projects/:project" page = "projects">
         <Project/>
       </Route>
-      <Route path = "/about">
+      <Route path = "/about" page = "about">
         <About/>
       </Route>
     </Router>

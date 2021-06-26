@@ -18,13 +18,15 @@ class About extends React.Component{
     this.mouse = new THREE.Vector2();
     this.mouseThree = new THREE.Vector3();
     this.font = "GT America Extended Regular";
-    this.aboutText = `Oscar Robert is a creative technologist with a degree in Graphic Design from the Rhode Island School of Design. He anjoys exploring motion on the web as well as experimenting with and blending new technologies. He does not enjoy writing in the third person but completely unerstands why it is entirely necessary. His mom would describe him as medium.`
+    this.aboutText = `Oscar Robert is a creative technologist with a degree in Graphic Design from the Rhode Island School of Design. He enjoys exploring motion on the web as well as experimenting with and blending new technologies. He does not enjoy writing in the third person but completely understands why it is aboslutely and entirely necessary. His mom would describe him as medium.`
     this.startTime = new Date().getTime();
   }
 
   componentDidMount(){
     // this.setupTHREE()
     this.setupText()
+
+    window.scrollTo( 0, 0 );
 
   }
 
@@ -154,11 +156,13 @@ class About extends React.Component{
     return(
       <div className = "about" onMouseMove = { this.mouseMove.bind( this ) }>
         <div className = "wrap">
-          <h3 className = { this.state.className } ref = "text"></h3>
-          <div className = "contact">
-            <h4>
-              <a href = "mailto:oscarhenrirobert@gmail.com">oscarhenrirobert@gmail.com</a>
-            </h4>
+          <div className = { this.state.className }>
+            <h3  ref = "text"></h3>
+            <div className = "contact">
+              <h4>
+                <a href = "mailto:oscarhenrirobert@gmail.com">oscarhenrirobert@gmail.com</a>
+              </h4>
+            </div>
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ module.exports = {
     shortDescription: "a <strike>School</strike> Website for <strike>Ants</strike> Dogs",
     backgroundColor_rgb: "rgb(180, 170, 165)",
     backgroundColor: new THREE.Color( "rgb(180, 170, 165)" ),
-    description: `The Wild One website is the product of 2 years of brand-building. Through months of iteration, we (a team of 2) designed the site modularly to house a varying amount of products. We also were able to layer in functionality to allow users to parametrically customize certain products including the ability to customize and view the dog bowl using three.js. This effort innevitably resulted in the founder of Wild One receiving a <a href = "https://www.forbes.com/30-under-30/2020/retail-ecommerce/#5ca8157f2fcd">Forbes 30 Under 30 Award</a> for ecommerce.`,
+    description: `The Wild One website is the product of 2 years of brand-building. Through months of iteration, we (a team of 2) designed the site modularly to house a varying amount of products. We were able to layer in functionality to allow users to parametrically customize products using a custom built 3d visulizer. This effort innevitably resulted in the founder of Wild One receiving a <a href = "https://www.forbes.com/30-under-30/2020/retail-ecommerce/#5ca8157f2fcd">Forbes 30 Under 30 Award</a> for ecommerce.`,
     images: [
       "/images/wild-one/hero-render.png",
       "/images/wild-one/pdp-hero-render.png",

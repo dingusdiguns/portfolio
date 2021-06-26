@@ -117,7 +117,7 @@
   font-family: "GT America compressed black";
   /* letter-spacing: .1em; */
   left: 50%;
-  font-size: 17vw;
+  font-size: 19vw;
   opacity: 1;
   text-transform: uppercase;
   transform: translate( -50%, -50% );
@@ -254,7 +254,7 @@ body{
   font-family: "GT America Extended Regular";
   left: 0px;
   width: 100vw;
-  padding: 20px 60px;
+  padding: 20px 0px;
   color: white;
   z-index: 1000;
   font-size: 16px;
@@ -271,7 +271,6 @@ body{
 
 .header ul li{
   display: inline-block;
-  margin-right: 60px;
   transition: .4s;
   color: white;
   opacity: .4;
@@ -342,9 +341,9 @@ body{
   font-family: "GT America Extended Medium";
    padding: 12px 40px;
   border-radius: 100%;
-
   pointer-events: painted;
 
+  cursor: pointer;
 
   text-transform: uppercase;
 }
@@ -356,7 +355,7 @@ body{
   opacity: 1;
   padding: 12px 40px;
   border-radius: 100%;
-
+  cursor: pointer;
 
 }
 
@@ -383,18 +382,7 @@ body{
   position: relative;
 }
 
-.header-link.active::after{
-  content: " ";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 150%;
-  height: 140%;
-  border-radius: 100%;
-  border: 3px solid white;
-  border-color: inherit;
-  transform: translate( -50%, -50% )
-}
+
 .projects{
   background-color: rgb( 15, 15, 15 );
   transition: 1s;
@@ -408,7 +396,7 @@ body{
 
 .project-title--home{
   font-family: "GT America expanded black";
-  font-size: 9vw;
+  font-size: 12vw;
   transform: translate( 0px, 0px );
   position: initial;
 }
@@ -499,7 +487,6 @@ body{
 
 .project__description p{
   margin: 0 auto;
-  line-height: 1.3em;
 }
 
 .project__description-inner{
@@ -512,13 +499,7 @@ body{
 
 }
 
-.technologies, .roles{
-  margin-top: 60px;
-  float: left;
-  width: 33%;
-  font-family: "GT America Thin";
-  font-size: 24px;
-}
+.about-text{}
 
 .technologies ul, .roles ul{
   text-decoration: none;
