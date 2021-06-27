@@ -303,6 +303,7 @@ class Home extends React.Component{
 	      'opacity': { value: 1.0 },
         "u_mouse": { value: [.5,.5] },
         "u_time": { value: 0 },
+        "u_mag": { value: 8 },
         "u_selection": { value: 1 }
       },
       fragmentShader: frag,

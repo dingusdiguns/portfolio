@@ -17,12 +17,15 @@ class NextProject extends React.Component{
             project: props.project
         }
 
+        this.mouse = new THREE.Vector2();
+        this.mouseThree = new THREE.Vector3();
+
         this.defaultColor = new THREE.Color("rgb( 15, 15, 15 )");
         this.backgroundColor = new THREE.Color("rgb( 15, 15, 15 )");
         this.startTime = new Date().getTime();
         this.time = 0
         this.wordFadeTimer = new Timer( { target: 1, duration: 800,rate: .07 } );
-        this.materialFadeTimer = new Timer( { target: 1, duration: 800,rate: .07, delay: .1 } );
+        this.materialFadeTimer = new Timer( { target: 1, duration: 400,rate: .07, delay: .1 } );
     }
 
     componentWillReceiveProps( props ){
@@ -62,6 +65,9 @@ class NextProject extends React.Component{
           backgroundTimer: new Timer({ target: 1, duration: 1000, rate: .075 })
         };
 
+        const renderPass = new RenderPass( this.three.scene, this.three.camera );
+        composer.addPass( renderPass );
+
         let vert = require("../../shaders/mouseShader/vertex.glsl").default;
         let frag = require("../../shaders/mouseShader/fragment.glsl").default;
         let mouseShader = {
@@ -69,6 +75,7 @@ class NextProject extends React.Component{
             'tDiffuse': { value: null },
             'opacity': { value: 1.0 },
             "u_mouse": { value: [.5,.5] },
+            "u_mag": { value: 1 },
             "u_time": { value: 0 },
             "u_selection": { value: 1 }
         },
@@ -88,8 +95,8 @@ class NextProject extends React.Component{
         );
 
         const color = 0xFFFFFF;  // white
-        const near = 1200;
-        const far = 0;
+        const near = 2200;
+        const far = 1000;
         this.three.scene.fog = new THREE.Fog(color, near, far);
     }
 
@@ -127,7 +134,7 @@ class NextProject extends React.Component{
         let mesh = new THREE.Mesh( sphere, material );
         this.three.scene.add( mesh );
         this.mesh = mesh;
-        mesh.position.set( 0, 0, -500 );
+        mesh.position.set( 0, 0, -1000 );
         mesh.scale.set( 2, 2, 2 );
         this.createTexture()
     }
@@ -159,7 +166,7 @@ class NextProject extends React.Component{
       }
 
     creatWord(){
-        let circumference = window.innerWidth * 1.2;
+        let circumference = this.refs.canvas.offsetWidth * 1.2;
         let aspect = (this.texture.image.width / this.texture.image.height);
         let height = (window.innerWidth * 1.2 * ( 1 / aspect ));
         let radius = ((circumference / Math.PI) / 2);
@@ -202,25 +209,40 @@ class NextProject extends React.Component{
     }
 
     animate(){
-        // this.three.composer.render()
+        this.three.composer.render()
         this.mesh.material.uniforms.u_time.value = this.time;
-        this.frontSideCylinder.rotation.set(-.025, this.time / 3200, 0);
-        this.backSideCylinder.rotation.set(-.025, this.time / 3200, 0);
+        this.frontSideCylinder.rotation.set(-.15, this.time / 3200, 0);
+        this.backSideCylinder.rotation.set(-.15, this.time / 3200, 0);
         this.time = (this.startTime - (new Date().getTime()));
-        this.three.renderer.render(this.three.scene, this.three.camera);
+        // this.three.renderer.render(this.three.scene, this.three.camera);
         window.requestAnimationFrame( this.animate.bind( this ) );
         if( this.state.fadeOut ){
             let clickValue = Easing.easeOutQuint( this.wordFadeTimer.getValue());
             let y = 0 + ( 250 * clickValue );
-            this.frontSideCylinder.position.setY( y );
-            this.backSideCylinder.position.setY( y );
+            // this.frontSideCylinder.position.setY( y );
+            // this.backSideCylinder.position.setY( y );
+            this.frontSideCylinder.material.opacity = 1 - clickValue;
+            this.backSideCylinder.material.opacity = 1 - clickValue;
 
             let opacity = this.materialFadeTimer.getValue();
             this.mesh.material.uniforms.opacity.value = 1 - opacity;
             let mesh_y = 0 + ( 650 * Easing.easeOutCubic(opacity) );
-            this.mesh.position.setY( mesh_y );
+            // this.mesh.position.setY( mesh_y );
 
         }
+
+        this.mousePass.uniforms.u_mouse.value = [ Math.abs(this.mouse.x), 1 - Math.abs(this.mouse.y) ];
+        this.mousePass.uniforms.u_time.value = this.time;
+
+    }
+
+    mouseMove( e ){
+        this.mouse.x = ( e.clientX / window.innerWidth );
+        this.mouse.y = - ( e.clientY / window.innerHeight );
+
+        this.mouseThree.x = ( e.clientX / window.innerWidth ) * 2 - 1;
+        this.mouseThree.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
+        this.mouseThree.z = -1
     }
 
     getTitleStyle(){
@@ -233,7 +255,7 @@ class NextProject extends React.Component{
 
     render(){
         return(
-            <div className = "next-project" >
+            <div className = "next-project" onMouseMove = { throttle( this.mouseMove.bind( this ), 20 ) } onClick = { this.props.clickProject }>
                 <div className = "next-project__inner">
                     <div className = "next-project__title" style = { this.getTitleStyle() }>
                         Next Project

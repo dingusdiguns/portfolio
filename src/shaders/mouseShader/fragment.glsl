@@ -4,6 +4,7 @@ varying vec2 vUv;
 uniform vec2 u_mouse;
 uniform float u_time;
 uniform float u_selection;
+uniform float u_mag;
 
 vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
 vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
@@ -45,8 +46,11 @@ float snoise(vec2 v) {
 
 void main() {
   float dist = distance( u_mouse, vUv );
-  float modifier = pow( 1. / ((dist + 1.) * 1.05), 10. ) * snoise( vec2((vUv.x * 4.) + (u_time / 4000.), (vUv.y * 4.) + (u_time / 4000.)) ) * u_selection;
-  vec4 texel = texture2D( tDiffuse, vUv + (modifier/8.) );
+  float modifier = pow( 1. / ((dist + 1.) * 1.05), 10. ) * 
+    snoise( 
+      vec2((vUv.x * 5.) + (u_time / 2000.), 
+          (vUv.y * 5.) + (u_time / 2000.)) ) * u_selection;
+  vec4 texel = texture2D( tDiffuse, vUv + (modifier/u_mag) );
   gl_FragColor = texel;
   // gl_FragColor = vec4(1.,0.,0.,1.);
 }

@@ -255,7 +255,7 @@ class Project extends React.Component{
   nextProject(){
     let next = this.getNextProject()
     return(
-      <NextProject project = {next} fadeOut = { this.state.fadeOut }></NextProject>
+      <NextProject clickProject = { this.navigateNextProject.bind( this ) } project = {next} fadeOut = { this.state.fadeOut }></NextProject>
     )
   }
 
@@ -271,20 +271,22 @@ class Project extends React.Component{
   render(){
     return(
       <div className = "projects" style = { this.getStyle() }>
-        <div className = "project__hero">
+        <div className = "projects__inner">
+          <div className = "project__hero">
+            {
+              this.title()
+            }
+            {
+              this.shortDescription()
+            }
+          </div>
           {
-            this.title()
+            this.body()
           }
           {
-            this.shortDescription()
+            this.nextProject()
           }
         </div>
-        {
-          this.body()
-        }
-        {
-          this.nextProject()
-        }
       </div>
     )
   }
