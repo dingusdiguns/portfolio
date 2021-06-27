@@ -47,11 +47,12 @@ class NextProject extends React.Component{
         // renderer.setPixelRatio( window.devicePixelRatio )
         // composer.setPixelRatio( window.devicePixelRatio )
         let h = this.refs.canvas.offsetHeight * ( 8 / 10 );
-        renderer.setSize( window.innerWidth, h );
-        composer.setSize(window.innerWidth, h);
+        let w = this.refs.canvas.offsetWidth
+        renderer.setSize( w, h );
+        composer.setSize(w, h);
         this.three = {
           scene: new THREE.Scene(),
-          camera: new THREE.OrthographicCamera( window.innerWidth / -2, window.innerWidth / 2, h / -2, h / 2 ),
+          camera: new THREE.OrthographicCamera( w / -2, w / 2, h / -2, h / 2 ),
           renderer: renderer,
           composer: composer,
           raycaster: new THREE.Raycaster(),
@@ -233,11 +234,13 @@ class NextProject extends React.Component{
     render(){
         return(
             <div className = "next-project" >
-                <div className = "next-project__title" style = { this.getTitleStyle() }>
-                    Next Project
+                <div className = "next-project__inner">
+                    <div className = "next-project__title" style = { this.getTitleStyle() }>
+                        Next Project
+                    </div>
+                    <canvas ref = "canvas">
+                    </canvas>
                 </div>
-                <canvas ref = "canvas">
-                </canvas>
             </div>
         )
     }
