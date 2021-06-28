@@ -173,10 +173,9 @@ class Home extends React.Component{
     let client = e.touches ? e.touches[0] : e;
     if( this.dragging ){
       this.dragging = false;
-    }else{
-      this.click( client );
     }
   }
+
 
   resetMeshTimers( callback, duration ){
     duration = duration ? duration : 800;
@@ -229,6 +228,14 @@ class Home extends React.Component{
   }
 
   click( e ){
+
+    this.mouse.x = ( e.clientX / window.innerWidth );
+    this.mouse.y = - ( e.clientY / window.innerHeight );
+
+    this.mouseThree.x = ( e.clientX / window.innerWidth ) * 2 - 1;
+    this.mouseThree.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
+    this.mouseThree.z = -1
+
     if( this.mouseOver ){
       this.scrolling = false;
 
@@ -839,6 +846,7 @@ class Home extends React.Component{
           <div className = "project-window">
             <canvas ref = "canvas"
             className = {this.getCanvasClassName()}
+            onClick = { this.click.bind( this ) }
             >
             </canvas>
             <div ref = "project-titles" className = "project-titles">
