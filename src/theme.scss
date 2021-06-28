@@ -38,6 +38,10 @@ $font-size-medium--description: 20px;
   
     text-transform: uppercase;
   }
+
+  .grid{
+    width: 100%;
+  }
   
   .homepage .link-mask button{
     position: absolute;
@@ -92,8 +96,7 @@ $font-size-medium--description: 20px;
     width: 100vw;
     min-height: 100vh;
     .projects__inner{
-      max-width: 1400px;
-      margin: 0 auto;
+      
     }
   }
   
@@ -113,7 +116,9 @@ $font-size-medium--description: 20px;
   
   .project-title.project-title--home{
     font-family: "GT America expanded black";
-    font-size: 9vw;
+    font-family: "GT America compressed black";
+    
+    font-size: 20vw;
     transform: translate( 0px, 0px );
     position: initial;
     width: 100%;
@@ -195,7 +200,7 @@ $font-size-medium--description: 20px;
     float: left;
     width: 100%;
     box-sizing: border-box;
-    font-family: "GT America Extended Regular";
+    font-family: "GT America Thin";
   }
   
   .project__description a{
@@ -209,7 +214,6 @@ $font-size-medium--description: 20px;
     font-size: $font-size-small;
     padding: 0px;
     @media( min-width: 450px ){
-      padding: 40px;
       font-size: $font-size-medium--description;
     }
 
@@ -365,11 +369,16 @@ $font-size-medium--description: 20px;
 .wrap{
   padding: 0px 60px;
   @media( max-width: 600px ){
-    padding: 0px 10px;
+    padding: 0px 30px;
   }
 
   @media( max-width: 450px ){
     padding: 0px 20px;
+  }
+
+  &.wrap--projects{
+    max-width: 1200px;
+    margin: 0 auto;
   }
 }
 
@@ -387,8 +396,7 @@ $font-size-medium--description: 20px;
     opacity: 0;
   }
   @media( max-width: 600px ){
-    margin-bottom: 30px;
-    border-radius: 20px;
+    margin-bottom: 60px;
   }
 }
 
@@ -510,14 +518,20 @@ $font-size-medium--description: 20px;
 
 .projects .next-project{
   background-color: #0f0f0f;
-  padding: 60px 60px;
   position: relative;
   width: 100%;
   margin-top: -60px;
+  @media (max-width: 600px ){
+    margin-top: 0px;
+    padding-bottom: 40px;
+  }
   background-color: rgb(15, 15, 15);
   box-sizing: border-box;
   cursor: pointer;
+
   canvas{
+    @media( max-width: 600px ){
+    }
     position: initial;
     background-color: rgb(15,15,15);
     padding-top: 10px;
@@ -544,7 +558,7 @@ $font-size-medium--description: 20px;
   .next-project__inner{
     position: relative;
     padding: 0px 0px;
-    border: 2px solid #414141;
+    border: 2px solid #202020;
     padding-top: 40px;
   }
 }
@@ -556,4 +570,53 @@ $font-size-medium--description: 20px;
     height: 100vh;
     top: 0px;
     left: 0px;
+}
+
+.slick-container{
+  float: left;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  padding-top: 0px;
+  padding-bottom: 120px;
+  @media( max-width: 600px ){
+    padding-bottom: 0px;
+    margin-bottom: 30px;
+    display: none;
+  }
+  .carousel-slide{
+    padding: 0px 60px;
+    position: relative;
+    @media( max-width: 800px ){
+      padding: 0px 20px;
+    }
+    p{
+      position: absolute;
+      bottom: 0px;
+      left: 80px;
+      display: block;
+      color: rgb(120, 120, 120);
+      clear: both;
+      a{
+        color: rgb(100, 100, 100);
+      }
+    }
+  }
+  .slide{
+    opacity: .1;
+    transition: .4s;
+  }
+  .slide.selected{
+    opacity: 1;
+  }
+  .thumbs-wrapper{
+    display: none;
+  }
+
+  .control-dots{
+    display: none;
+  }
+  .carousel-status{
+    display: none;
+  }
 }

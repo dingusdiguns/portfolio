@@ -3,6 +3,10 @@ import { withRouter } from "react-router";
 import ProjectTitle from "../home/project-title"
 import NextProject from "../home/next-project"
 import Projects from "../../data/projects";
+// import Slider from "react-slick"
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+
 
 const throttle = require( "../../util/throttle" );
 
@@ -130,41 +134,43 @@ class Project extends React.Component{
       this.state.loaded
     ){
       return(
-        <div className = "project__description">
-          <div className = "project__description-inner">
-            <p dangerouslySetInnerHTML = {{ __html: this.state.project.description }}/>
-            <div className = "project-details">
-              <div className = "technologies">
-              <label>Technologies</label>
-              <ul>
-              {
-                this.state.project.technologies.map(
-                  ( tech ) => {
-                    return(
-                      <li>
-                      {tech}
-                      </li>
-                    )
-                  }
-                )
-              }
-              </ul>
-              </div>
-              <div className = "roles">
-              <label>Roles</label>
-              <ul>
-              {
-                this.state.project.roles.map(
-                  ( role ) => {
-                    return(
-                      <li>
-                      {role}
-                      </li>
-                    )
-                  }
-                )
-              }
-              </ul>
+        <div className = "wrap wrap--projects">
+          <div className = "project__description">
+            <div className = "project__description-inner">
+              <p dangerouslySetInnerHTML = {{ __html: this.state.project.description }}/>
+              <div className = "project-details">
+                <div className = "technologies">
+                <label>Technologies</label>
+                <ul>
+                {
+                  this.state.project.technologies.map(
+                    ( tech ) => {
+                      return(
+                        <li>
+                        {tech}
+                        </li>
+                      )
+                    }
+                  )
+                }
+                </ul>
+                </div>
+                <div className = "roles">
+                <label>Roles</label>
+                <ul>
+                {
+                  this.state.project.roles.map(
+                    ( role ) => {
+                      return(
+                        <li>
+                        {role}
+                        </li>
+                      )
+                    }
+                  )
+                }
+                </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -183,16 +189,56 @@ class Project extends React.Component{
             className = "project__video fade-out"
           }
           return(
-            <div className = {className}>
-              <video
-              loop = {true} 
-              muted
-              playsInline
-              autoPlay = {true}
+            <div className = "wrap wrap--projects">
+              <div className = {className}>
+                <video
+                loop = {true} 
+                muted
+                playsInline
+                autoPlay = {true}
+                >
+                  <source src = {img.src} 
+                    ></source>
+                </video>
+              </div>
+            </div>
+          )
+        }else if( img.carousel ){
+          let className = "project__carousel";
+          if( this.state.fadeOut ){
+            className = "project__carousel fade-out"
+          }
+          const settings = {
+            dots: false,
+            centerMode: true,
+            arrows: false,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            variableWidth: true
+          };
+          return(
+            <div className = "slick-container">
+              <Carousel 
+              dynamicHeight = {true} 
+              centerMode = {true}
+              swipeable = {true}
+              showArrows = {false}
+              infiniteLoop = {true}
+              centerSlidePercentage = {50}
               >
-                <source src = {img.src} 
-                  ></source>
-              </video>
+                {
+                  img.images.map(
+                    ( el, index ) => {
+                      return(
+                        <div className = "carousel-slide" key = {`slick-image-${index}`}>
+                          <img src = { el.src } />
+                          <p dangerouslySetInnerHTML = {{__html: el.caption }}/>
+                        </div>
+                      )
+                    }
+                  )
+                }
+              </Carousel>
             </div>
           )
         }else{
@@ -201,8 +247,10 @@ class Project extends React.Component{
             className = "project__image fade-out"
           }
           return(
-            <div className = {className}>
-              <img src = {img} ></img>
+            <div className = "wrap wrap--projects">
+              <div className = {className}>
+                <img src = {img} ></img>
+              </div>
             </div>
           )
         }
@@ -213,19 +261,19 @@ class Project extends React.Component{
   body(){
     return(
       <div className = "project__body">
-        <div className = "wrap">
-          <div className = "grid">
+        <div className = "grid">
+          <div className = "wrap wrap--projects">
             <img className = "project__main-image project__image" src = { this.state.project.firstImage ? this.state.project.firstImage : this.state.project.cover }/>
-            {
-              this.description()
-            }
-            {
-              this.mobileHero()
-            }
-            {
-              this.images()
-            }
           </div>
+          {
+            this.description()
+          }
+          {
+            this.mobileHero()
+          }
+          {
+            this.images()
+          }
         </div>
       </div>
     )

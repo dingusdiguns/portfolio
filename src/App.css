@@ -396,6 +396,7 @@ body{
 
 .project-title--home{
   font-family: "GT America expanded black";
+  font-family: "GT America compressed black";
   font-size: 12vw;
   transform: translate( 0px, 0px );
   position: initial;

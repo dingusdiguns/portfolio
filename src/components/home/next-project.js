@@ -51,6 +51,9 @@ class NextProject extends React.Component{
         // composer.setPixelRatio( window.devicePixelRatio )
         let h = this.refs.canvas.offsetHeight * ( 8 / 10 );
         let w = this.refs.canvas.offsetWidth
+        if( window.innerWidth < 800 ){
+            h = w;
+        }
         renderer.setSize( w, h );
         composer.setSize(w, h);
         this.three = {
@@ -118,8 +121,7 @@ class NextProject extends React.Component{
               value: new THREE.TextureLoader().load( this.state.project.cover )
             }
         };
-
-        let sphere = new THREE.SphereGeometry( window.innerHeight / 6, 32, 32 );
+        let sphere = new THREE.SphereGeometry( this.three.renderer.domElement.offsetHeight / 6, 32, 32 );
 
 
         let material = new THREE.ShaderMaterial({
@@ -135,7 +137,7 @@ class NextProject extends React.Component{
         this.three.scene.add( mesh );
         this.mesh = mesh;
         mesh.position.set( 0, 0, -1000 );
-        mesh.scale.set( 2, 2, 2 );
+        mesh.scale.set( 2.4, 2.4, 2.4 );
         this.createTexture()
     }
 
@@ -211,8 +213,8 @@ class NextProject extends React.Component{
     animate(){
         this.three.composer.render()
         this.mesh.material.uniforms.u_time.value = this.time;
-        this.frontSideCylinder.rotation.set(-.15, this.time / 3200, 0);
-        this.backSideCylinder.rotation.set(-.15, this.time / 3200, 0);
+        this.frontSideCylinder.rotation.set(-.025, this.time / 3200, 0);
+        this.backSideCylinder.rotation.set(-.025, this.time / 3200, 0);
         this.time = (this.startTime - (new Date().getTime()));
         // this.three.renderer.render(this.three.scene, this.three.camera);
         window.requestAnimationFrame( this.animate.bind( this ) );
@@ -255,13 +257,15 @@ class NextProject extends React.Component{
 
     render(){
         return(
-            <div className = "next-project" onMouseMove = { throttle( this.mouseMove.bind( this ), 20 ) } onClick = { this.props.clickProject }>
-                <div className = "next-project__inner">
-                    <div className = "next-project__title" style = { this.getTitleStyle() }>
-                        Next Project
+            <div className = "wrap wrap--projects">
+                <div className = "next-project" onMouseMove = { throttle( this.mouseMove.bind( this ), 20 ) } onClick = { this.props.clickProject }>
+                    <div className = "next-project__inner">
+                        <div className = "next-project__title" style = { this.getTitleStyle() }>
+                            Next Project
+                        </div>
+                        <canvas ref = "canvas">
+                        </canvas>
                     </div>
-                    <canvas ref = "canvas">
-                    </canvas>
                 </div>
             </div>
         )

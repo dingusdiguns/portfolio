@@ -26,6 +26,10 @@
   text-transform: uppercase;
 }
 
+.grid {
+  width: 100%;
+}
+
 .homepage .link-mask button {
   position: absolute;
   top: 0px;
@@ -77,11 +81,6 @@
   width: 100vw;
   min-height: 100vh;
 }
-.projects .projects__inner {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
 .project__hero {
   width: 100%;
   height: 90vh;
@@ -98,7 +97,8 @@
 
 .project-title.project-title--home {
   font-family: "GT America expanded black";
-  font-size: 9vw;
+  font-family: "GT America compressed black";
+  font-size: 20vw;
   transform: translate(0px, 0px);
   position: initial;
   width: 100%;
@@ -169,7 +169,7 @@
   float: left;
   width: 100%;
   box-sizing: border-box;
-  font-family: "GT America Extended Regular";
+  font-family: "GT America Thin";
 }
 
 .project__description a {
@@ -185,7 +185,6 @@
 }
 @media (min-width: 450px) {
   .project__description p {
-    padding: 40px;
     font-size: 20px;
   }
 }
@@ -339,13 +338,17 @@
 }
 @media (max-width: 600px) {
   .wrap {
-    padding: 0px 10px;
+    padding: 0px 30px;
   }
 }
 @media (max-width: 450px) {
   .wrap {
     padding: 0px 20px;
   }
+}
+.wrap.wrap--projects {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .project__image, .project__video {
@@ -363,8 +366,7 @@
 }
 @media (max-width: 600px) {
   .project__image, .project__video {
-    margin-bottom: 30px;
-    border-radius: 20px;
+    margin-bottom: 60px;
   }
 }
 
@@ -479,13 +481,18 @@
 
 .projects .next-project {
   background-color: #0f0f0f;
-  padding: 60px 60px;
   position: relative;
   width: 100%;
   margin-top: -60px;
   background-color: #0f0f0f;
   box-sizing: border-box;
   cursor: pointer;
+}
+@media (max-width: 600px) {
+  .projects .next-project {
+    margin-top: 0px;
+    padding-bottom: 40px;
+  }
 }
 .projects .next-project canvas {
   position: initial;
@@ -512,7 +519,7 @@
 .projects .next-project .next-project__inner {
   position: relative;
   padding: 0px 0px;
-  border: 2px solid #414141;
+  border: 2px solid #202020;
   padding-top: 40px;
 }
 
@@ -523,6 +530,58 @@
   height: 100vh;
   top: 0px;
   left: 0px;
+}
+
+.slick-container {
+  float: left;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  padding-top: 0px;
+  padding-bottom: 120px;
+}
+@media (max-width: 600px) {
+  .slick-container {
+    padding-bottom: 0px;
+    margin-bottom: 30px;
+    display: none;
+  }
+}
+.slick-container .carousel-slide {
+  padding: 0px 60px;
+  position: relative;
+}
+@media (max-width: 800px) {
+  .slick-container .carousel-slide {
+    padding: 0px 20px;
+  }
+}
+.slick-container .carousel-slide p {
+  position: absolute;
+  bottom: 0px;
+  left: 80px;
+  display: block;
+  color: #787878;
+  clear: both;
+}
+.slick-container .carousel-slide p a {
+  color: #646464;
+}
+.slick-container .slide {
+  opacity: 0.1;
+  transition: 0.4s;
+}
+.slick-container .slide.selected {
+  opacity: 1;
+}
+.slick-container .thumbs-wrapper {
+  display: none;
+}
+.slick-container .control-dots {
+  display: none;
+}
+.slick-container .carousel-status {
+  display: none;
 }
 
 /*# sourceMappingURL=theme.css.map */

@@ -77,21 +77,32 @@
   width: 100vw;
   min-height: 100vh;
 }
+.projects .projects__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
 .project__hero {
-  width: 100vw;
+  width: 100%;
   height: 90vh;
   display: flex;
   position: relative;
   justify-content: center;
   flex-direction: column;
 }
+@media (max-width: 600px) {
+  .project__hero {
+    box-sizing: content-box;
+  }
+}
 
-.project-title--home {
+.project-title.project-title--home {
   font-family: "GT America expanded black";
+  font-family: "GT America compressed black";
   font-size: 9vw;
   transform: translate(0px, 0px);
   position: initial;
+  width: 100%;
 }
 
 @media (min-width: 1400px) {
@@ -122,45 +133,11 @@
     opacity: 1;
   }
 }
-.project__image {
-  width: 100%;
-  height: auto;
-  float: left;
-  padding: 0px 60px;
-  margin-bottom: 60px;
-  box-sizing: border-box;
-}
-
-.project__video {
-  width: 100%;
-  height: auto;
-  float: left;
-  padding: 0px 60px;
-  margin-bottom: 60px;
-  box-sizing: border-box;
-}
-
-.project__video video {
-  width: 100%;
-  max-width: 1500px;
-  margin: 0 auto;
-  display: block;
-}
-
 .project__image img {
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
   display: block;
-}
-
-.project__main-image {
-  opacity: 0;
-  animation-delay: 0.5s;
-  animation-name: fadeInUp;
-  animation-fill-mode: forwards;
-  animation-duration: 1s;
-  background-color: white;
 }
 
 .project__main-image.project__image {
@@ -179,7 +156,7 @@
   animation-name: fadeIn;
   animation-fill-mode: forwards;
   animation-duration: 2s;
-  margin-top: -10px;
+  margin-top: 10px;
   font-family: "GT America Extended Medium";
 }
 
@@ -189,11 +166,9 @@
 
 .project__description {
   color: white;
-  padding: 120px 60px;
-  padding-top: 60px;
+  padding: 120px 0px;
   float: left;
   width: 100%;
-  font-size: 32px;
   box-sizing: border-box;
   font-family: "GT America Extended Regular";
 }
@@ -205,12 +180,31 @@
 
 .project__description p {
   margin: 0 auto;
-  line-height: 1.3em;
+  font-size: 20px;
+  padding: 0px;
+  line-height: 1.44em;
+}
+@media (min-width: 450px) {
+  .project__description p {
+    padding: 40px;
+    font-size: 20px;
+  }
+}
+@media (min-width: 800px) {
+  .project__description p {
+    padding: 0px 0px;
+    font-size: 24px;
+  }
+}
+@media (min-width: 1200px) {
+  .project__description p {
+    font-size: 24px;
+  }
 }
 
 .project__description-inner {
-  max-width: 1200px;
   margin: 0 auto;
+  max-width: 800px;
 }
 
 .technologies label, .roles label {
@@ -222,7 +216,16 @@
   float: left;
   width: 33%;
   font-family: "GT America Thin";
-  font-size: 24px;
+  font-size: 20px;
+}
+.technologies ul, .roles ul {
+  margin: 0px;
+}
+@media (max-width: 600px) {
+  .technologies, .roles {
+    width: 100%;
+    margin-top: 20px;
+  }
 }
 
 .technologies ul, .roles ul {
@@ -252,31 +255,53 @@
   flex-direction: column;
   justify-content: center;
   padding-top: 100px;
-  padding-left: 60px;
   min-height: 100vh;
+  padding-bottom: 100px;
+}
+@media (max-width: 800px) {
+  .about .about-text {
+    width: 100%;
+  }
 }
 
 .about-text {
+  display: block;
+  margin: 0 auto;
   text-align: center;
-  font-size: 34px;
-  max-width: 1100px;
-  width: 90%;
   color: #c8c8c8;
   margin: 0 auto;
-  display: inline-block;
   text-align: left;
   font-family: "GT America expanded medium";
   padding: 0px;
   font-family: "GT America Thin";
+  max-width: 1100px;
 }
-
-h3.about-text {
-  padding-right: 60px;
+.about-text h3 {
   font-family: "GT America Extended Regular";
   box-sizing: border-box;
-  font-size: 24px;
+  font-size: 20px;
   margin-left: 0px;
-  line-height: 1.4em;
+  line-height: 1.46em;
+}
+@media (min-width: 450px) {
+  .about-text h3 {
+    font-size: 32px;
+  }
+}
+@media (min-width: 600px) {
+  .about-text h3 {
+    font-size: 5vw;
+  }
+}
+@media (min-width: 800px) {
+  .about-text h3 {
+    padding-top: 120px;
+  }
+}
+@media (min-width: 1100px) {
+  .about-text h3 {
+    font-size: 60px;
+  }
 }
 
 .contact h4 a {
@@ -286,24 +311,18 @@ h3.about-text {
   font-size: 18px;
   font-family: "GT America Extended Regular";
 }
-
-@media (min-width: 800px) {
-  h3.about-text {
-    padding-top: 200px;
-    font-size: 5vw;
+@media (min-width: 450px) {
+  .contact h4 a {
+    font-size: 20px;
   }
-
+}
+@media (min-width: 600px) {
   .contact h4 a {
     font-size: 5vw;
   }
 }
-.about h1 {
-  font-family: "GT America Extended Medium";
-  color: #c8c8c8;
-  font-size: 56px;
-}
 
-.about h3.active span {
+.about .active span {
   opacity: 1;
 }
 
@@ -316,8 +335,195 @@ h3.about-text {
   transition: 1s;
 }
 
-.about {
-  padding-bottom: 100px;
+.wrap {
+  padding: 0px 60px;
+}
+@media (max-width: 600px) {
+  .wrap {
+    padding: 0px 10px;
+  }
+}
+@media (max-width: 450px) {
+  .wrap {
+    padding: 0px 20px;
+  }
+}
+
+.project__image, .project__video {
+  width: 100%;
+  height: auto;
+  float: left;
+  opacity: 1;
+  transition: 0.5s;
+  margin-bottom: 120px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.project__image.fade-out, .project__video.fade-out {
+  opacity: 0;
+}
+@media (max-width: 600px) {
+  .project__image, .project__video {
+    margin-bottom: 30px;
+    border-radius: 20px;
+  }
+}
+
+.project__hero {
+  width: 100%;
+  height: 480px;
+  display: flex;
+  padding-top: 50px;
+  position: relative;
+  justify-content: center;
+  flex-direction: column;
+}
+@media (max-width: 600px) {
+  .project__hero {
+    padding-top: 50px;
+  }
+  .project__hero h3 {
+    display: none;
+  }
+}
+
+.project__main-image {
+  opacity: 0;
+  animation-delay: 0.5s;
+  animation-name: fadeIn;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  background-color: white;
+  min-height: 40vw;
+  width: 100%;
+}
+.project__main-image.project__image {
+  margin-bottom: 0px;
+}
+
+.header ul li {
+  font-size: 16px;
+  margin-right: 60px;
+  cursor: pointer;
+}
+@media (max-width: 600px) {
+  .header ul li {
+    font-size: 14px;
+    margin-right: 30px;
+  }
+}
+
+.header-link.active::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 140%;
+  border-radius: 100%;
+  opacity: 0;
+  border: 3px solid white;
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  border-color: inherit;
+  transform: translate(-50%, -50%);
+}
+@media (max-width: 600px) {
+  .header-link.active::after {
+    width: 130%;
+    height: 140%;
+  }
+}
+
+@media (max-width: 600px) {
+  .project__hero {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .project__description {
+    display: none;
+  }
+}
+
+@media (min-width: 600px) {
+  .project__hero--mobile {
+    display: none;
+  }
+}
+.project__hero--mobile h2 {
+  color: white;
+  font-family: "GT America compressed black";
+  text-align: center;
+  font-size: 22vw;
+  text-transform: uppercase;
+  margin: 0px;
+  padding-top: 100px;
+}
+.project__hero--mobile p {
+  color: #d4d4d4;
+  font-family: "GT America Extended Regular";
+  padding: 0px 30px;
+  line-height: 1.44em;
+  font-size: 20px;
+  margin-bottom: 60px;
+}
+
+@media (max-width: 600px) {
+  .project__main-image {
+    margin-top: 100px;
+    animation-name: fadeIn;
+  }
+}
+
+.projects .next-project {
+  background-color: #0f0f0f;
+  padding: 60px 60px;
+  position: relative;
+  width: 100%;
+  margin-top: -60px;
+  background-color: #0f0f0f;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.projects .next-project canvas {
+  position: initial;
+  background-color: #0f0f0f;
+  padding-top: 10px;
+  width: 100%;
+}
+.projects .next-project .next-project__title {
+  font-size: 16px;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  left: 0px;
+  position: absolute;
+  opacity: 1;
+  transition: 0.4s;
+  font-family: "GT America expanded black";
+  z-index: 100000;
+  padding-bottom: 60px;
+  top: 40px;
+  color: #414141;
+}
+.projects .next-project .next-project__inner {
+  position: relative;
+  padding: 0px 0px;
+  border: 2px solid #414141;
+  padding-top: 40px;
+}
+
+.transition {
+  background-color: #0f0f0f;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
 }
 
 /*# sourceMappingURL=theme.css.map */
