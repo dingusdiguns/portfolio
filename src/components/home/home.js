@@ -118,7 +118,9 @@ class Home extends React.Component{
 
 
   mouseDown( e ){
-    e.preventDefault();
+    if( e.cancelable ){
+      e.preventDefault();
+    }
     let client = e.touches ? e.touches[0] : e;
     if( this.timeline ){
       this.mouseDown = true;
@@ -141,7 +143,9 @@ class Home extends React.Component{
   }
 
   mouseMove( e ){
-    e.preventDefault();
+    if( e.cancelable ){
+      e.preventDefault();
+    }
     let client = e.touches ? e.touches[0] : e;
     if( this.mouseDown && this.mouseDownStartValue ){
       let x =  client.clientX;
@@ -167,12 +171,16 @@ class Home extends React.Component{
   }
 
   mouseUp( e ){
-    e.preventDefault();
+    if( e.cancelable ){
+      e.preventDefault();
+    }
     this.mouseDown = false;
     this._drag = undefined;
     let client = e.touches ? e.touches[0] : e;
     if( this.dragging ){
       this.dragging = false;
+    }else{
+      this.click();
     }
   }
 
@@ -228,13 +236,14 @@ class Home extends React.Component{
   }
 
   click( e ){
+    if( e ){
+      this.mouse.x = ( e.clientX / window.innerWidth );
+      this.mouse.y = - ( e.clientY / window.innerHeight );
 
-    this.mouse.x = ( e.clientX / window.innerWidth );
-    this.mouse.y = - ( e.clientY / window.innerHeight );
-
-    this.mouseThree.x = ( e.clientX / window.innerWidth ) * 2 - 1;
-    this.mouseThree.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
-    this.mouseThree.z = -1
+      this.mouseThree.x = ( e.clientX / window.innerWidth ) * 2 - 1;
+      this.mouseThree.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
+      this.mouseThree.z = -1
+    }
 
     if( this.mouseOver ){
       this.scrolling = false;
