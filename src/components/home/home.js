@@ -118,6 +118,7 @@ class Home extends React.Component{
 
 
   mouseDown( e ){
+    e.preventDefault();
     let client = e.touches ? e.touches[0] : e;
     if( this.timeline ){
       this.mouseDown = true;
@@ -140,6 +141,7 @@ class Home extends React.Component{
   }
 
   mouseMove( e ){
+    e.preventDefault();
     let client = e.touches ? e.touches[0] : e;
     if( this.mouseDown && this.mouseDownStartValue ){
       let x =  client.clientX;
@@ -165,6 +167,7 @@ class Home extends React.Component{
   }
 
   mouseUp( e ){
+    e.preventDefault();
     this.mouseDown = false;
     this._drag = undefined;
     let client = e.touches ? e.touches[0] : e;
