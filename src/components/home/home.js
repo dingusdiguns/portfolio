@@ -118,10 +118,10 @@ class Home extends React.Component{
 
 
   mouseDown( e ){
+    let client = e.touches ? e.touches[0] : e;
     if( this.timeline ){
       this.mouseDown = true;
 
-      let client = e.touches ? e.touches[0] : e;
 
       this.snapPosition = undefined;
       let x =  client.clientX;
@@ -130,6 +130,13 @@ class Home extends React.Component{
       this._dragStart = { x: x, y: y, timelinePos: this.timeline.position.x }
       this.mouseDownStartValue = {x: x, y: y};
     }
+
+    this.mouse.x = ( client.clientX / window.innerWidth );
+    this.mouse.y = - ( client.clientY / window.innerHeight );
+
+    this.mouseThree.x = ( client.clientX / window.innerWidth ) * 2 - 1;
+    this.mouseThree.y = - ( client.clientY / window.innerHeight ) * 2 + 1;
+    this.mouseThree.z = -1
   }
 
   mouseMove( e ){
@@ -159,11 +166,11 @@ class Home extends React.Component{
   mouseUp( e ){
     this.mouseDown = false;
     this._drag = undefined;
-
+    let client = e.touches ? e.touches[0] : e;
     if( this.dragging ){
       this.dragging = false;
     }else{
-      this.click();
+      this.click( client );
     }
   }
 
@@ -217,7 +224,7 @@ class Home extends React.Component{
     // );
   }
 
-  click(){
+  click( e ){
     if( this.mouseOver ){
       this.scrolling = false;
 
