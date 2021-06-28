@@ -20,7 +20,7 @@ class Home extends React.Component{
     this.state = {
       canvasPos: "top"
     };
-    this.positionInterval = (window.innerHeight / 10) * 4.4;
+    this.positionInterval = (window.innerHeight / 10) * 3.2;
     this.defaultColor = new THREE.Color("rgb( 15, 15, 15 )");
     this.backgroundColor = new THREE.Color("rgb( 15, 15, 15 )");
     this.mouse = new THREE.Vector2();
@@ -121,9 +121,11 @@ class Home extends React.Component{
     if( this.timeline ){
       this.mouseDown = true;
 
+      let client = e.touches ? e.touches[0] : e;
+
       this.snapPosition = undefined;
-      let x =  e.clientX;
-      let y =  e.clientY;
+      let x =  client.clientX;
+      let y =  client.clientY;
 
       this._dragStart = { x: x, y: y, timelinePos: this.timeline.position.x }
       this.mouseDownStartValue = {x: x, y: y};
@@ -131,23 +133,25 @@ class Home extends React.Component{
   }
 
   mouseMove( e ){
+    let client = e.touches ? e.touches[0] : e;
     if( this.mouseDown && this.mouseDownStartValue ){
-      let x =  e.clientX;
-      let y =  e.clientY;
+
+      let x =  client.clientX;
+      let y =  client.clientY;
       if( Math.abs( x - this.mouseDownStartValue.x ) > 10 || Math.abs( y - this.mouseDownStartValue.y ) > 10 ){
         if( !this.dragging ){
           this.resetMeshTimers();
         }
         this.dragging = true;
-        this.drag( e )
+        this.drag( client )
       }
     }
 
-    this.mouse.x = ( e.clientX / window.innerWidth );
-    this.mouse.y = - ( e.clientY / window.innerHeight );
+    this.mouse.x = ( client.clientX / window.innerWidth );
+    this.mouse.y = - ( client.clientY / window.innerHeight );
 
-    this.mouseThree.x = ( e.clientX / window.innerWidth ) * 2 - 1;
-    this.mouseThree.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
+    this.mouseThree.x = ( client.clientX / window.innerWidth ) * 2 - 1;
+    this.mouseThree.y = - ( client.clientY / window.innerHeight ) * 2 + 1;
     this.mouseThree.z = -1
 
   }
