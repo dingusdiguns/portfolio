@@ -20,7 +20,7 @@ class Home extends React.Component{
     this.state = {
       canvasPos: "top"
     };
-    this.positionInterval = (window.innerHeight / 10) * 3.2;
+    this.positionInterval = (window.innerHeight / 10) * 4.;
     this.defaultColor = new THREE.Color("rgb( 15, 15, 15 )");
     this.backgroundColor = new THREE.Color("rgb( 15, 15, 15 )");
     this.mouse = new THREE.Vector2();
