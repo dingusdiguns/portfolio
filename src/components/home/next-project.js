@@ -44,7 +44,8 @@ class NextProject extends React.Component{
     componentDidMount(){
         let renderer = new THREE.WebGLRenderer({ canvas: this.refs.canvas, antialias: true });
         const composer = new EffectComposer( renderer );
-        renderer.setClearColor( "red" );
+
+        renderer.setClearColor( this.state.project.backgroundColor );
         renderer.setClearColor( this.backgroundColor );
         renderer.sortObjects = false;
         // renderer.setPixelRatio( window.devicePixelRatio )
@@ -101,6 +102,13 @@ class NextProject extends React.Component{
         const near = 2200;
         const far = 1000;
         this.three.scene.fog = new THREE.Fog(color, near, far);
+
+        window.clickPage = this.clickPage.bind( this )
+
+    }
+
+    clickPage( callback ){
+      callback();
     }
 
     setupProject(){
@@ -175,22 +183,22 @@ class NextProject extends React.Component{
 
         var frontSideGeometry = new THREE.CylinderGeometry( radius, radius, height, 200, 2, true );
         var backSideGeometry = new THREE.CylinderGeometry( radius, radius, height, 200, 2, true );
-    
+
         let frontSideMaterial = new THREE.MeshStandardMaterial({
             color: "white",
             map: this.texture,
             side: THREE.BackSide,
             transparent: true
           });
-      
+
           let backSideMaterial = new THREE.MeshStandardMaterial({
             color: "white",
             map: this.texture,
             side: THREE.FrontSide,
             transparent: true
           });
-      
-        let frontSideCylinder = new THREE.Mesh( frontSideGeometry, frontSideMaterial ); 
+
+        let frontSideCylinder = new THREE.Mesh( frontSideGeometry, frontSideMaterial );
         let backSideCylinder = new THREE.Mesh( backSideGeometry, backSideMaterial );
         this.frontSideCylinder = frontSideCylinder;
         this.backSideCylinder = backSideCylinder;

@@ -20,7 +20,7 @@ class Home extends React.Component{
     this.state = {
       canvasPos: "top"
     };
-    this.positionInterval = (window.innerHeight / 10) * 3.4;
+    this.positionInterval = (window.innerHeight / 10) * 4.4;
     this.defaultColor = new THREE.Color("rgb( 15, 15, 15 )");
     this.backgroundColor = new THREE.Color("rgb( 15, 15, 15 )");
     this.mouse = new THREE.Vector2();
@@ -114,6 +114,8 @@ class Home extends React.Component{
 
     }
   }
+
+
 
   mouseDown( e ){
     if( this.timeline ){
@@ -330,9 +332,15 @@ class Home extends React.Component{
     this.upEvent = this.mouseUp.bind( this );
 
     window.addEventListener( "scroll", this.scrollEvent );
+
     this._down = document.addEventListener( "mousedown", this.downEvent );
     this._move = document.addEventListener( "mousemove", this.moveEvent );
     this._up = document.addEventListener( "mouseup", this.upEvent );
+
+    this._ts = document.addEventListener( "touchstart", this.downEvent );
+    this._tm = document.addEventListener( "touchmove", this.moveEvent );
+    this._te = document.addEventListener( "touchend", this.upEvent );
+
 
     window.clickPage = this.clickPage.bind( this )
 
@@ -343,6 +351,11 @@ class Home extends React.Component{
     document.removeEventListener( "mousedown", this.downEvent  );
     document.removeEventListener( "mouseup", this.upEvent  );
     document.removeEventListener( "mousemove", this.moveEvent );
+
+    document.removeEventListener( "touchstart", this.downEvent );
+    document.removeEventListener( "touchmove", this.moveEvent );
+    document.removeEventListener( "touchend", this.upEvent );
+
     window.removeEventListener( "scroll", this.scrollEvent );
   }
 
