@@ -142,15 +142,16 @@ class Home extends React.Component{
   mouseMove( e ){
     let client = e.touches ? e.touches[0] : e;
     if( this.mouseDown && this.mouseDownStartValue ){
-
       let x =  client.clientX;
       let y =  client.clientY;
-      if( Math.abs( x - this.mouseDownStartValue.x ) > 10 || Math.abs( y - this.mouseDownStartValue.y ) > 10 ){
-        if( !this.dragging ){
-          this.resetMeshTimers();
+      if( x && x !== 0 ){
+        if( Math.abs( x - this.mouseDownStartValue.x ) > 20 || Math.abs( y - this.mouseDownStartValue.y ) > 20 ){
+          if( !this.dragging ){
+            this.resetMeshTimers();
+          }
+          this.dragging = true;
+          this.drag( client )
         }
-        this.dragging = true;
-        this.drag( client )
       }
     }
 
