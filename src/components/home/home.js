@@ -249,8 +249,8 @@ class Home extends React.Component{
       this.three.composer.setSize(window.innerWidth, window.innerHeight);
       this.three.camera.left = -window.innerWidth / 2;
       this.three.camera.right = window.innerWidth / 2;
-      this.three.camera.top = window.innerHeight / 2;
-      this.three.camera.bottom = -window.innerHeight / 2;
+      this.three.camera.top = -window.innerHeight / 2;
+      this.three.camera.bottom = window.innerHeight / 2;
       this.three.camera.updateProjectionMatrix();
 
       if( window.innerWidth < 800 ){
