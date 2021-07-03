@@ -1,6 +1,6 @@
 const THREE = require( "three" )
 
-export default {
+let Projects = {
 
   "Wild One": {
     title: "WILD ONE",
@@ -100,24 +100,28 @@ export default {
 
   },
 
-  
-  "WP": {
-    title: "W&P",
-    cover: "/images/wp.jpg",
-    handle: "wp",
-    textColor: "rgb( 255, 210, 100 )",
-    linkText: "View Project",
-    shortDescription: "<strike>Wine</strike> Williams & <strike>Puzzles</strike> Prum",
-    backgroundColor_rgb: "rgb(80, 0, 0)",
-    backgroundColor: new THREE.Color( "rgb(255, 180, 80)" ),
-    images: [],
-    roles: [
-      "Fullstack Dev",
-      "UI Designer"
-    ],
-    technologies: [
-      "react",
-    ],
-  }
- 
+
+
+
 }
+
+// Projects["WP"] = {
+//   title: "W&P",
+//   cover: "/images/wp.jpg",
+//   handle: "wp",
+//   textColor: "rgb( 255, 210, 100 )",
+//   linkText: "View Project",
+//   shortDescription: "<strike>Wine</strike> Williams & <strike>Puzzles</strike> Prum",
+//   backgroundColor_rgb: "rgb(80, 0, 0)",
+//   backgroundColor: new THREE.Color( "rgb(255, 180, 80)" ),
+//   images: [],
+//   roles: [
+//     "Fullstack Dev",
+//     "UI Designer"
+//   ],
+//   technologies: [
+//     "react",
+//   ],
+// }
+
+export default Projects

@@ -46,10 +46,10 @@ float snoise(vec2 v) {
 
 void main() {
   float dist = distance( u_mouse, vUv );
-  float modifier = pow( 1. / ((dist + 1.) * 1.05), 10. ) * 
-    snoise( 
-      vec2((vUv.x * 5.) + (u_time / 2000.), 
-          (vUv.y * 5.) + (u_time / 2000.)) ) * u_selection;
+  float modifier = pow( 1. / ((dist + 1.) * 1.05), 10. ) *
+    snoise(
+      vec2((vUv.x * 2.5) + (u_time / 2000.), 
+          (vUv.y * 2.5) + (u_time / 2000.)) ) * u_selection;
   vec4 texel = texture2D( tDiffuse, vUv + (modifier/u_mag) );
   gl_FragColor = texel;
   // gl_FragColor = vec4(1.,0.,0.,1.);
