@@ -213,60 +213,65 @@ class Home extends React.Component{
 
   click(){
     if( this.mouseOver ){
-      this.scrolling = false;
+      if( this.mouseOver.parent_obj.index === this.selectedIndex ){
+        this.clickProject()
+      }else{
+        this.scrolling = false;
 
-      this.resetMeshTimers();
-      this.setTitlesInactive()
+        this.resetMeshTimers();
+        this.setTitlesInactive()
 
-      this.scrollVel = 0;
-      let selected = this.mouseOver
-      this.snapTarget = -(selected.parent_obj.index * this.positionInterval );
-      this.snapTimer.reset();
+        this.scrollVel = 0;
+        let selected = this.mouseOver
+        this.snapTarget = -(selected.parent_obj.index * this.positionInterval );
+        this.snapTimer.reset();
 
 
-      let _c = () => {
-        let nearest = selected;
-        this.selectedIndex = selected.parent_obj.index;
-        this.setState({
-          selectedIndex: this.selectedIndex
-        })
-        this.three.initialBackgroundColor = this.three.currentBackgroundColor.clone();
-        this.three.targetBackgroundColor = selected.parent_obj.backgroundColor.clone();
-        this.three.backgroundTimer.reset();
-        window.changeHeaderColor( selected.parent_obj.project.textColor )
-        this.meshs.forEach(
-          ( mesh, index ) => {
-            mesh.initialScale = mesh.mesh.scale.clone();
-            mesh.initialPosition = mesh.mesh.position.clone();
-            mesh.initialSaturation = mesh.mesh.material.uniforms.saturation.value;
-            if( index === this.selectedIndex ){
-              mesh.targetScale = new THREE.Vector3( 2.2, 2.2, 2.2 );
-              mesh.targetPosition = mesh.mesh.position.clone();
-              mesh.targetPosition.x = (index * this.positionInterval );
-              mesh.targetSaturation = 1;
-            }else{
-              mesh.targetSaturation = 0;
-              mesh.targetScale = new THREE.Vector3( 1, 1, 1 );;
+        let _c = () => {
+          let nearest = selected;
+          this.selectedIndex = selected.parent_obj.index;
+          this.setState({
+            selectedIndex: this.selectedIndex
+          })
+          this.three.initialBackgroundColor = this.three.currentBackgroundColor.clone();
+          this.three.targetBackgroundColor = selected.parent_obj.backgroundColor.clone();
+          this.three.backgroundTimer.reset();
+          window.changeHeaderColor( selected.parent_obj.project.textColor )
+          this.meshs.forEach(
+            ( mesh, index ) => {
+              mesh.initialScale = mesh.mesh.scale.clone();
+              mesh.initialPosition = mesh.mesh.position.clone();
+              mesh.initialSaturation = mesh.mesh.material.uniforms.saturation.value;
+              if( index === this.selectedIndex ){
+                mesh.targetScale = new THREE.Vector3( 2.2, 2.2, 2.2 );
+                mesh.targetPosition = mesh.mesh.position.clone();
+                mesh.targetPosition.x = (index * this.positionInterval );
+                mesh.targetSaturation = 1;
+              }else{
+                mesh.targetSaturation = 0;
+                mesh.targetScale = new THREE.Vector3( 1, 1, 1 );;
+              }
+
+              if( index > this.selectedIndex ){
+                mesh.targetPosition = mesh.mesh.position.clone();
+                mesh.targetPosition.x = (index * this.positionInterval ) + (this.positionInterval * 3 / 6);
+                mesh.targetScale = new THREE.Vector3( 1, 1, 1 );
+              }
+
+              if( index < this.selectedIndex ){
+                mesh.targetPosition = mesh.mesh.position.clone();
+                mesh.targetPosition.x = (index * this.positionInterval ) - (this.positionInterval * 3 / 6);
+                mesh.targetScale = new THREE.Vector3( 1, 1, 1 );
+              }
+
+              mesh.timer.reset();
             }
+          );
+        }
+        this.snapTimer.changeCallback( _c )
+        this.snapPosition = this.timeline.position.x
 
-            if( index > this.selectedIndex ){
-              mesh.targetPosition = mesh.mesh.position.clone();
-              mesh.targetPosition.x = (index * this.positionInterval ) + (this.positionInterval * 3 / 6);
-              mesh.targetScale = new THREE.Vector3( 1, 1, 1 );
-            }
-
-            if( index < this.selectedIndex ){
-              mesh.targetPosition = mesh.mesh.position.clone();
-              mesh.targetPosition.x = (index * this.positionInterval ) - (this.positionInterval * 3 / 6);
-              mesh.targetScale = new THREE.Vector3( 1, 1, 1 );
-            }
-
-            mesh.timer.reset();
-          }
-        );
       }
-      this.snapTimer.changeCallback( _c )
-      this.snapPosition = this.timeline.position.x
     }
   }
 
@@ -319,6 +324,9 @@ class Home extends React.Component{
     composer.addPass( mousePass );
 
     this.timeline = new THREE.Mesh();
+    let offsetX = 0;
+    offsetX = window.innerWidth > 800 ? -this.positionInterval : 0;
+    this.timeline.position.set( offsetX, 0, 0 );
     this.three.scene.add( this.timeline );
 
     // this.createTitles();

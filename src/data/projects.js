@@ -14,36 +14,6 @@ export default {
     backgroundColor: new THREE.Color( "rgb(180, 170, 165)" ),
     description: `The Wild One website is the product of 2 years of brand-building. Through months of iteration, we (a team of 2) designed the site modularly to house a varying amount of products. We were able to layer in functionality to allow users to parametrically customize products using a custom built 3d visulizer. This effort innevitably resulted in the founder of Wild One receiving a <a href = "https://www.forbes.com/30-under-30/2020/retail-ecommerce/#5ca8157f2fcd">Forbes 30 Under 30 Award</a> for ecommerce.`,
     images: [
-      {
-        carousel: true,
-        images: [
-          {
-            src: "/images/wild-one/WO_VM_Studio_Digital_LilacLaunch_Lilac_Dog_234-Edit_NR.jpg",
-            caption: 'Photographed by <a href = "https://www.samliebeskind.com/">Sam Liebeskind</a>'
-          },
-          {
-            src: "/images/wild-one/WO_VM_Website_Treats_Collection_03_Print_NR.jpg",
-            caption: 'Photographed by <a href = "https://www.samliebeskind.com/">Sam Liebeskind</a>'
-          },
-          {
-            src: "/images/wild-one/WO_VM_Website_Leash_Harness_Navy_Editorial_02_Print_NR.jpg",
-            caption: 'Photographed by <a href = "https://www.samliebeskind.com/">Sam Liebeskind</a>'
-          },
-          {
-            src: "/images/wild-one/WO_VM_Studio_Digital_LilacLaunch_Lilac_Dog_234-Edit_NR.jpg",
-            caption: 'Photographed by <a href = "https://www.samliebeskind.com/">Sam Liebeskind</a>'
-          },
-          {
-            src: "/images/wild-one/WO_VM_Website_Treats_Collection_03_Print_NR.jpg",
-            caption: 'Photographed by <a href = "https://www.samliebeskind.com/">Sam Liebeskind</a>'
-          },
-          {
-            src: "/images/wild-one/WO_VM_Website_Leash_Harness_Navy_Editorial_02_Print_NR.jpg",
-            caption: 'Photographed by <a href = "https://www.samliebeskind.com/">Sam Liebeskind</a>'
-          },
-
-        ]
-      },
       "/images/wild-one/wild-one-home--big.png",
       "/images/wild-one/wild-one-pdp--blue-big.png",
       "/images/wild-one/wild-one-double-mobile.png",
@@ -110,37 +80,9 @@ export default {
     backgroundColor: new THREE.Color( "rgb(180, 180, 185)" ),
     backgroundColor: new THREE.Color( "rgb(150, 150, 150)" ),
     images: [
-      {
-        carousel: true,
-        images: [
-          {
-            src: "/images/courant/CT_VM_x_Naked_Cashmere_Giveaway_Editorial_02_Print.jpg",
-            caption: 'Photographed by <a href = "https://www.samliebeskind.com/">Sam Liebeskind</a>'
-          },
-          {
-            src: "/images/courant/CT_VM_Saddle_WFH_Editorial_332_Print.jpg",
-            caption: 'Photographed by <a href = "https://www.samliebeskind.com/">Sam Liebeskind</a>'
-          },
-          {
-            src: "/images/courant/20_CT_VM_Carry_Catch_3_PacificBlue_Editorial_01_Print.jpg",
-            caption: 'Photographed by <a href = "https://www.samliebeskind.com/">Sam Liebeskind</a>'
-          },
-          {
-            src: "/images/courant/CT_VM_AirpodPro_Case_Editorial_105_Print.jpg",
-            caption: 'Photographed by <a href = "https://www.samliebeskind.com/">Sam Liebeskind</a>'
-          },
-          {
-            src: "/images/courant/05_CT_VM_Carry_WinterFashion_122019_Editorial_118+copy_NR.jpg",
-            caption: 'Photographed by <a href = "https://www.samliebeskind.com/">Sam Liebeskind</a>'
-          },
-          {
-            src: "/images/courant/CT_VM_x_Naked_Cashmere_Giveaway_Editorial_02_Print.jpg",
-            caption: 'Photographed by <a href = "https://www.samliebeskind.com/">Sam Liebeskind</a>'
-          }
-        ]
-      },
-      "/images/courant/home-hero-render-desktop.png",
-      "/images/courant/courant-mobile-home.png",
+      
+      "/images/courant/courant-black-marble-3.png",
+      "/images/courant/courant-black-marble-2.png",
       "/images/courant/home-pdp-render-desktop.png",
       "/images/courant/courant-pdp-mobile.png",
     ],
