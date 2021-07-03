@@ -10,7 +10,7 @@
 }
 
 .homepage .link-text button {
-  display: block;
+  display: none;
   white-space: nowrap;
   background-color: transparent;
   color: inherit;
@@ -63,6 +63,7 @@
 
 .header-link.active::after {
   content: " ";
+  display: none;
   position: absolute;
   top: 50%;
   left: 50%;

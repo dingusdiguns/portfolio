@@ -60,7 +60,7 @@ class Project extends React.Component{
 
   __mounted(){
     window.scroll( 0, 0 );
-    window.setTimeout(
+    this.selectedTimeout = window.setTimeout(
       () => {
         this.setState({
           selectedIndex: 1
@@ -68,7 +68,7 @@ class Project extends React.Component{
       }, 10
     );
 
-    window.setTimeout(
+    this.loadTimeout = window.setTimeout(
       () => {
         this.setState({ loaded: true })
       },
@@ -78,6 +78,8 @@ class Project extends React.Component{
   }
 
   componentWillUnmount(){
+    window.clearTimeout( this.loadTimeout );
+    window.clearTimeout( this.selectedTimeout );
     window.removeEventListener( "scroll", this.scrollEvent );
   }
 
@@ -85,7 +87,6 @@ class Project extends React.Component{
     var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
     if( scrollTop + 200 > document.body.offsetHeight  ){
       if( !this.navTimeout ){
-
         this.navTimeout = window.setTimeout( this.navigateNextProject.bind( this ), 400 )
       }
     }else if( this.navTimeout ){

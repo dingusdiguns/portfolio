@@ -93,7 +93,7 @@ class NextProject extends React.Component{
         mousePass.renderToScreen = true;
         composer.addPass( mousePass );
 
-        window.setTimeout(
+        this.setupTimeout = window.setTimeout(
             this.setupProject.bind(this),
             1000
         );
@@ -105,6 +105,28 @@ class NextProject extends React.Component{
 
         window.clickPage = this.clickPage.bind( this )
 
+        this.resizeEvent = throttle( this.__onWindowResize.bind( this ), 40 );
+        window.addEventListener( "resize", this.resizeEvent );
+    }
+
+    __onWindowResize(){
+        this.three.renderer.setSize( window.innerWidth, window.innerHeight );
+        this.three.composer.setSize(window.innerWidth, window.innerHeight);
+        this.three.camera.left = -window.innerWidth / 2;
+        this.three.camera.right = window.innerWidth / 2;
+        this.three.camera.top = -window.innerHeight / 2;
+        this.three.camera.bottom = window.innerHeight / 2;
+        this.three.camera.updateProjectionMatrix();
+        this.mesh.material.uniforms.u_resolution.value = [
+            this.refs.canvas.width,
+            this.refs.canvas.height
+        ];
+    }
+
+
+    componentWillUnmount(){
+        window.clearTimeout( this.setupTimeout );
+        window.removeEventListener( "resize", this.resizeEvent );
     }
 
     clickPage( callback ){

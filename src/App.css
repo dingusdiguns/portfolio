@@ -175,6 +175,7 @@
   /* font-size: 21vh; */
   min-width: .4em;
   opacity: 1;
+  transition-property: transform, opacity;
   transition: .5s;
   /* transform: translate( 0px, -150px ) rotate3d(1, 0, 0, 90deg); */
   /* transition-timing-function: ease-in-out; */
@@ -254,7 +255,7 @@ body{
   font-family: "GT America Extended Regular";
   left: 0px;
   width: 100vw;
-  padding: 40px 0px;
+  padding: 40px 20px;
   color: white;
   z-index: 1000;
   font-size: 16px;
@@ -328,7 +329,6 @@ body{
 }
 
 .homepage .link-text button{
-  display: block;
   white-space: nowrap;
 
   background-color: transparent;
@@ -385,8 +385,9 @@ body{
 
 .projects{
   background-color: rgb( 15, 15, 15 );
-  transition: 1s;
-  transition-delay: 1s;
+  /* transition: 1s;
+  transition-property: background-color;
+  transition-delay: 1s; */
   width: 100vw;
   min-height: 100vh;
 }

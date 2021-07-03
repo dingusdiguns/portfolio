@@ -20,7 +20,11 @@ class Home extends React.Component{
     this.state = {
       canvasPos: "top"
     };
-    this.positionInterval = (window.innerHeight / 10) * 4.;
+    if( window.innerWidth < 800 ){
+      this.positionInterval = (window.innerHeight / 10) * 3.2;
+    }else{
+      this.positionInterval = (window.innerHeight / 10) * 4.;
+    }
     this.defaultColor = new THREE.Color("rgb( 15, 15, 15 )");
     this.backgroundColor = new THREE.Color("rgb( 15, 15, 15 )");
     this.mouse = new THREE.Vector2();
@@ -28,6 +32,9 @@ class Home extends React.Component{
     this.zoomTimer = new Timer( { target: 1, duration: 1000,rate: .07 } );
     this.snapTimer = new Timer( { name: "snap", target: 1, duration: 800,rate: .025 } );
     this.snapTimer = new Timer( { name: "click", target: 1, duration: 800,rate: .025 } );
+    
+    this.windowHeight = window.innerHeight;
+
     this.selectionTimer = new Timer( {
       target: 1,
       duration: 1000,
@@ -235,6 +242,31 @@ class Home extends React.Component{
     // );
   }
 
+  __onWindowResize(){
+    if( this.three ){
+
+      this.three.renderer.setSize( window.innerWidth, window.innerHeight );
+      this.three.composer.setSize(window.innerWidth, window.innerHeight);
+      this.three.camera.left = -window.innerWidth / 2;
+      this.three.camera.right = window.innerWidth / 2;
+      this.three.camera.top = window.innerHeight / 2;
+      this.three.camera.bottom = -window.innerHeight / 2;
+      this.three.camera.updateProjectionMatrix();
+
+      if( window.innerWidth < 800 ){
+        this.positionInterval = (window.innerHeight / 10) * 3.2;
+      }else{
+        this.positionInterval = (window.innerHeight / 10) * 4.;
+      }
+
+      let scale = window.innerHeight / this.windowHeight;
+      
+
+      this.windowHeight = window.innerHeight
+
+    }
+  }
+
   click( e ){
     if( e ){
       this.mouse.x = ( e.clientX / window.innerWidth );
@@ -276,7 +308,12 @@ class Home extends React.Component{
               mesh.initialPosition = mesh.mesh.position.clone();
               mesh.initialSaturation = mesh.mesh.material.uniforms.saturation.value;
               if( index === this.selectedIndex ){
-                mesh.targetScale = new THREE.Vector3( 2.2, 2.2, 2.2 );
+                if( window.innerWidth < 800 ){
+                  mesh.targetScale = new THREE.Vector3( 1.8, 1.8, 1.8 );
+                }else{
+
+                  mesh.targetScale = new THREE.Vector3( 2.8, 2.8, 2.8 );
+                }
                 mesh.targetPosition = mesh.mesh.position.clone();
                 mesh.targetPosition.x = (index * this.positionInterval );
                 mesh.targetSaturation = 1;
@@ -358,7 +395,7 @@ class Home extends React.Component{
 
     this.timeline = new THREE.Mesh();
     let offsetX = 0;
-    offsetX = window.innerWidth > 800 ? -this.positionInterval : 0;
+    offsetX = window.innerWidth > 600 ? -(this.positionInterval/2) : 0;
     this.timeline.position.set( offsetX, 0, 0 );
     this.three.scene.add( this.timeline );
 
@@ -371,6 +408,10 @@ class Home extends React.Component{
     this.upEvent = this.mouseUp.bind( this );
 
     window.addEventListener( "scroll", this.scrollEvent );
+
+    this.resizeEvent = throttle( this.__onWindowResize.bind( this ), 40 );
+
+    window.addEventListener( "resize", this.resizeEvent );
 
     this._down = document.addEventListener( "mousedown", this.downEvent );
     this._move = document.addEventListener( "mousemove", this.moveEvent );
@@ -395,6 +436,7 @@ class Home extends React.Component{
     document.removeEventListener( "touchmove", this.moveEvent );
     document.removeEventListener( "touchend", this.upEvent );
 
+    window.removeEventListener( "resize", this.resizeEvent );
     window.removeEventListener( "scroll", this.scrollEvent );
   }
 

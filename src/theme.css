@@ -1,3 +1,9 @@
+@media (min-width: 800px) {
+  .homepage .link-text {
+    display: none;
+  }
+}
+
 .homepage .link-text .link-mask {
   overflow: hidden;
   pointer-events: painted;
@@ -76,8 +82,6 @@
 
 .projects {
   background-color: #0f0f0f;
-  transition: 1s;
-  transition-delay: 1s;
   width: 100vw;
   min-height: 100vh;
 }
@@ -185,18 +189,18 @@
 }
 @media (min-width: 450px) {
   .project__description p {
-    font-size: 20px;
+    font-size: 24px;
   }
 }
 @media (min-width: 800px) {
   .project__description p {
     padding: 0px 0px;
-    font-size: 24px;
+    font-size: 34px;
   }
 }
 @media (min-width: 1200px) {
   .project__description p {
-    font-size: 24px;
+    font-size: 34px;
   }
 }
 
@@ -291,11 +295,6 @@
     font-size: 5vw;
   }
 }
-@media (min-width: 800px) {
-  .about-text h3 {
-    padding-top: 120px;
-  }
-}
 @media (min-width: 1100px) {
   .about-text h3 {
     font-size: 60px;
@@ -338,7 +337,7 @@
 }
 @media (max-width: 600px) {
   .wrap {
-    padding: 0px 30px;
+    padding: 0px 20px;
   }
 }
 @media (max-width: 450px) {
@@ -347,6 +346,7 @@
   }
 }
 .wrap.wrap--projects {
+  display: flex;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -449,6 +449,9 @@
   }
 }
 
+.project__hero--mobile {
+  padding: 0px 60px;
+}
 @media (min-width: 600px) {
   .project__hero--mobile {
     display: none;
@@ -457,17 +460,16 @@
 .project__hero--mobile h2 {
   color: white;
   font-family: "GT America compressed black";
-  text-align: center;
-  font-size: 22vw;
+  text-align: left;
+  font-size: 18vw;
   text-transform: uppercase;
   margin: 0px;
-  padding-top: 100px;
+  padding-top: 60px;
 }
 .project__hero--mobile p {
   color: #d4d4d4;
   font-family: "GT America Extended Regular";
-  padding: 0px 30px;
-  line-height: 1.44em;
+  line-height: 1.6em;
   font-size: 20px;
   margin-bottom: 60px;
 }

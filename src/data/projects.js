@@ -12,7 +12,7 @@ let Projects = {
     shortDescription: "a <strike>School</strike> Website for <strike>Ants</strike> Dogs",
     backgroundColor_rgb: "rgb(180, 170, 165)",
     backgroundColor: new THREE.Color( "rgb(180, 170, 165)" ),
-    description: `The Wild One website is the product of 2 years of brand-building. Through months of iteration, we (a team of 2) designed the site modularly to house a varying amount of products. We were able to layer in functionality to allow users to parametrically customize products using a custom built 3d visulizer. This effort innevitably resulted in the founder of Wild One receiving a <a href = "https://www.forbes.com/30-under-30/2020/retail-ecommerce/#5ca8157f2fcd">Forbes 30 Under 30 Award</a> for ecommerce.`,
+    description: `The <a href = "https://wildone.com">Wild One</a> website is the product of 2 years of brand-building. Through months of iteration, we (a team of 2) designed the site modularly to house a varying amount of products. We were able to layer in functionality to allow users to parametrically customize products using a custom built 3d visulizer. This effort innevitably resulted in the founder of Wild One receiving a <a href = "https://www.forbes.com/30-under-30/2020/retail-ecommerce/#5ca8157f2fcd">Forbes 30 Under 30 Award</a> for ecommerce.`,
     images: [
       "/images/wild-one/wild-one-home--big.png",
       "/images/wild-one/wild-one-pdp--blue-big.png",
@@ -36,7 +36,7 @@ let Projects = {
     cover: "/images/scribby.png",
     shortDescription: "generative painting for all",
     textColor: "rgb( 180, 69, 60 )",
-    description: "An ecommerce site that allows users to paint like a painter. Using WebGL and HTML Canvas, it creates a series of simulations that mirror analogue painting techniques including watercolor and acrylic. In order to achieve a convincing paint effect, I had to write a custom WebGL engine as well as about a dozen shaders in GLSL.",
+    description: 'A <a href = "/pages/scribby-test">painting engine</a> for the web. Allows users to upload a photograph and paint it. Using WebGL and HTML Canvas, it creates a series of simulations that mirror analogue painting techniques including watercolor and acrylic. In order to achieve a convincing paint effect, I had to write a custom WebGL engine as well as about a dozen shaders in GLSL.',
     handle: "scribby",
     linkText: "View Project",
     backgroundColor_rgb: "rgb(180, 69, 120)",
@@ -80,11 +80,9 @@ let Projects = {
     backgroundColor: new THREE.Color( "rgb(180, 180, 185)" ),
     backgroundColor: new THREE.Color( "rgb(150, 150, 150)" ),
     images: [
-      
       "/images/courant/courant-black-marble-3.png",
       "/images/courant/courant-black-marble-2.png",
-      "/images/courant/home-pdp-render-desktop.png",
-      "/images/courant/courant-pdp-mobile.png",
+      "/images/courant/courant-mobile-black-marble.png",
     ],
     roles: [
       "Fullstack Dev",
