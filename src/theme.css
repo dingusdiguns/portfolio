@@ -4,6 +4,12 @@
   }
 }
 
+@media (max-width: 600px) {
+  .project-window {
+    display: fixed !important;
+  }
+}
+
 .homepage .link-text .link-mask {
   overflow: hidden;
   pointer-events: painted;
