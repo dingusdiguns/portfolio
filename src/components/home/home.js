@@ -25,6 +25,7 @@ class Home extends React.Component{
     }else{
       this.positionInterval = (window.innerHeight / 10) * 4.;
     }
+
     this.defaultColor = new THREE.Color("rgb( 15, 15, 15 )");
     this.backgroundColor = new THREE.Color("rgb( 15, 15, 15 )");
     this.mouse = new THREE.Vector2();
@@ -32,7 +33,7 @@ class Home extends React.Component{
     this.zoomTimer = new Timer( { target: 1, duration: 1000,rate: .07 } );
     this.snapTimer = new Timer( { name: "snap", target: 1, duration: 800,rate: .025 } );
     this.snapTimer = new Timer( { name: "click", target: 1, duration: 800,rate: .025 } );
-    
+
     this.windowHeight = window.innerHeight;
 
     this.selectionTimer = new Timer( {
@@ -260,7 +261,7 @@ class Home extends React.Component{
       }
 
       let scale = window.innerHeight / this.windowHeight;
-      
+
 
       this.windowHeight = window.innerHeight
 
@@ -360,6 +361,7 @@ class Home extends React.Component{
       camera: new THREE.OrthographicCamera( window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / -2, window.innerHeight / 2 ),
       renderer: renderer,
       composer: composer,
+      currentBackgroundColor: this.backgroundColor.clone(),
       raycaster: new THREE.Raycaster(),
       targetBackgroundColor: this.backgroundColor.clone(),
       initialBackgroundColor: this.backgroundColor.clone(),
@@ -539,6 +541,11 @@ class Home extends React.Component{
     }else{
       let _c = () => {
         let nearest = this.getNearest();
+        if( window.innerWidth < 600 ){
+          let nearIndex = Math.abs(nearest / this.positionInterval);
+          this.mouseOver = this.meshs[nearIndex].mesh;
+          this.click();
+        }
         // this.selectedIndex = Math.abs(nearest / this.positionInterval);
       }
       this.snapTimer.changeCallback( _c )
@@ -678,11 +685,18 @@ class Home extends React.Component{
         this.timeline.add( mesh );
       }
     );
+
+
+    if( window.innerWidth < 600 ){
+      this.mouseOver = this.meshs[0].mesh;
+      this.click();
+    }
   }
 
 
 
   animate(){
+
     this.three.raycaster.setFromCamera( this.mouseThree, this.three.camera );
     const intersects = this.three.raycaster.intersectObjects( this.timeline.children );
     if( intersects.length > 0 ){
