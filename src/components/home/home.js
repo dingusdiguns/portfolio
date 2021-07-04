@@ -253,7 +253,6 @@ class Home extends React.Component{
       this.three.camera.top = -window.innerHeight / 2;
       this.three.camera.bottom = window.innerHeight / 2;
       this.three.camera.updateProjectionMatrix();
-
       if( window.innerWidth < 800 ){
         this.positionInterval = (window.innerHeight / 10) * 3.2;
       }else{
@@ -402,14 +401,14 @@ class Home extends React.Component{
     this.three.scene.add( this.timeline );
 
     // this.createTitles();
-    this.scrollEvent = throttle( this.scrollStart.bind( this ), 80 );
+    // this.scrollEvent = throttle( this.scrollStart.bind( this ), 80 );
 
 
     this.downEvent = this.mouseDown.bind( this );
     this.moveEvent = throttle(this.mouseMove.bind( this ), 40)
     this.upEvent = this.mouseUp.bind( this );
 
-    window.addEventListener( "scroll", this.scrollEvent );
+    // window.addEventListener( "scroll", this.scrollEvent );
 
     this.resizeEvent = throttle( this.__onWindowResize.bind( this ), 40 );
 
@@ -439,7 +438,7 @@ class Home extends React.Component{
     document.removeEventListener( "touchend", this.upEvent );
 
     window.removeEventListener( "resize", this.resizeEvent );
-    window.removeEventListener( "scroll", this.scrollEvent );
+    // window.removeEventListener( "scroll", this.scrollEvent );
   }
 
   createTitles(){
