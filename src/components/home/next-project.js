@@ -180,13 +180,13 @@ class NextProject extends React.Component{
         while( word.length < 24 ){
             word = word + `${this.state.project.title.toUpperCase()} `;
         }
-        ctx.font = `${Math.ceil(height * .6)}px GT America Expanded Black`;
+        ctx.font = `${Math.ceil(height * .6)}px GT America compressed black`;
         ctx.fillStyle = "black"
         let measurement = ctx.measureText( (`${word}`), 0, 0 );
         canvas.width = measurement.width;
         canvas.height = height * .6
         ctx.textBaseline = "top"
-        ctx.font = `${Math.ceil(height * .6)}px GT America Expanded Black`;
+        ctx.font = `${Math.ceil(height * .6)}px GT America compressed black`;
         ctx.fillStyle = "white";
         ctx.fillText( `${word}`, 0, 0 );
         this.texture = new THREE.Texture( canvas );

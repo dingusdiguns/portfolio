@@ -23,7 +23,7 @@ class Home extends React.Component{
     if( window.innerWidth < 800 ){
       this.positionInterval = (window.innerHeight / 10) * 3.2;
     }else{
-      this.positionInterval = (window.innerHeight / 10) * 4.;
+      this.positionInterval = (window.innerHeight / 10) * 5.7;
     }
 
     this.defaultColor = new THREE.Color("rgb( 15, 15, 15 )");
@@ -312,7 +312,7 @@ class Home extends React.Component{
                   mesh.targetScale = new THREE.Vector3( 1.8, 1.8, 1.8 );
                 }else{
 
-                  mesh.targetScale = new THREE.Vector3( 2.8, 2.8, 2.8 );
+                  mesh.targetScale = new THREE.Vector3( 2.4, 2.4, 2.4 );
                 }
                 mesh.targetPosition = mesh.mesh.position.clone();
                 mesh.targetPosition.x = (index * this.positionInterval );
@@ -348,6 +348,7 @@ class Home extends React.Component{
 
 
   componentDidMount(){
+    this.setState({ started: true })
     let renderer = new THREE.WebGLRenderer({ canvas: this.refs.canvas, antialias: true });
     const composer = new EffectComposer( renderer );
     renderer.setClearColor( this.backgroundColor );
@@ -443,15 +444,18 @@ class Home extends React.Component{
 
   createTitles(){
     let projects = Object.values( Projects );
-
+    debugger
     projects.forEach(
       ( project, index ) => {
         let div = document.createElement( "div" );
         div.className = "project-title hidden";
         div.style.color = project.textColor
+        debugger
         for( var i = 0; i < project.title.length; i++ ){
           let char = project.title[i];
           let span = document.createElement( "span" );
+          span.className = `${index}`
+          debugger
           span.style = `transition-delay: ${i / 20}s`;
           span.style = `animation-delay: ${i / 20}s`;
           div.appendChild( span );
@@ -617,14 +621,14 @@ class Home extends React.Component{
     this.scales = [];
     values.forEach(
       ( _project, index ) => {
-        let sphere = new THREE.SphereGeometry( window.innerHeight / 6, 32, 32 );
+        let sphere = new THREE.SphereGeometry( window.innerHeight / 5, 32, 32 );
 
         let vert = require("../../shaders/projectMaterial/vertex.glsl").default;
         let frag = require("../../shaders/projectMaterial/fragment.glsl").default;
 
 
         let timer = new Timer({ target: 1, duration: 1200, rate: .075 })
-        let fadeTimer = new Timer({ target: 1, duration: 1200, rate: 0.75, delay: index * .1 });
+        let fadeTimer = new Timer({ target: 1, duration: 1200, rate: 0.75, delay: 1 + index * .1 });
 
         let uniforms = {
           u_time: { value: 0., type: "f" },
@@ -903,10 +907,22 @@ class Home extends React.Component{
     );
   }
 
+  getHomePageStyle(){
+    if( this.state.started ){
+      return({
+        width: "100vw"
+      })
+    }else{
+      return({
+        width: "0px"
+      })
+    }
+  }
+
   render(){
     return(
       <div className = "homepage"
-
+      style = { this.getHomePageStyle() }
       ref = "interface"
       >
         {

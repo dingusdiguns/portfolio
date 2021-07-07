@@ -16,6 +16,11 @@ import {
 } from "react-router-dom";
 
 
+window.String.prototype.handeleize = function(){
+  return this.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, '').replace(/^-/, '');
+}
+
+
 export default function App() {
   return(
     <Router>

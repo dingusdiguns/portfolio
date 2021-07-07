@@ -48,7 +48,7 @@ class Project extends React.Component{
         loaded: false
       }, this.__mounted.bind( this ))
     }
-    
+
   }
 
 
@@ -74,7 +74,8 @@ class Project extends React.Component{
       },
       500
     )
-    this.scrollEvent = throttle( this.scroll.bind( this ), 80 );
+    this.scrollEvent = throttle( this.scroll.bind( this ), 20 );
+    window.addEventListener( "scroll", this.scrollEvent );
   }
 
   componentWillUnmount(){
@@ -85,6 +86,7 @@ class Project extends React.Component{
 
   scroll(){
     var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    this.setState({ scrollTop: scrollTop })
     if( scrollTop + 200 > document.body.offsetHeight  ){
       if( !this.navTimeout ){
         this.navTimeout = window.setTimeout( this.navigateNextProject.bind( this ), 400 )
@@ -113,6 +115,7 @@ class Project extends React.Component{
           project = { this.state.project }
           index = {1}
           oldSelectedIndex = {undefined}
+          scrollTop = { this.state.scrollTop }
           selectedIndex = {this.state.selectedIndex}
           projectPage = { true }
           clickProject = { () => {} }
@@ -193,12 +196,12 @@ class Project extends React.Component{
             <div className = "wrap wrap--projects">
               <div className = {className}>
                 <video
-                loop = {true} 
+                loop = {true}
                 muted
                 playsInline
                 autoPlay = {true}
                 >
-                  <source src = {img.src} 
+                  <source src = {img.src}
                     ></source>
                 </video>
               </div>
@@ -219,8 +222,8 @@ class Project extends React.Component{
           };
           return(
             <div className = "slick-container">
-              <Carousel 
-              dynamicHeight = {true} 
+              <Carousel
+              dynamicHeight = {true}
               centerMode = {true}
               swipeable = {true}
               showArrows = {false}
@@ -291,16 +294,16 @@ class Project extends React.Component{
         }
       }
     );
-    
+
     if(
-      values[currentIdx + 1] 
+      values[currentIdx + 1]
     ){
-      return values[ currentIdx + 1 ]      
+      return values[ currentIdx + 1 ]
     }else{
       return values[0]
     }
   }
-  
+
   nextProject(){
     let next = this.getNextProject()
     return(
@@ -328,6 +331,7 @@ class Project extends React.Component{
             {
               this.shortDescription()
             }
+            <div className = "overlay"></div>
           </div>
           {
             this.body()

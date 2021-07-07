@@ -8,15 +8,23 @@ class ProjectTitle extends React.Component{
       index: props.index,
       projectPage: props.projectPage,
       textColor: props.project.textColor,
+      handle: props.project.handle,
       selectedIndex: props.selectedIndex,
       oldSelectedIndex: props.oldSelectedIndex,
       linkText: props.project.linkText,
       backgroundColor: props.project.backgroundColor_rgb
     }
+
+    this.rands = [];
+    for( var i = 0; i < props.project.title.length; i++ ){
+      let rand = 4.5 + ((Math.random() )) * -3;
+      this.rands.push( rand );
+    }
   }
 
   componentWillReceiveProps( props ){
     if( props.project.title !== this.state.title ){
+      console.log( props.scrollTop )
       this.setState({
         title: props.project.title,
         index: props.index,
@@ -25,12 +33,15 @@ class ProjectTitle extends React.Component{
         selectedIndex: props.selectedIndex,
         oldSelectedIndex: props.oldSelectedIndex,
         linkText: props.project.linkText,
-        backgroundColor: props.project.backgroundColor_rgb
+        backgroundColor: props.project.backgroundColor_rgb,
+        scrollTop: props.scrollTop
       })
     }else{
+      console.log( props.scrollTop )
       this.setState({
         selectedIndex: props.selectedIndex,
-        oldSelectedIndex: props.oldSelectedIndex
+        oldSelectedIndex: props.oldSelectedIndex,
+        scrollTop: props.scrollTop
       })
     }
   }
@@ -44,30 +55,39 @@ class ProjectTitle extends React.Component{
     return arr.map(
       ( char, index ) => {
         let style = {};
+        let one = window.innerHeight / 100;
+        let offsetY = 0;
+        if( this.state.scrollTop ){
+          offsetY = this.state.scrollTop / this.rands[index];
+        }
         if( this.state.index === this.state.selectedIndex ){
           style = {
-            transform: "translate( 0px, 0px ) rotate3d(1, 0, 0, 0deg)",
-            transitionDelay: ` ${ index / 20 }s`,
+            transform: `translate( 0px, 0px ) rotate3d(1, 0, 0, 0deg)`,
+            transitionDelay: ` ${ index / 10 }s`,
+            transformOrigin: "top",
             opacity: 1,
           }
         }else if( this.state.index === this.state.oldSelectedIndex ){
           style = {
-            transform: "translate( 0px, 10vh ) rotate3d(1, 0, 0, -90deg)",
-            transitionDelay: ` ${ index / 20 }s`,
+            transform: `translate( 0px, ${ one * 15 }px ) rotate3d(1, 0, 0, -90deg)`,
+            transitionDelay: ` ${ index / 10 }s`,
+            transformOrigin: "top",
             opacity: 0
           }
         }else{
           style = {
-            transform: "translate( 0px, -10vh ) rotate3d(1, 0, 0, 90deg)",
-            transitionDelay: ` ${ index / 20 }s`,
+            transform: `translate( 0px, -${ one * 15 }px ) rotate3d(1, 0, 0, 90deg)`,
+            transitionDelay: ` ${ index / 10 }s`,
             opacity: 0
           }
         }
         if( this.state.projectPage ){
-          style.color = "white"
+          // style.color = "rgb( 80, 80, 80 )"
         }
-        return(<span style = { style }>
-          {char}
+        return(<span style = { style } className = { `${this.state.handle}-${index}` }>
+          <div style = {{ transform: `translate( 0px, ${ offsetY }px )`, transition: ".01s linear" }}>
+            {char}
+          </div>
         </span>)
       }
     );
@@ -81,7 +101,7 @@ class ProjectTitle extends React.Component{
       }else{
         style = { pointerEvents: "none",width: "auto", color: this.state.textColor, border: `4px solid ${ this.state.textColor }`, opacity: 0 }
       }
-     
+
       return(
         <div className = "link-text" style = {style}>
           <button onClick = { () => { this.props.clickProject() } }> { this.state.linkText } </button>
@@ -93,9 +113,9 @@ class ProjectTitle extends React.Component{
   getClassName(){
     let className;
     if( this.state.projectPage ){
-      className = "project-title project-title--home"
+      className = `project-title project-title--home project-title--home--${ this.state.handle }`
     }else{
-      className = "project-title "
+      className = `project-title project-title--${this.state.handle}`
     }
     return className;
   }
