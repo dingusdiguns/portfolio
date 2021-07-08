@@ -27,7 +27,7 @@ let Projects = {
       "NodeJS",
       "ThreeJS",
       "Shopify",
-      "Shopify Storefront API"
+      "Storefront API"
     ]
   },
 
@@ -58,7 +58,7 @@ let Projects = {
       "Fullstack Dev"
     ],
     technologies: [
-      "React",
+      "ReactJS",
       "WebGL",
       "AWS",
       "Shopify",
@@ -89,11 +89,11 @@ let Projects = {
       "UI Designer"
     ],
     technologies: [
-      "React",
+      "ReactJS",
       "WebGL",
       "Ruby",
       "Liquid",
-      "Shopify Storefront API"
+      "Storefront API"
     ]
 
   },
@@ -118,15 +118,15 @@ Projects["WP"] = {
     "/images/wp/wp-desktop-1.png",
     "/images/wp/wp-desktop-subsurface-2.png",
     "/images/wp/wp-desktop-3.png",
-
-
   ],
   roles: [
     "Frontend Dev",
     "UI Designer"
   ],
   technologies: [
-    "react",
+    "JQuery",
+    "HTML/CSS",
+    "Shopify Liquid"
   ],
 }
 

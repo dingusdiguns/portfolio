@@ -74,7 +74,7 @@
 }
 
 .header-link.active::after {
-  content: " ";
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -137,7 +137,7 @@
   font-size: 26.5vw;
 }
 .project-title.project-title--home.project-title--home--wp {
-  font-size: 22vw;
+  font-size: 20.5vw;
 }
 
 @media (min-width: 1400px) {
@@ -249,6 +249,7 @@
   margin-top: 60px;
   float: left;
   width: 33%;
+  display: none;
   font-family: "GT America Thin";
   font-size: 20px;
 }
@@ -421,14 +422,18 @@
 }
 .project__hero.project__hero--scribby {
   padding-top: 80px;
-  height: 32vw;
+  height: 28vw;
 }
 .project__hero.project__hero--wild-one {
   padding-top: 80px;
-  height: 40vw;
+  height: 26vw;
+}
+.project__hero.project__hero--courant {
+  padding-top: 80px;
+  height: 27vw;
 }
 .project__hero.project__hero--wp {
-  height: 34vw;
+  height: 19vw;
 }
 @media (max-width: 600px) {
   .project__hero {
@@ -536,7 +541,6 @@
   background-color: #0f0f0f;
   position: relative;
   width: 100%;
-  margin-top: -60px;
   background-color: #0f0f0f;
   box-sizing: border-box;
   cursor: pointer;
@@ -585,6 +589,35 @@
   left: 0px;
 }
 
+.project__technology {
+  color: white;
+  text-align: center;
+  font-family: "GT America Expanded Black";
+  text-transform: uppercase;
+  height: 30vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  line-height: 1em;
+}
+.project__technology .technology__inner-text {
+  position: absolute;
+  transition: 0.1s;
+  top: 50%;
+  font-size: 34vh;
+  left: 50%;
+  color: #2d2d2d;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+.project__technology .technology__overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, #0f0f0f 5%, rgba(0, 0, 0, 0) 50%);
+}
 .slick-container {
   float: left;
   width: 100%;
@@ -743,6 +776,86 @@
 
 .wp-8 {
   letter-spacing: -0.03em;
+}
+
+.reactjs-0 {
+  letter-spacing: -0.04em;
+}
+
+.reactjs-1 {
+  letter-spacing: -0.02em;
+}
+
+.reactjs-2 {
+  letter-spacing: -0.06em;
+}
+
+.reactjs-3 {
+  letter-spacing: 0.02em;
+}
+
+.reactjs-4 {
+  letter-spacing: -0.16em;
+}
+
+.reactjs-5 {
+  letter-spacing: -0.02em;
+}
+
+.nodejs-0 {
+  letter-spacing: -0.03em;
+}
+
+.nodejs-1 {
+  letter-spacing: -0.03em;
+}
+
+.nodejs-2 {
+  letter-spacing: -0.03em;
+}
+
+.nodejs-3 {
+  letter-spacing: -0.01em;
+}
+
+.threejs-0 {
+  letter-spacing: -0.03em;
+}
+
+.threejs-1 {
+  letter-spacing: -0.09em;
+}
+
+.threejs-2 {
+  letter-spacing: -0.04em;
+}
+
+.threejs-3 {
+  letter-spacing: -0.07em;
+}
+
+.threejs-4 {
+  letter-spacing: -0.01em;
+}
+
+.shopify-0 {
+  letter-spacing: -0.03em;
+}
+
+.shopify-1 {
+  letter-spacing: -0.03em;
+}
+
+.shopify-2 {
+  letter-spacing: -0.02em;
+}
+
+.shopify-3 {
+  letter-spacing: -0.02em;
+}
+
+.shopify-4 {
+  letter-spacing: -0.08em;
 }
 
 /*# sourceMappingURL=theme.css.map */

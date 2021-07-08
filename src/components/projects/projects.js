@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import ProjectTitle from "../home/project-title"
 import NextProject from "../home/next-project"
 import Projects from "../../data/projects";
+import ProjectTechnology from "./projectTechnology"
 // import Slider from "react-slick"
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -320,6 +321,16 @@ class Project extends React.Component{
     )
   }
 
+  technologies(){
+    return this.state.project.technologies.map(
+      ( el, index ) => {
+        return(
+          <ProjectTechnology technology = { el } index = { index } scrollTop = { this.state.scrollTop }/>
+        )
+      }
+    );
+  }
+
   render(){
     return(
       <div className = "projects" style = { this.getStyle() }>
@@ -335,6 +346,9 @@ class Project extends React.Component{
           </div>
           {
             this.body()
+          }
+          {
+            this.technologies()
           }
           {
             this.nextProject()

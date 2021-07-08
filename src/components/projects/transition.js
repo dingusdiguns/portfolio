@@ -14,7 +14,7 @@ class Transition extends React.Component{
     componentDidMount(){
         window.setTimeout(
             () => {
-                this.props.history.push( `/projects/${ this.project }` );
+                this.props.history.push( `/project/${ this.project }` );
             },
             10
         )

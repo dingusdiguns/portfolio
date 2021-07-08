@@ -91,7 +91,7 @@ $font-size-medium--description: 24px;
   }
 
   .header-link.active::after{
-    content: " ";
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -158,14 +158,14 @@ $font-size-medium--description: 24px;
       font-size: 26.5vw;
     }
     &.project-title--home--wp{
-      font-size: 22vw;
+      font-size: 20.5vw;
     }
     transform: translate( 0px, 0px );
     position: initial;
     width: 100%;
 
   }
-  
+
 
 
   @media( min-width: 1400px ){
@@ -285,6 +285,7 @@ $font-size-medium--description: 24px;
     margin-top: 60px;
     float: left;
     width: 33%;
+    display: none;
     font-family: "GT America Thin";
     font-size: $font-size-small;
     ul{
@@ -460,14 +461,18 @@ $font-size-medium--description: 24px;
   }
   &.project__hero--scribby{
     padding-top: 80px;
-    height: 32vw;
+    height: 28vw;
   }
   &.project__hero--wild-one{
     padding-top: 80px;
-    height: 40vw;
+    height: 26vw;
+  }
+  &.project__hero--courant{
+    padding-top: 80px;
+    height: 27vw;
   }
   &.project__hero--wp{
-    height: 34vw;
+    height: 19vw;
   }
   @media( max-width: 600px ){
     padding-top: 50px;
@@ -581,7 +586,7 @@ $font-size-medium--description: 24px;
   background-color: #0f0f0f;
   position: relative;
   width: 100%;
-  margin-top: -60px;
+  // margin-top: -60px;
   @media (max-width: 600px ){
     margin-top: 0px;
     padding-bottom: 40px;
@@ -631,6 +636,47 @@ $font-size-medium--description: 24px;
     height: 100vh;
     top: 0px;
     left: 0px;
+}
+
+.project__technology{
+  color: white;
+  text-align: center;
+  font-family: "GT America Expanded Black";
+  text-transform: uppercase;
+  height: 30vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  .technology__inner-text{
+    position: absolute;
+    transition: .1s;
+    top: 50%;
+    font-size: 34vh;
+    left: 50%;
+    color: rgb( 45, 45, 45 );
+    transform: translate( -50%, -50% );
+    white-space: nowrap;
+  }
+  .technology__overlay{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(15,15,15,255) 5%, rgba( 0,0,0,0 ) 50% );
+  }
+  line-height: 1em;
+  &.project__technology--react{
+
+  }
+
+  &.project__technology--webgl{
+  }
+
+  &.project__technology--aws{
+  }
+  &.project__technology--shopify{
+  }
 }
 
 .slick-container{
@@ -772,4 +818,84 @@ $font-size-medium--description: 24px;
 }
 .wp-8{
   letter-spacing: -.03em;
+}
+
+.reactjs-0{
+  letter-spacing: -.04em;
+}
+
+.reactjs-1{
+  letter-spacing: -.02em;
+}
+
+.reactjs-2{
+  letter-spacing: -.06em;
+}
+
+.reactjs-3{
+  letter-spacing: .02em;
+}
+
+.reactjs-4{
+  letter-spacing: -.16em;
+}
+
+.reactjs-5{
+  letter-spacing: -.02em;
+}
+
+.nodejs-0{
+  letter-spacing: -.03em;
+}
+
+.nodejs-1{
+  letter-spacing: -.03em;
+}
+
+.nodejs-2{
+  letter-spacing: -.03em;
+}
+
+.nodejs-3{
+  letter-spacing: -.01em;
+}
+
+.threejs-0{
+  letter-spacing: -.03em;
+}
+
+.threejs-1{
+  letter-spacing: -.09em;
+}
+
+.threejs-2{
+  letter-spacing: -.04em;
+}
+
+.threejs-3{
+  letter-spacing: -.07em;
+}
+
+.threejs-4{
+  letter-spacing: -.01em;
+}
+
+.shopify-0{
+  letter-spacing: -.03em;
+}
+
+.shopify-1{
+  letter-spacing: -.03em;
+}
+
+.shopify-2{
+  letter-spacing: -.02em;
+}
+
+.shopify-3{
+  letter-spacing: -.02em;
+}
+
+.shopify-4{
+  letter-spacing: -.08em;
 }

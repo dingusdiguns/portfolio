@@ -12,6 +12,8 @@ class Header extends React.Component{
       page = "projects"
     }else if( pathname ==="/about" ){
       page = "about"
+    }else if( pathname.indexOf("/project/") !== -1 ){
+      page = "project"
     }
 
     this.state = {
@@ -25,8 +27,11 @@ class Header extends React.Component{
     let pathname = props.location.pathname;
     if( pathname === "/" || pathname === "/home" ){
       page = "projects"
+      debugger
     }else if( pathname ==="/about" ){
       page = "about"
+    }else if( pathname.indexOf("/project/") !== -1 ){
+      page = "project"
     }
     this.setState({ page: page })
   }
@@ -91,9 +96,17 @@ class Header extends React.Component{
     }
   }
 
+  getStyle(){
+    if( this.state.page === "project" || this.state.page === "about" ){
+      return({
+        background: "rgb(15,15,15)"
+      })
+    }
+  }
+
   render(){
     return(
-      <div className = "header">
+      <div className = "header" style = { this.getStyle() }>
         <div className = "wrap">
           <ul>
             <li className = { this.linkClass( "projects" ) } style = { this.getStyle() }

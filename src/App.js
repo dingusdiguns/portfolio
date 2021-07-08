@@ -31,7 +31,7 @@ export default function App() {
       <Route path = "/home" page = "home">
         <Home/>
       </Route>
-      <Route path = "/projects/:project" page = "projects">
+      <Route path = "/project/:project" page = "projects">
         <Project/>
       </Route>
       <Route path = "/transition/:project" page = "transition">

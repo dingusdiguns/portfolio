@@ -111,7 +111,7 @@ class Home extends React.Component{
               if( index === this.selectedIndex ){
                 mesh.clickTimer.changeCallback(
                   function(){
-                    this.props.history.push( `/projects/${ project.handle }` )
+                    this.props.history.push( `/project/${ project.handle }` )
                   }.bind( this )
                 );
               }
