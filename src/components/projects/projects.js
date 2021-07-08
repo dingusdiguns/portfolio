@@ -324,7 +324,7 @@ class Project extends React.Component{
     return(
       <div className = "projects" style = { this.getStyle() }>
         <div className = "projects__inner">
-          <div className = "project__hero">
+          <div className = {`project__hero project__hero--${ this.state.project.handle }`}>
             {
               this.title()
             }

@@ -23,7 +23,7 @@ class Home extends React.Component{
     if( window.innerWidth < 800 ){
       this.positionInterval = (window.innerHeight / 10) * 3.2;
     }else{
-      this.positionInterval = (window.innerHeight / 10) * 5.7;
+      this.positionInterval = (window.innerHeight / 10) * 4.7;
     }
 
     this.defaultColor = new THREE.Color("rgb( 15, 15, 15 )");
@@ -312,7 +312,7 @@ class Home extends React.Component{
                   mesh.targetScale = new THREE.Vector3( 1.8, 1.8, 1.8 );
                 }else{
 
-                  mesh.targetScale = new THREE.Vector3( 2.4, 2.4, 2.4 );
+                  mesh.targetScale = new THREE.Vector3( 2.2, 2.2, 2.2 );
                 }
                 mesh.targetPosition = mesh.mesh.position.clone();
                 mesh.targetPosition.x = (index * this.positionInterval );
