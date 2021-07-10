@@ -82,7 +82,7 @@ class ProjectTitle extends React.Component{
           }
         }
         if( this.state.projectPage ){
-          style.color = "rgb( 255, 255, 255 )"
+          // style.color = "rgb( 255, 255, 255 )"
         }
         return(<span style = { style } className = { `${this.state.handle}-${index}` }>
           <div style = {{ transform: `translate( 0px, ${ offsetY }px )`, transition: ".01s linear" }}>

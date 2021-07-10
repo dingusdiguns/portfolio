@@ -149,10 +149,10 @@ $font-size-medium--description: 24px;
 
     font-size: 27vw;
     &.project-title--home--scribby{
-      font-size: 30vw;
+      font-size: 26.5vw;
     }
     &.project-title--home--wild-one{
-      font-size: 27.5vw;
+      font-size: 25vw;
     }
     &.project-title--home--courant{
       font-size: 26.5vw;
@@ -238,7 +238,7 @@ $font-size-medium--description: 24px;
 
   .project__description{
     color: white;
-    padding: 120px 0px;
+    padding: 240px 0px;
     float: left;
     width: 100%;
     box-sizing: border-box;
@@ -425,6 +425,29 @@ $font-size-medium--description: 24px;
   }
 }
 
+.project__images{
+  .wrap--projects{
+    @media( min-width: 1000px ){
+      float: left;
+      width: 50%;
+      padding: 0px;
+      padding-left: 10px;
+      display: block;
+      box-sizing: border-box;
+    }
+  }
+
+  .wrap--projects-fullscreen{
+    padding: 0px 10px;
+    .project__image{
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.project__technologies{
+}
+
 
 .project__image, .project__video{
   width: 100%;
@@ -459,21 +482,21 @@ $font-size-medium--description: 24px;
     width: 100%;
     background: linear-gradient(to top, rgba(15,15,15,255) 0%, rgba( 0,0,0,0 ) 50% );
   }
-  &.project__hero--scribby{
-    padding-top: 80px;
-    height: 28vw;
-  }
-  &.project__hero--wild-one{
-    padding-top: 80px;
-    height: 26vw;
-  }
-  &.project__hero--courant{
-    padding-top: 80px;
-    height: 27vw;
-  }
-  &.project__hero--wp{
-    height: 19vw;
-  }
+  // &.project__hero--scribby{
+  //   padding-top: 80px;
+  //   height: 28vw;
+  // }
+  // &.project__hero--wild-one{
+  //   padding-top: 80px;
+  //   height: 26vw;
+  // }
+  // &.project__hero--courant{
+  //   padding-top: 80px;
+  //   height: 27vw;
+  // }
+  // &.project__hero--wp{
+  //   height: 19vw;
+  // }
   @media( max-width: 600px ){
     padding-top: 50px;
     h3{
@@ -601,6 +624,7 @@ $font-size-medium--description: 24px;
     position: initial;
     background-color: rgb(15,15,15);
     padding-top: 10px;
+    visibility: hidden;
     width: 100%;
   }
 
@@ -641,19 +665,30 @@ $font-size-medium--description: 24px;
 .project__technology{
   color: white;
   text-align: center;
-  font-family: "GT America Expanded Black";
+  font-family: 'GT America Expanded Black';
   text-transform: uppercase;
-  height: 30vh;
+  height: 19vw;
   width: 100vw;
   overflow: hidden;
   position: relative;
+  &.project__technology--title{
+    height: 10vw;
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
   .technology__inner-text{
+    &.technology__inner-text--title{
+      font-size: 8.5vw;
+      font-family: "GT America Ultra Light";
+      letter-spacing: .3em;
+      color: #656565;
+    }
     position: absolute;
     transition: .1s;
     top: 50%;
-    font-size: 34vh;
+    font-size: 19vw;
     left: 50%;
-    color: rgb( 45, 45, 45 );
+    width: 100%;
     transform: translate( -50%, -50% );
     white-space: nowrap;
   }
@@ -663,7 +698,7 @@ $font-size-medium--description: 24px;
     left: 0px;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to left, rgba(15,15,15,255) 5%, rgba( 0,0,0,0 ) 50% );
+    background: linear-gradient(to left, rgba(15,15,15,255) 10%, rgba( 0,0,0,0 ) 100% );
   }
   line-height: 1em;
   &.project__technology--react{
@@ -685,14 +720,15 @@ $font-size-medium--description: 24px;
   overflow: hidden;
   display: flex;
   padding-top: 0px;
-  padding-bottom: 120px;
+  padding-bottom: 240px;
   @media( max-width: 600px ){
     padding-bottom: 0px;
     margin-bottom: 30px;
     display: none;
   }
   .carousel-slide{
-    padding: 0px 60px;
+    padding: 0px;
+    padding-left: 10px;
     position: relative;
     @media( max-width: 800px ){
       padding: 0px 20px;
@@ -899,3 +935,12 @@ $font-size-medium--description: 24px;
 .shopify-4{
   letter-spacing: -.08em;
 }
+
+.project__image-grid{
+  padding-right: 10px;
+  .project__image, .project__Video{
+    width: 50%;
+    padding-left: 10px;
+  }
+}
+

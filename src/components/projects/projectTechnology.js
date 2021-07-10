@@ -7,6 +7,7 @@ class ProjectTechnology extends React.Component{
     this.state = {
       technology: props.technology,
       scrollTop: props.scrollTop,
+      project: props.project,
       index: props.index
     }
   }
@@ -32,8 +33,18 @@ class ProjectTechnology extends React.Component{
 
     return arr.map(
       ( char, index ) => {
+        let style = {}
+        if( this.refs.technology ){
+          let rect = this.refs.technology.getBoundingClientRect();
+          let perc = (rect.top - ( window.innerHeight / 2 )) / window.innerHeight;
+          style = {
+            transform: `translate( 0px, ${( Math.round( perc * 1000 ) )}px )`,
+            position: "initial",
+            width: "auto"
+          }
+        }
         return (
-          <span className = { `${ handleize( this.state.technology ) }-${index}` }>
+          <span  className = { `${ handleize( this.state.technology ) }-${index}` }>
             {char}
           </span>
         )
@@ -47,11 +58,13 @@ class ProjectTechnology extends React.Component{
       let perc = (rect.top - ( window.innerHeight / 2 )) / window.innerHeight;
       if( this.state.index % 2 === 0 ){
         return({
-          transform: `translate( ${-50 + ( Math.round( perc * 100 ) )}%, -50%)`
+          transform: `translate( ${-50 + ( Math.round( perc * 100 ) )}%, -50%)`,
+          color: this.state.project.textColor
         })
       }else{
         return({
-          transform: `translate( ${-50 - ( Math.round( perc * 100 ) )}%, -50%)`
+          transform: `translate( ${-50 - ( Math.round( perc * 100 ) )}%, -50%)`,
+          color: this.state.project.textColor
         })
       }
     }

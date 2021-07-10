@@ -66,16 +66,6 @@ class Header extends React.Component{
     }
   }
 
-  getStyle(){
-    if( this.state.color ){
-      return {
-        opacity: .8,
-        color: this.state.color,
-        borderColor: this.state.color
-      }
-    }
-  }
-
   clickProjects(){
     this.props.history.push( "/" );
   }
@@ -103,6 +93,21 @@ class Header extends React.Component{
       })
     }
   }
+
+  
+  getStyle(){
+    let style = {
+      opacity: 1,
+      color: this.state.color,
+      borderColor: this.state.color
+    }
+    if( this.state.page === "project" || this.state.page === "about" ){
+      style.backgroundColor = "rgb(15, 15, 15)"
+    }
+    return style
+
+  }
+
 
   render(){
     return(

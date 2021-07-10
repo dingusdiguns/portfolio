@@ -14,20 +14,39 @@ let Projects = {
     backgroundColor: new THREE.Color( "rgb(180, 170, 165)" ),
     description: `The <a href = "https://wildone.com">Wild One</a> website is the product of 2 years of brand-building. Through months of iteration, we (a team of 2) designed the site modularly to house a varying amount of products. We were able to layer in functionality to allow users to parametrically customize products using a custom built 3d visulizer. This effort innevitably resulted in the founder of Wild One receiving a <a href = "https://www.forbes.com/30-under-30/2020/retail-ecommerce/#5ca8157f2fcd">Forbes 30 Under 30 Award</a> for ecommerce.`,
     images: [
-      "/images/wild-one/wild-one-home--big.png",
-      "/images/wild-one/wild-one-pdp--blue-big.png",
-      "/images/wild-one/wild-one-double-mobile.png",
+      {
+        grid: true,
+        images: [
+          "/images/wild-one/wild-one-1-higher.png",
+          "/images/wild-one/wild-one-4-higher.png",
+          "/images/wild-one/wild-one-2-higher.png",
+          "/images/wild-one/wild-one-3-higher.png"
+        ]
+      },
+      {
+        src: "/images/wild-one/wild-one-1-higher.png",
+        fullscreen: true
+      },
+      {
+        src: "/images/wild-one/wild-one-2-higher.png",
+        fullscreen: true
+      },
+      {
+        src: "/images/wild-one/wild-one-3-higher.png",
+        fullscreen: true
+      }
     ],
     roles: [
       "UI Designer",
       "Fullstack Dev"
     ],
     technologies: [
+      "Blender",
       "ReactJs",
       "NodeJS",
       "ThreeJS",
       "Shopify",
-      "Storefront API"
+      "Storefront API",
     ]
   },
 
@@ -43,6 +62,8 @@ let Projects = {
     backgroundColor: new THREE.Color( "rgb(27, 27, 95)" ),
     backgroundColor: new THREE.Color( "rgb(180, 180, 185)" ),
     images: [
+      
+     
       {
         video: true,
         src: "/images/scribby/scribby-1.m4v"
@@ -50,7 +71,15 @@ let Projects = {
       {
         video: true,
         src: "/images/scribby/scribby-portrait-2.m4v"
-      }
+      },
+      {
+        video: true,
+        src: "/images/scribby/scribby-portrait-2.m4v"
+      },
+      {
+        video: true,
+        src: "/images/scribby/scribby-1.m4v"
+      },
     ],
     roles: [
       "Founder",
@@ -58,11 +87,12 @@ let Projects = {
       "Fullstack Dev"
     ],
     technologies: [
+      "Blender",
       "ReactJS",
       "WebGL",
       "AWS",
       "Shopify",
-      "NodeJS"
+      "NodeJS",
     ]
   },
 
@@ -80,9 +110,10 @@ let Projects = {
     backgroundColor: new THREE.Color( "rgb(180, 180, 185)" ),
     backgroundColor: new THREE.Color( "rgb(150, 150, 150)" ),
     images: [
-      "/images/courant/courant-black-marble-3.png",
-      "/images/courant/courant-black-marble-2.png",
-      "/images/courant/courant-mobile-black-marble.png",
+      {src:"/images/courant/courant-1-higher.png", fullscreen: true},
+      {src:"/images/courant/courant-2-higher.png", fullscreen: true},
+      {src:"/images/courant/courant-3-higher.png", fullscreen: true},
+
     ],
     roles: [
       "Fullstack Dev",

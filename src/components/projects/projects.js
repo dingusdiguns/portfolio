@@ -55,6 +55,8 @@ class Project extends React.Component{
 
   componentDidMount(){
     this.__mounted()
+
+    window.changeHeaderColor( this.state.project.textColor );
     // window.addEventListener( "scroll", this.scrollEvent );
 
   }
@@ -185,6 +187,38 @@ class Project extends React.Component{
     }
   }
 
+  getGetImageType( img ){
+    if( img.video){
+      let className = "project__video";
+      if( this.state.fadeOut ){
+        className = "project__video fade-out"
+      }
+      return(
+          <div className = {className}>
+            <video
+            loop = {true}
+            muted
+            playsInline
+            autoPlay = {true}
+            >
+              <source src = {img.src}
+                ></source>
+            </video>
+          </div>
+      )
+    }else{
+      let className = "project__image";
+      if( this.state.fadeOut ){
+        className = "project__image fade-out"
+      }
+      return(
+          <div className = {className}>
+            <img src = {img} ></img>
+          </div>
+      )
+    }
+  }
+
   images(){
     return this.state.project.images.map(
       ( img, index ) => {
@@ -205,6 +239,30 @@ class Project extends React.Component{
                   <source src = {img.src}
                     ></source>
                 </video>
+              </div>
+            </div>
+          )
+        }else if( img.grid ){
+          return(
+            <div className = "project__image-grid">
+              {
+                img.images.map(
+                  ( src, index ) => {
+                    return this.getGetImageType( src )
+                  }
+                )
+              }
+            </div>
+          )
+        }else if( img.fullscreen ){
+          let className = "project__image";
+          if( this.state.fadeOut ){
+            className = "project__image fade-out"
+          }
+          return(
+            <div className = "wrap wrap--projects-fullscreen">
+              <div className = {className}>
+                <img src = {img.src} ></img>
               </div>
             </div>
           )
@@ -229,7 +287,7 @@ class Project extends React.Component{
               swipeable = {true}
               showArrows = {false}
               infiniteLoop = {true}
-              centerSlidePercentage = {50}
+              centerSlidePercentage = {25}
               >
                 {
                   img.images.map(
@@ -247,17 +305,12 @@ class Project extends React.Component{
             </div>
           )
         }else{
-          let className = "project__image";
-          if( this.state.fadeOut ){
-            className = "project__image fade-out"
-          }
-          return(
+          return (
             <div className = "wrap wrap--projects">
-              <div className = {className}>
-                <img src = {img} ></img>
-              </div>
+              {this.getGetImageType( img )}
             </div>
           )
+    
         }
       }
     );
@@ -276,9 +329,11 @@ class Project extends React.Component{
           {
             this.mobileHero()
           }
-          {
-            this.images()
-          }
+          <div className = "project__images">
+            {
+              this.images()
+            }
+          </div>
         </div>
       </div>
     )
@@ -322,13 +377,24 @@ class Project extends React.Component{
   }
 
   technologies(){
-    return this.state.project.technologies.map(
-      ( el, index ) => {
-        return(
-          <ProjectTechnology technology = { el } index = { index } scrollTop = { this.state.scrollTop }/>
-        )
-      }
-    );
+    return (
+      <div className = "project__technologies">
+        <div className = "project__technology project__technology--title">
+          <div className = "technology__inner-text technology__inner-text--title" style = {{ color: this.state.project.textColor }}>
+              Technology
+          </div>
+        </div>
+          {
+            this.state.project.technologies.map(
+              ( el, index ) => {
+                return(
+                  <ProjectTechnology project = { this.state.project } technology = { el } index = { index } scrollTop = { this.state.scrollTop }/>
+                )
+              }
+            )
+          }
+      </div>
+    )
   }
 
   render(){
