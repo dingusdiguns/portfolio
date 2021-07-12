@@ -352,6 +352,7 @@ class Home extends React.Component{
     let renderer = new THREE.WebGLRenderer({ canvas: this.refs.canvas, antialias: true });
     const composer = new EffectComposer( renderer );
     renderer.setClearColor( this.backgroundColor );
+    window.removeHeaderColor();
     // renderer.setPixelRatio( window.devicePixelRatio )
     // composer.setPixelRatio( window.devicePixelRatio )
     renderer.setSize( window.innerWidth, this.refs.canvas.offsetHeight );

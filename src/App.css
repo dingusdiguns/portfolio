@@ -50,6 +50,11 @@
   src: url("./fonts/GT-America-Thin.otf")
 }
 
+@font-face{
+  font-family: "GT America Ultra Light";
+  src: url("./fonts/GT-America-Ultra-Light.otf")
+}
+
 @font-face {
   font-family: "GT America compressed black";
   src: url("./fonts/gt-america-compressed-black-webfont.ttf");
@@ -257,7 +262,7 @@ body{
   font-family: "GT America Extended Regular";
   left: 0px;
   width: 100vw;
-  padding: 20px 30px;
+  padding: 20px 90px;
   color: white;
   z-index: 1000;
   font-size: 16px;
@@ -449,7 +454,7 @@ body{
 
 .project__image img{
   width: 100%;
-  max-width: 1500px;
+  /* max-width: 1500px; */
   margin: 0 auto;
   display: block;
 }
