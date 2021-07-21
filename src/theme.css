@@ -249,7 +249,6 @@
   margin-top: 60px;
   float: left;
   width: 33%;
-  display: none;
   font-family: "GT America Thin";
   font-size: 20px;
 }
@@ -562,7 +561,6 @@
   position: initial;
   background-color: #0f0f0f;
   padding-top: 20px;
-  visibility: hidden;
   width: 100%;
 }
 .projects .next-project .next-project__title {

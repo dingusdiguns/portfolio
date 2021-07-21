@@ -395,24 +395,24 @@ class Project extends React.Component{
   }
 
   technologies(){
-    return (
-      <div className = "project__technologies">
-        <div className = "project__technology project__technology--title">
-          <div className = "technology__inner-text technology__inner-text--title" style = {{  }}>
-              Technology
-          </div>
-        </div>
-          {
-            this.state.project.technologies.map(
-              ( el, index ) => {
-                return(
-                  <ProjectTechnology project = { this.state.project } technology = { el } index = { index } scrollTop = { this.state.scrollTop }/>
-                )
-              }
-            )
-          }
-      </div>
-    )
+    // return (
+    //   <div className = "project__technologies">
+    //     <div className = "project__technology project__technology--title">
+    //       <div className = "technology__inner-text technology__inner-text--title" style = {{  }}>
+    //           Technology
+    //       </div>
+    //     </div>
+    //       {
+    //         this.state.project.technologies.map(
+    //           ( el, index ) => {
+    //             return(
+    //               <ProjectTechnology project = { this.state.project } technology = { el } index = { index } scrollTop = { this.state.scrollTop }/>
+    //             )
+    //           }
+    //         )
+    //       }
+    //   </div>
+    // )
   }
 
   render(){

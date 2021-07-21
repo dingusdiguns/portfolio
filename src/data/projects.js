@@ -23,7 +23,22 @@ let Projects = {
           "/images/wild-one/wild-one-3-higher.png"
         ]
       },
-
+      // {
+      //   fullscreen: true,
+      //   src: "/images/wild-one/wild-one-1-higher.png"
+      // },
+      // {
+      //   fullscreen: true,
+      //   src: "/images/wild-one/wild-one-4-higher.png"
+      // },
+      // {
+      //   fullscreen: true,
+      //   src: "/images/wild-one/wild-one-2-higher.png"
+      // },
+      // {
+      //   fullscreen: true,
+      //   src: "/images/wild-one/wild-one-3-higher.png"
+      // },
     ],
     roles: [
       "UI Designer",
@@ -52,11 +67,14 @@ let Projects = {
     backgroundColor: new THREE.Color( "rgb(180, 180, 185)" ),
     images: [
 
-      
-     
+
+
       {
-        video: true,
-        src: "/images/scribby/scribby-hero-video.m4v"
+        fullscreen: true,
+        src: {
+          src: "/images/scribby/scribby-hero-video.m4v",
+          video: true
+        }
       },
       {
         fullscreen: true,
@@ -65,14 +83,6 @@ let Projects = {
       {
         fullscreen: true,
         src: "/images/scribby/scribby-home-hero---other-thing.png"
-
-      },
-      {
-        fullscreen: true,
-        src: {
-          src: "/images/scribby/scribby-portrait-2.m4v",
-          video: true
-        }
       }
     ],
     roles: [
@@ -140,9 +150,18 @@ Projects["WP"] = {
   description: `Courant's website has gone through several iterations. It was originally built to serve as a promotional website for a single product, but as the Company's project offering changed, so did the website to fit into a more traditional mould. In it's current state, it is built to offer the client a full range of customizability; this includes: being able to create custom promotions for monogrammed products, on-the-fly discounts for custom product bundles, and a custom built tiered-discount model for the cart. Our efforts were validated in 2019 when both of the cofounders of the company received a <a href = "https://www.forbes.com/30-under-30/2021/consumer-technology/?profile=courant">Forbes 30 Under 30 Award</a> for consumer technology.`,
   backgroundColor: new THREE.Color( "rgb(255, 180, 80)" ),
   images: [
-    "/images/wp/wp-desktop-1.png",
-    "/images/wp/wp-desktop-subsurface-2.png",
-    "/images/wp/wp-desktop-3.png",
+    {
+      fullscreen: true,
+      src: "/images/wp/wp-desktop-1.png"
+    },
+    {
+      fullscreen: true,
+      src: "/images/wp/wp-desktop-subsurface-2.png"
+    },
+    {
+      fullscreen: true,
+      src: "/images/wp/wp-desktop-3.png"
+    },
   ],
   roles: [
     "Frontend Dev",
