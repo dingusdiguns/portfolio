@@ -63,7 +63,7 @@
   transform: initial;
   min-width: 0px;
   border: 1px solid black;
-  padding: 10px;
+  padding: 20px;
   overflow: hidden;
   white-space: nowrap;
   transition: 0.4s;
@@ -128,13 +128,13 @@
   width: 100%;
 }
 .project-title.project-title--home.project-title--home--scribby {
-  font-size: 26.5vw;
+  font-size: 30vw;
 }
 .project-title.project-title--home.project-title--home--wild-one {
-  font-size: 25vw;
+  font-size: 27.5vw;
 }
 .project-title.project-title--home.project-title--home--courant {
-  font-size: 26.5vw;
+  font-size: 27vw;
 }
 .project-title.project-title--home.project-title--home--wp {
   font-size: 20.5vw;
@@ -190,7 +190,7 @@
   animation-name: fadeIn;
   animation-fill-mode: forwards;
   animation-duration: 2s;
-  margin-top: 10px;
+  margin-top: 20px;
   overflow: hidden;
   font-family: "GT America Extended Medium";
 }
@@ -366,7 +366,9 @@
 }
 
 .wrap {
-  padding: 0px 30px;
+  padding: 20px 0px;
+  max-width: 90vw;
+  margin: 0 auto;
 }
 @media (max-width: 600px) {
   .wrap {
@@ -379,9 +381,12 @@
   }
 }
 .wrap.wrap--projects {
-  padding: 0px 10px;
+  padding: 0px 20px;
   display: flex;
   margin: 0 auto;
+}
+.wrap.wrap--projects-fullscreen {
+  max-width: initial;
 }
 
 @media (min-width: 1000px) {
@@ -389,16 +394,16 @@
     float: left;
     width: 50%;
     padding: 0px;
-    padding-left: 10px;
+    padding-left: 20px;
     display: block;
     box-sizing: border-box;
   }
 }
 .project__images .wrap--projects-fullscreen {
-  padding: 0px 10px;
+  padding: 0px 20px;
 }
 .project__images .wrap--projects-fullscreen .project__image {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .project__image, .project__video {
@@ -407,7 +412,7 @@
   float: left;
   opacity: 1;
   transition: 0.5s;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -556,7 +561,7 @@
 .projects .next-project canvas {
   position: initial;
   background-color: #0f0f0f;
-  padding-top: 10px;
+  padding-top: 20px;
   visibility: hidden;
   width: 100%;
 }
@@ -597,7 +602,8 @@
   text-align: center;
   font-family: "GT America Expanded Black";
   text-transform: uppercase;
-  height: 19vw;
+  height: 14vw;
+  line-height: 1em;
   width: 100vw;
   overflow: hidden;
   position: relative;
@@ -612,7 +618,7 @@
   position: absolute;
   transition: 0.1s;
   top: 50%;
-  font-size: 19vw;
+  font-size: 14vw;
   left: 50%;
   width: 100%;
   transform: translate(-50%, -50%);
@@ -649,7 +655,7 @@
 }
 .slick-container .carousel-slide {
   padding: 0px;
-  padding-left: 10px;
+  padding-left: 20px;
   position: relative;
 }
 @media (max-width: 800px) {
@@ -690,15 +696,15 @@
 }
 
 .wild-one-1 {
-  letter-spacing: -0.05em;
+  letter-spacing: -0.055em;
 }
 
 .wild-one-2 {
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
 }
 
 .wild-one-3 {
-  letter-spacing: -0.05em;
+  letter-spacing: -0.055em;
 }
 
 .wild-one-5 {
@@ -706,15 +712,15 @@
 }
 
 .wild-one-6 {
-  letter-spacing: -0.045em;
+  letter-spacing: -0.055em;
 }
 
 .scribby-0 {
-  letter-spacing: 0em;
+  letter-spacing: -0.005em;
 }
 
 .scribby-1 {
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
 }
 
 .scribby-2 {
@@ -726,7 +732,7 @@
 }
 
 .scribby-4 {
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
 }
 
 .scribby-5 {
@@ -742,7 +748,7 @@
 }
 
 .courant-2 {
-  letter-spacing: -0.045em;
+  letter-spacing: -0.05em;
 }
 
 .courant-3 {
@@ -754,7 +760,7 @@
 }
 
 .courant-5 {
-  letter-spacing: 0.015em;
+  letter-spacing: -0.015em;
 }
 
 .wp-0 {
@@ -874,11 +880,15 @@
 }
 
 .project__image-grid {
-  padding-right: 10px;
+  padding-right: 20px;
 }
 .project__image-grid .project__image, .project__image-grid .project__Video {
-  width: 50%;
-  padding-left: 10px;
+  padding-left: 20px;
+}
+@media (min-width: 1500px) {
+  .project__image-grid .project__image, .project__image-grid .project__Video {
+    width: 50%;
+  }
 }
 
 /*# sourceMappingURL=theme.css.map */

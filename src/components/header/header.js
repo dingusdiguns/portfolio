@@ -94,7 +94,7 @@ class Header extends React.Component{
     }
   }
 
-  
+
   getStyle(){
     let style = {
       opacity: 1,
@@ -112,7 +112,7 @@ class Header extends React.Component{
   render(){
     return(
       <div className = "header" style = { this.getStyle() }>
-        <div className = "wrap">
+        <div className = "wrap wrap--header">
           <ul>
             <li className = { this.linkClass( "projects" ) } style = { this.getStyle() }
               onClick = { this.clickProjects.bind( this ) }
