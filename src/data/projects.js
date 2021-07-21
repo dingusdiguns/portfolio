@@ -23,18 +23,7 @@ let Projects = {
           "/images/wild-one/wild-one-3-higher.png"
         ]
       },
-      {
-        src: "/images/wild-one/wild-one-1-higher.png",
-        fullscreen: true
-      },
-      {
-        src: "/images/wild-one/wild-one-2-higher.png",
-        fullscreen: true
-      },
-      {
-        src: "/images/wild-one/wild-one-3-higher.png",
-        fullscreen: true
-      }
+
     ],
     roles: [
       "UI Designer",
@@ -62,24 +51,22 @@ let Projects = {
     backgroundColor: new THREE.Color( "rgb(27, 27, 95)" ),
     backgroundColor: new THREE.Color( "rgb(180, 180, 185)" ),
     images: [
-      
-     
+
+
       {
-        video: true,
-        src: "/images/scribby/scribby-1.m4v"
+        fullscreen: true,
+        src: {
+          src: "/images/scribby/scribby-1.m4v",
+          video: true
+        }
       },
       {
-        video: true,
-        src: "/images/scribby/scribby-portrait-2.m4v"
-      },
-      {
-        video: true,
-        src: "/images/scribby/scribby-portrait-2.m4v"
-      },
-      {
-        video: true,
-        src: "/images/scribby/scribby-1.m4v"
-      },
+        fullscreen: true,
+        src: {
+          src: "/images/scribby/scribby-portrait-2.m4v",
+          video: true
+        }
+      }
     ],
     roles: [
       "Founder",

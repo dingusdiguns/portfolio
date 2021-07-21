@@ -7,6 +7,8 @@ $font-size-big--description: 34px;
 $font-size-wide--description: 34px;
 $font-size-medium--description: 24px;
 
+$padding: 20px;
+
 .homepage .link-text{
   @media( min-width: 800px ){
     display: none;
@@ -80,7 +82,7 @@ $font-size-medium--description: 24px;
     transform: initial;
     min-width: 0px;
     border: 1px solid black;
-    padding: 10px;
+    padding: $padding;
     overflow: hidden;
     white-space: nowrap;
     transition: .4s;
@@ -149,13 +151,13 @@ $font-size-medium--description: 24px;
 
     font-size: 27vw;
     &.project-title--home--scribby{
-      font-size: 26.5vw;
+      font-size: 30vw;
     }
     &.project-title--home--wild-one{
-      font-size: 25vw;
+      font-size: 27.5vw;
     }
     &.project-title--home--courant{
-      font-size: 26.5vw;
+      font-size: 27vw;
     }
     &.project-title--home--wp{
       font-size: 20.5vw;
@@ -227,7 +229,7 @@ $font-size-medium--description: 24px;
     animation-name: fadeIn;
     animation-fill-mode: forwards;
     animation-duration: 2s;
-    margin-top: 10px;
+    margin-top: $padding;
     overflow: hidden;
     font-family: "GT America Extended Medium";
   }
@@ -409,9 +411,15 @@ $font-size-medium--description: 24px;
 
 
 .wrap{
-  padding: 0px 30px;
+  padding: $padding 0px;
+  max-width: 90vw;
+  margin: 0 auto;
   @media( max-width: 600px ){
     padding: 0px 20px;
+  }
+
+  &.wrap--header{
+
   }
 
   @media( max-width: 450px ){
@@ -419,9 +427,13 @@ $font-size-medium--description: 24px;
   }
 
   &.wrap--projects{
-    padding: 0px 10px;
+    padding: 0px $padding;
     display: flex;
     margin: 0 auto;
+  }
+
+  &.wrap--projects-fullscreen{
+    max-width: initial;
   }
 }
 
@@ -431,16 +443,16 @@ $font-size-medium--description: 24px;
       float: left;
       width: 50%;
       padding: 0px;
-      padding-left: 10px;
+      padding-left: $padding;
       display: block;
       box-sizing: border-box;
     }
   }
 
   .wrap--projects-fullscreen{
-    padding: 0px 10px;
+    padding: 0px $padding;
     .project__image{
-      margin-bottom: 10px;
+      margin-bottom: $padding;
     }
   }
 }
@@ -455,7 +467,7 @@ $font-size-medium--description: 24px;
   float: left;
   opacity: 1;
   transition: .5s;
-  margin-bottom: 10px;
+  margin-bottom: $padding;
   box-sizing: border-box;
   overflow: hidden;
   &.fade-out{
@@ -623,7 +635,7 @@ $font-size-medium--description: 24px;
     }
     position: initial;
     background-color: rgb(15,15,15);
-    padding-top: 10px;
+    padding-top: $padding;
     visibility: hidden;
     width: 100%;
   }
@@ -667,7 +679,8 @@ $font-size-medium--description: 24px;
   text-align: center;
   font-family: 'GT America Expanded Black';
   text-transform: uppercase;
-  height: 19vw;
+  height: 14vw;
+  line-height: 1em;
   width: 100vw;
   overflow: hidden;
   position: relative;
@@ -686,7 +699,7 @@ $font-size-medium--description: 24px;
     position: absolute;
     transition: .1s;
     top: 50%;
-    font-size: 19vw;
+    font-size: 14vw;
     left: 50%;
     width: 100%;
     transform: translate( -50%, -50% );
@@ -728,7 +741,7 @@ $font-size-medium--description: 24px;
   }
   .carousel-slide{
     padding: 0px;
-    padding-left: 10px;
+    padding-left: $padding;
     position: relative;
     @media( max-width: 800px ){
       padding: 0px 20px;
@@ -937,10 +950,12 @@ $font-size-medium--description: 24px;
 }
 
 .project__image-grid{
-  padding-right: 10px;
+  padding-right: $padding;
   .project__image, .project__Video{
-    width: 50%;
-    padding-left: 10px;
+    @media( min-width: 1500px ){
+      width: 50%;
+
+    }
+    padding-left: $padding;
   }
 }
-

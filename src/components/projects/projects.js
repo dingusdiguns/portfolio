@@ -56,7 +56,7 @@ class Project extends React.Component{
   componentDidMount(){
     this.__mounted()
 
-    window.changeHeaderColor( this.state.project.textColor );
+    // window.changeHeaderColor( this.state.project.textColor );
     // window.addEventListener( "scroll", this.scrollEvent );
 
   }
@@ -259,13 +259,31 @@ class Project extends React.Component{
           if( this.state.fadeOut ){
             className = "project__image fade-out"
           }
-          return(
-            <div className = "wrap wrap--projects-fullscreen">
-              <div className = {className}>
-                <img src = {img.src} ></img>
+          if( img.src.video  ){
+            return(
+              <div className = "wrap wrap--projects-fullscreen">
+                <div className = "project__video">
+                  <video
+                  loop = {true}
+                  muted
+                  playsInline
+                  autoPlay = {true}
+                  >
+                  <source src = {img.src.src}
+                  ></source>
+                  </video>
+                </div>
               </div>
-            </div>
-          )
+            )
+          }else{
+            return(
+              <div className = "wrap wrap--projects-fullscreen">
+                <div className = {className}>
+                  <img src = {img.src} ></img>
+                </div>
+              </div>
+            )
+          }
         }else if( img.carousel ){
           let className = "project__carousel";
           if( this.state.fadeOut ){
@@ -310,7 +328,7 @@ class Project extends React.Component{
               {this.getGetImageType( img )}
             </div>
           )
-    
+
         }
       }
     );
@@ -380,7 +398,7 @@ class Project extends React.Component{
     return (
       <div className = "project__technologies">
         <div className = "project__technology project__technology--title">
-          <div className = "technology__inner-text technology__inner-text--title" style = {{ color: this.state.project.textColor }}>
+          <div className = "technology__inner-text technology__inner-text--title" style = {{  }}>
               Technology
           </div>
         </div>

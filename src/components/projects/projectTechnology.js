@@ -59,12 +59,10 @@ class ProjectTechnology extends React.Component{
       if( this.state.index % 2 === 0 ){
         return({
           transform: `translate( ${-50 + ( Math.round( perc * 100 ) )}%, -50%)`,
-          color: this.state.project.textColor
         })
       }else{
         return({
           transform: `translate( ${-50 - ( Math.round( perc * 100 ) )}%, -50%)`,
-          color: this.state.project.textColor
         })
       }
     }
