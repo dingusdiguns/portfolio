@@ -59,7 +59,7 @@ let Projects = {
     cover: "/images/scribby.png",
     shortDescription: "generative painting for all",
     textColor: "rgb( 180, 69, 60 )",
-    description: 'A <a href = "/pages/scribby-test">painting engine</a> for the web. Allows users to upload a photograph and paint it. Using WebGL and HTML Canvas, it creates a series of simulations that mirror analogue painting techniques including watercolor and acrylic. In order to achieve a convincing paint effect, I had to write a custom WebGL engine as well as about a dozen shaders in GLSL.',
+    description: 'A painting engine for the web. Allows users to upload a photograph and paint it. Using WebGL and HTML Canvas, it creates a series of simulations that mirror analogue painting techniques including watercolor and acrylic. In order to achieve a convincing paint effect, I had to write a custom WebGL engine as well as about a dozen shaders in GLSL.',
     handle: "scribby",
     linkText: "View Project",
     backgroundColor_rgb: "rgb(180, 69, 120)",

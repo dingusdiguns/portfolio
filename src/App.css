@@ -61,6 +61,11 @@
 
 }
 
+@font-face{
+  font-family: "GT-America-Regular";
+  src: url("./fonts/GT-America-Regular.ttf");
+}
+
 
 @font-face {
   font-family: "GT America compressed medium";
@@ -470,7 +475,7 @@ body{
   text-align: center;
   color: rgb( 150, 150, 150 );
   opacity: 0;
-  font-family: "GT America Thin";
+  font-family: "GT-America-Regular";
   font-size: 20px;
   font-weight: initial;
   animation-delay: 0s;

@@ -338,7 +338,7 @@ class Project extends React.Component{
     return(
       <div className = "project__body">
         <div className = "grid">
-          <div className = "wrap wrap--projects">
+          <div className = "wrap wrap--project-hero">
             <img className = "project__main-image project__image" src = { this.state.project.firstImage ? this.state.project.firstImage : this.state.project.cover }/>
           </div>
           {
@@ -387,7 +387,7 @@ class Project extends React.Component{
 
   mobileHero(){
     return(
-      <div className = "project__hero--mobile">
+      <div className = {`project__hero--mobile project__hero--mobile--${ this.state.project.handle }`}>
         <h2>{ this.state.project.title }</h2>
         <p dangerouslySetInnerHTML = {{ __html: this.state.project.description }} ></p>
       </div>

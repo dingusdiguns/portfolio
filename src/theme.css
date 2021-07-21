@@ -201,11 +201,16 @@
 
 .project__description {
   color: white;
-  padding: 240px 0px;
+  padding: 80px 0px;
   float: left;
   width: 100%;
   box-sizing: border-box;
   font-family: "GT America Thin";
+}
+@media (min-width: 1200px) {
+  .project__description {
+    padding: 240px 0px;
+  }
 }
 
 .project__description a {
@@ -224,10 +229,10 @@
     font-size: 24px;
   }
 }
-@media (min-width: 800px) {
+@media (min-width: 1040px) {
   .project__description p {
     padding: 0px 0px;
-    font-size: 34px;
+    font-size: 28px;
   }
 }
 @media (min-width: 1200px) {
@@ -238,7 +243,11 @@
 
 .project__description-inner {
   margin: 0 auto;
-  max-width: 800px;
+}
+@media (min-width: 1200px) {
+  .project__description-inner {
+    max-width: 800px;
+  }
 }
 
 .technologies label, .roles label {
@@ -374,6 +383,10 @@
     padding: 0px 20px;
   }
 }
+.wrap.wrap--project-hero {
+  padding: 0px 20px;
+  max-width: initial;
+}
 @media (max-width: 450px) {
   .wrap {
     padding: 0px 20px;
@@ -401,7 +414,7 @@
 .project__images .wrap--projects-fullscreen {
   padding: 0px 20px;
 }
-.project__images .wrap--projects-fullscreen .project__image {
+.project__images .wrap--projects-fullscreen .project__image, .project__images .wrap--projects-fullscreen .project__video {
   margin-bottom: 20px;
 }
 
@@ -420,7 +433,7 @@
 }
 @media (max-width: 600px) {
   .project__image, .project__video {
-    margin-bottom: 60px;
+    margin-bottom: 20px;
   }
 }
 
@@ -460,7 +473,7 @@
   min-height: 40vw;
   width: 100%;
 }
-.project__main-image.project__image {
+.project__main-image.project__image, .project__main-image .project__video {
   margin-bottom: 0px;
 }
 
@@ -512,12 +525,21 @@
 }
 
 .project__hero--mobile {
-  padding: 0px 60px;
+  padding: 0px 40px;
 }
 @media (min-width: 600px) {
   .project__hero--mobile {
     display: none;
   }
+}
+.project__hero--mobile.project__hero--mobile--courant h2 {
+  font-size: 22vw;
+}
+.project__hero--mobile.project__hero--mobile--scribby h2 {
+  font-size: 26vw;
+}
+.project__hero--mobile.project__hero--mobile--wild-one h2 {
+  font-size: 23vw;
 }
 .project__hero--mobile h2 {
   color: white;
@@ -530,10 +552,13 @@
 }
 .project__hero--mobile p {
   color: #d4d4d4;
-  font-family: "GT America Extended Regular";
+  font-family: "GT-America-Regular";
   line-height: 1.6em;
-  font-size: 20px;
+  font-size: 24px;
   margin-bottom: 60px;
+}
+.project__hero--mobile p a {
+  color: #6e6e6e;
 }
 
 @media (max-width: 600px) {
@@ -886,6 +911,11 @@
 @media (min-width: 1500px) {
   .project__image-grid .project__image, .project__image-grid .project__Video {
     width: 50%;
+  }
+}
+@media (max-width: 1000px) {
+  .project__image-grid .project__image .project__image, .project__image-grid .project__Video .project__image {
+    margin-bottom: 20px;
   }
 }
 
