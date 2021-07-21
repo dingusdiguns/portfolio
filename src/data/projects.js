@@ -66,15 +66,15 @@ let Projects = {
      
       {
         video: true,
-        src: "/images/scribby/scribby-1.m4v"
+        src: "/images/scribby/scribby-hero-video.m4v"
       },
       {
-        video: true,
-        src: "/images/scribby/scribby-portrait-2.m4v"
+        fullscreen: true,
+        src: "/images/scribby/scribby-home-hero---somethings.png"
       },
       {
-        video: true,
-        src: "/images/scribby/scribby-portrait-2.m4v"
+        fullscreen: true,
+        src: "/images/scribby/scribby-home-hero---other-thing.png"
       },
       {
         video: true,
