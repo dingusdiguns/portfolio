@@ -29,6 +29,14 @@ let Projects = {
       },
       {
         fullscreen: true,
+        src: "/images/wild-one/wild-one-5-higher.png"
+      },
+      {
+        fullscreen: true,
+        src: "/images/wild-one/wild-one-6-higher.png"
+      },
+      {
+        fullscreen: true,
         src: "/images/wild-one/wild-one-4-higher.png"
       },
       {
@@ -82,7 +90,18 @@ let Projects = {
       },
       {
         fullscreen: true,
+        src: "/images/scribby/scribby-screen-9.png"
+      },
+      {
+        fullscreen: true,
         src: "/images/scribby/scribby-home-hero---other-thing.png"
+      },
+      {
+        fullscreen: true,
+        src: {
+          video: true,
+          src: "/images/scribby/scribby-pdp-video.m4v"
+        }
       }
     ],
     roles: [

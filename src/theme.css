@@ -429,6 +429,9 @@
 .project__images .wrap--projects-fullscreen .project__image, .project__images .wrap--projects-fullscreen .project__video {
   margin-bottom: 20px;
 }
+.project__images .wrap--projects-fullscreen .project__image video, .project__images .wrap--projects-fullscreen .project__video video {
+  max-width: initial;
+}
 @media (max-width: 1000px) {
   .project__images .wrap--projects-fullscreen .project__image, .project__images .wrap--projects-fullscreen .project__video {
     margin-bottom: 10px;

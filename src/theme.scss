@@ -452,6 +452,8 @@ $padding-small: 10px;
 
   &.wrap--projects-fullscreen{
     max-width: initial;
+
+    
   }
 }
 
@@ -474,6 +476,9 @@ $padding-small: 10px;
     }
     .project__image, .project__video{
       margin-bottom: $padding;
+      video{
+        max-width: initial;
+      }
       @media( max-width: 1000px ){
         margin-bottom: $padding-small;
       }
