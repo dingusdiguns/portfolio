@@ -78,7 +78,7 @@ class Project extends React.Component{
       500
     )
     this.scrollEvent = throttle( this.scroll.bind( this ), 20 );
-    window.addEventListener( "scroll", this.scrollEvent );
+    // window.addEventListener( "scroll", this.scrollEvent );
   }
 
   componentWillUnmount(){

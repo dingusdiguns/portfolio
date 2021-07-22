@@ -8,6 +8,7 @@ $font-size-wide--description: 34px;
 $font-size-medium--description: 24px;
 
 $padding: 20px;
+$padding-small: 10px;
 
 .homepage .link-text{
   @media( min-width: 800px ){
@@ -440,6 +441,13 @@ $padding: 20px;
     padding: 0px $padding;
     display: flex;
     margin: 0 auto;
+    float: left;
+    width: 100%;
+
+    @media( max-width: 1000px ){
+      padding: 0px $padding-small;
+    }
+
   }
 
   &.wrap--projects-fullscreen{
@@ -461,8 +469,14 @@ $padding: 20px;
 
   .wrap--projects-fullscreen{
     padding: 0px $padding;
+    @media( max-width: 1000px ){
+      padding: 0px $padding-small;
+    }
     .project__image, .project__video{
       margin-bottom: $padding;
+      @media( max-width: 1000px ){
+        margin-bottom: $padding-small;
+      }
     }
   }
 }
@@ -478,14 +492,15 @@ $padding: 20px;
   opacity: 1;
   transition: .5s;
   margin-bottom: $padding;
+  @media( max-width: 1000px){
+    margin-bottom: $padding-small;
+  }
   box-sizing: border-box;
   overflow: hidden;
   &.fade-out{
     opacity: 0;
   }
-  @media( max-width: 600px ){
-    margin-bottom: $padding;
-  }
+
 }
 
 .project__hero{
@@ -595,6 +610,7 @@ $padding: 20px;
 }
 
 .project__hero--mobile{
+  float: left;
   @media( min-width: 600px ){
     display: none;
   }
@@ -617,7 +633,7 @@ $padding: 20px;
     }
   }
 
-  padding: 0px 40px;
+  padding: 120px 40px;
   h2{
     color: white;
     font-family: "GT America compressed black";
@@ -625,19 +641,19 @@ $padding: 20px;
     font-size: 18vw;
     text-transform: uppercase;
     margin: 0px;
-    padding-top: 60px
   }
 
   p{
+    margin-top: 40px;
     color: rgb(212, 212, 212);
     font-family: "GT-America-Regular";
     line-height: 1.6em;
     font-size: 24px;
+    margin-bottom: 0px;
     // text-align: center;
     a{
       color: rgb( 110, 110, 110 );
     }
-    margin-bottom: 60px;
   }
 }
 

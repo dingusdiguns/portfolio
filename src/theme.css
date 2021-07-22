@@ -396,6 +396,13 @@
   padding: 0px 20px;
   display: flex;
   margin: 0 auto;
+  float: left;
+  width: 100%;
+}
+@media (max-width: 1000px) {
+  .wrap.wrap--projects {
+    padding: 0px 10px;
+  }
 }
 .wrap.wrap--projects-fullscreen {
   max-width: initial;
@@ -414,8 +421,18 @@
 .project__images .wrap--projects-fullscreen {
   padding: 0px 20px;
 }
+@media (max-width: 1000px) {
+  .project__images .wrap--projects-fullscreen {
+    padding: 0px 10px;
+  }
+}
 .project__images .wrap--projects-fullscreen .project__image, .project__images .wrap--projects-fullscreen .project__video {
   margin-bottom: 20px;
+}
+@media (max-width: 1000px) {
+  .project__images .wrap--projects-fullscreen .project__image, .project__images .wrap--projects-fullscreen .project__video {
+    margin-bottom: 10px;
+  }
 }
 
 .project__image, .project__video {
@@ -428,13 +445,13 @@
   box-sizing: border-box;
   overflow: hidden;
 }
+@media (max-width: 1000px) {
+  .project__image, .project__video {
+    margin-bottom: 10px;
+  }
+}
 .project__image.fade-out, .project__video.fade-out {
   opacity: 0;
-}
-@media (max-width: 600px) {
-  .project__image, .project__video {
-    margin-bottom: 20px;
-  }
 }
 
 .project__hero {
@@ -525,7 +542,8 @@
 }
 
 .project__hero--mobile {
-  padding: 0px 40px;
+  float: left;
+  padding: 120px 40px;
 }
 @media (min-width: 600px) {
   .project__hero--mobile {
@@ -548,14 +566,14 @@
   font-size: 18vw;
   text-transform: uppercase;
   margin: 0px;
-  padding-top: 60px;
 }
 .project__hero--mobile p {
+  margin-top: 40px;
   color: #d4d4d4;
   font-family: "GT-America-Regular";
   line-height: 1.6em;
   font-size: 24px;
-  margin-bottom: 60px;
+  margin-bottom: 0px;
 }
 .project__hero--mobile p a {
   color: #6e6e6e;

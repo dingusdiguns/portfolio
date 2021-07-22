@@ -287,7 +287,7 @@ class NextProject extends React.Component{
 
     render(){
         return(
-            <div className = "wrap wrap--projects">
+            <div className = "wrap wrap--next-project">
                 <div className = "next-project" onMouseMove = { throttle( this.mouseMove.bind( this ), 20 ) } onClick = { this.props.clickProject }>
                     <div className = "next-project__inner">
                         <div className = "next-project__title" style = { this.getTitleStyle() }>
