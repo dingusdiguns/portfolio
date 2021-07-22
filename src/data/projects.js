@@ -179,7 +179,15 @@ Projects["WP"] = {
     },
     {
       fullscreen: true,
+      src: "/images/wp/wp-desktop-5.png"
+    },
+    {
+      fullscreen: true,
       src: "/images/wp/wp-desktop-3.png"
+    },
+    {
+      fullscreen: true,
+      src: "/images/wp/wp-desktop-6.png"
     },
   ],
   roles: [
